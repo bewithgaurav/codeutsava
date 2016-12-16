@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
+<link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+
+ <head>
+	<title></title>
+</head>
+<body>
+<center>
+<br><br>
+<h3>Search Books</h3>
+<br>
+<h5>Enter either or both of the following fields</h5>
+{% for category, message in get_flashed_messages(with_categories=true) %}
+<h6>{{ message }}</h6></center>
+{% endfor %}
+<br><br><br>
+<div class="container">
+	<!-- <div class="row"> -->
+	    <form action="/searchbooks" method="post" class="col s12">
+	      <div class="row">
+	        <div class="input-field col s12">
+	          <input placeholder="Enter Book Title " id="booktitle" name="booktitle" type="text" class="validate">
+	          <!-- <label for="body">Destination</label> -->
+	        </div>
+	      </div>
+	      <div class="row">
+	        <div class="input-field col s12">
+	          <input placeholder="Enter Book Author " id="bookauthor" name="bookauthor" type="text" class="validate">
+	          <!-- <label for="body">Destination</label> -->
+	        </div>
+	      </div>
+	      
+	      <div class="row">
+	      	<center><button class="btn waves-effect waves-light" type="submit" name="action">Search</button></center>
+          </div>
+	    </form>
+</div>
+<br>
+<div class="container">
+	{%if data%}
+	<table>
+		<tr>
+			<td><center><b>Book ID</center></td>
+			<td><center><b>Book Author</center></td>
+			<td><center><b>Book Title</center></td>
+		</tr>
+	{%endif%}
+	{% for i in data %}
+		<tr>
+			<td><center>{{i[0]}}</center></td>
+			<td><center>{{i[1]}}</center></td>
+			<td><center>{{i[2]}}</center></td>
+		</tr>
+		<!-- {{i}} -->
+
+	{% endfor %}
+
+</table>
+</div>
+<br><br><br>
+<center>
+<a href="/logout" class="waves-effect waves-light btn">Logout</a><br><br>
+</body>
+</html>
