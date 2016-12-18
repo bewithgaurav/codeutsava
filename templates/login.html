@@ -1,12 +1,10 @@
-
-
 <!DOCTYPE html>
 <html>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 
- <head>
+<head>
 	<title></title>
 </head>
 <body>
@@ -17,6 +15,9 @@
 {% for category, message in get_flashed_messages(with_categories=true) %}
 <h6>{{ message }}</h6></center>
 {% endfor %}
+{%if teamname%}
+Team {{teamname}} successfuly deleted.
+{% endif %}
 <br><br><br>
 <div class="container">
 	<!-- <div class="row"> -->
@@ -40,9 +41,6 @@
           </div>
 	    </form>
 </div>
-{% for i in data %}
-<br>{{i}}
-{% endfor %}
 
 </body>
 </html>

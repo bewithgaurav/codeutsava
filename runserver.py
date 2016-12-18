@@ -10,20 +10,16 @@ cursor = db.cursor()
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
-# Members
-# +----+--------+----------------------------+----------+----------+--------+--------+----------+---------+
-# | id | active | email                      | teamname | FullName | resume | github | graduate | contact |
-# +----+--------+----------------------------+----------+----------+--------+--------+----------+---------+
+# +----+--------+-------+----------+--------+--------+---------+--------+------+------+------------+---------+-------+------+------+--------+--------+
+# | id | active | email | teamname | resume | github | contact | gender | dob  | yop  | experience | address | state | city | name | degree | stream |
+# +----+--------+-------+----------+--------+--------+---------+--------+------+------+------------+---------+-------+------+------+--------+--------+
 
-app.config.update(
-    DEBUG=True,
-    #EMAIL SETTINGS
-    MAIL_SERVER='smtp.zoho.com',
-    MAIL_PORT=465,
-    MAIL_USE_SSL=True,
-    MAIL_USERNAME = 'gauravtatti@zoho.com',
-    MAIL_PASSWORD = 'Nezaflo69'
-    )
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'gauravandsanskar@gmail.com'
+app.config['MAIL_PASSWORD'] = '8602229193'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
 
 mail = Mail(app)
 
@@ -48,6 +44,8 @@ def admin():
 
 @app.route('/logout')
 def logout():
+    if 'deleted' in session:
+        return render_template("login.html",teamname=session['team'])
     session.clear()
     return render_template("index.html")
 
@@ -84,9 +82,9 @@ def activate():
     id=cursor.fetchone()
     id=str(id[0])
     f=(hashlib.md5(id.encode('utf-8')).hexdigest())
-    print(f,hashstring,"update members set active=%s where id=%s",('1',id))
+    # print(f,hashstring,"update members set active=%s where id=%s",('1',id))
     if f==hashstring:
-        print("yes equal")
+        # print("yes equal")
         try:
             cursor.execute("""update members set active=%s where id=%s""",('1',id))
             db.commit()
@@ -96,37 +94,55 @@ def activate():
             return render_template("activated.html",value=False)
     return render_template("activated.html",value=False)
 
-
-@app.route('/staffprofile',methods=['GET', 'POST'])
-def staffprofile():
-    if "staff" in session:
-        fullname=session["staffname"]
-        return render_template("staffprofile.html",name=fullname)
-    return "Please Log In first"
-
-@app.route('/staff',methods=['GET', 'POST'])
-def staff():
-    if "staff" in session:
-        return redirect(url_for('staffprofile'))
+@app.route('/memberprofile',methods=['GET','POST'])
+def memprofile():
+    if 'team' not in session:
+        return("You Need to Login first")
     if request.method=='POST':
-        uname=request.form.get('uname','')
-        password=request.form.get('password','')
-        query="select * from staff where username='%s' and password='%s'"%(uname,password)
-        # print(query)
+        name=request.form.get('name','')
+        gender=request.form.get('gender','')
+        github=request.form.get('github','')
+        resume=request.form.get('resume','')
+        yop=request.form.get('yop','')
+        contact=request.form.get('contact','')
+        experience=request.form.get('experience','')
+        address=request.form.get('address','')
+        degree=request.form.get('degree','')
+        stream=request.form.get('stream','')
+        city=request.form.get('city','')
+        state=request.form.get('state','')
+        dob=request.form.get('dob','')
+        # print("DATEOFBIRTH", dob)
+        try:
+            print(session['currentmember'])
+            # print("UPDATE members set status=%d,name='%s',gender='%s',github='%s',resume='%s',yop='%s',contact='%s',experience='%s',address='%s',degree='%s',stream='%s',city='%s',state='%s',dob='%s'  where email='%s'"%(1,name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,session["currentmember"]))
+            cursor.execute("""UPDATE members set status=%s,name=%s,gender=%s,github=%s,resume=%s,yop=%s,contact=%s,experience=%s,address=%s,degree=%s,stream=%s,city=%s,state=%s,dob=%s where email=%s""",('1',name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,session["currentmember"]))
+            # cursor.execute("""update members set status=%s where email=%s""",('1',session["currentmember"]))
+            db.commit()
+            flash('Successfully Saved')
+        except:
+            db.rollback()
+            flash('Error Occurred')
+    if request.args.get('email'):
+        session['currentmember']=request.args.get('email')
+    query="select status from members where email='%s'"%(session['currentmember'])
+    cursor.execute(query)
+    data=cursor.fetchone()
+    data=data[0]
+    if data:
+        decision='Edit'
+        query="select * from members where email='%s'"%(session['currentmember'])
         cursor.execute(query)
-        data=cursor.fetchone()
-        # print(data)
-        if (data):
-            session["staff"]="yes"
-            session["staffusername"]=uname
-            session["staffpassword"]=password
-            session["staffname"]=data[3]
-            session["staffid"]=data[0]
-            return redirect(url_for('staffprofile'))
-        else:
-            flash("Wrong Username/Password")
-    return render_template("staff.html")
-
+        d=cursor.fetchone()
+        d=list(d)
+        for i in range(len(d)):
+            if d[i]:
+                continue
+            else:
+                d[i]=""
+    else:
+        decision='Add'
+    return render_template("memberprofile.html",email=session['currentmember'],decision=decision,data=d)
 @app.route('/register',methods=['GET', 'POST'])
 def register():
     if request.method=="POST":
@@ -202,9 +218,29 @@ def teamprofile():
         query="select * from members where teamname='%s'"%(teamname)
         cursor.execute(query)
         data=cursor.fetchall()
+        # print("tatti",dat)
+        mem1=data[0]
+        mem2=data[1]
+        mem3=data[2]
+        active1=mem1[1]
+        active2=mem2[1]
+        active3=mem3[1]
         return render_template("teamprofile.html",data=data,teamname=teamname)
+    return ("You need to Login First")
+@app.route('/deleteteam',methods=['GET', 'POST'])
+def deleteteam():
+    if 'team' in session:
+        teamname=session['team']
+        try:
+            cursor.execute("""delete from members where teamname='%s'""",(teamname))
+            db.commit()
+            session['deleted']=1
+            return redirect(url_for(logout))
+        except:
+            db.rollback()
+            flash("A problem occurred during deletion. Please try again")
+        return render_template("teamprofile.html")
         
-
 
 @app.route('/login',methods=['GET', 'POST'])
 def login():
@@ -218,156 +254,11 @@ def login():
             cursor.execute(query)
             data=cursor.fetchone()
             if data:
-                print(data)
                 session['team']=uname
                 return redirect(url_for('teamprofile'))
             else:
                 flash("Invalid Credentials") 
     return render_template("login.html")
-
-@app.route('/issuebooks',methods=['GET', 'POST'])
-def issuebooks():
-    session.permanent=True;
-    if 'staff' in session: 
-        if request.method=="POST":
-            bid=request.form.get('bid','')
-            stuname=request.form.get('stuname','')
-            issuedate=request.form.get('issuedate','')
-            staffid=session["staffid"]
-            duedate=request.form.get('duedate','')
-            if not bid or not stuname or not issuedate or not duedate:
-                flash("Please enter all the Details")
-            else:
-                query="select * from issue where bookid='%s'"%bid
-                cursor.execute(query)
-                x=cursor.fetchone()
-                if x:
-                    flash("Book Currently Not Available")
-                    return render_template("issuebooks.html")
-                try:
-                    query="select * from book where id='%d'"%int(bid)
-                    cursor.execute(query)
-                    y=cursor.fetchone()
-                    if not y:
-                        flash("Book Does Not Exist")
-                        return render_template("issuebooks.html")
-                except:
-                    pass
-                query="select id from student where username='%s'"%stuname
-                cursor.execute(query)
-                data=cursor.fetchone()
-                # print("data",data)
-                if not data:
-                    flash("Wrong Username provided")
-                else:
-                    data=str(data[0])
-                    try:
-                        cursor.execute("""INSERT INTO issue (bookid, studentid, staffid, issuedate, duedate) VALUES (%s,%s,%s,%s,%s)""",(bid,data,staffid,issuedate,duedate))
-                        print(bid,stuname,issuedate,duedate,staffid)
-                        db.commit()
-                        flash("Successfully Issued")
-                    except:
-                        db.rollback()
-        return render_template("issuebooks.html")
-    else:
-        return "Please Log in First"
-
-
-@app.route('/staffadd',methods=['GET', 'POST'])
-def staffadd():
-    if 'admin' in session:
-        if request.method=='POST':
-            uname=request.form.get('uname','')
-            fullname=request.form.get('fullname','')
-            password=request.form.get('password','')
-            if not uname or not fullname or not password:
-                flash("Please fill all the fields", "error")
-            else:
-                # query="INSERT INTO student (username, fullname, password) VALUES ('"+uname+"', '"+fullname+"', '"+password+"');"
-                try:
-                   cursor.execute("""INSERT INTO staff (username, password, fullname) VALUES (%s,%s,%s)""",(uname,password,fullname))
-                   db.commit()
-                except:
-                   db.rollback()
-
-                # print(query)
-                # cursor.execute(query)
-        query="select * from staff"
-        cursor.execute(query)
-        data=cursor.fetchall()
-        return render_template("staffadd.html",data=data)
-    else:
-        return "Please Log in First"
-
-@app.route('/searchstu',methods=['GET','POST'])
-def searchstu():
-    if 'student' in session:
-        data=[]
-        if request.method=="POST":
-            username=session['studentusername']
-            fullname=request.form.get('fullname','')
-            query="select * from student where fullname='%s'"%(fullname)
-            cursor.execute(query)
-            data=cursor.fetchall()
-            if not data:
-                flash("No records Found")
-        return render_template("searchstu.html",data=data)
-    else:
-        return "Please Log In First"
-
-@app.route('/searchbooks',methods=['GET','POST'])
-def searchbooks():
-    if 'student' in session:
-        data=[]
-        if request.method=="POST":
-            username=session['studentusername']
-            booktitle=request.form.get('booktitle','')
-            bookauthor=request.form.get('bookauthor','')
-            if not bookauthor and not booktitle:
-                flash("Enter Details")
-            else:
-                if booktitle and bookauthor:
-                    query="select * from book where title='%s' and author='%s'"%(booktitle,bookauthor)
-                elif booktitle:
-                    query="select * from book where title='%s'"%(booktitle)
-                else:
-                    query="select * from book where author='%s'"%(bookauthor)
-                cursor.execute(query)
-                data=cursor.fetchall()    
-                if not data:
-                    flash("No records Found")
-        return render_template("searchbooks.html",data=data)
-    else:
-        return "Please Log In First"
-
-@app.route('/mybooks',methods=['GET','POST'])
-def mybooks():
-    if 'student' in session:
-        username=session['studentusername']
-        query="select id  from student where username='%s'"%(username)
-        cursor.execute(query)
-        data=cursor.fetchone()
-        data=str(data[0])
-        query="select *  from issue where studentid='%s'"%(data)
-        cursor.execute(query)
-        data=cursor.fetchall()
-        newdata=[]
-        if not data:
-            flash("No Records Found")
-        # print(query,data)
-        else:
-            newdata=[]
-            for i in data:
-                # x=[]
-                bookid=i[0]
-                query="select *  from book where id='%s'"%(bookid)
-                cursor.execute(query)
-                data2=cursor.fetchone()
-                j=list(data2)+list(i[3:])
-                newdata.append(j)
-                # i.append(data2)
-            print(newdata)
-        return(render_template("mybooks.html",data=newdata)) 
 
 
 if __name__ == '__main__':

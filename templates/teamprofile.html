@@ -8,30 +8,38 @@
 	<title></title>
 </head>
 <body>
-<br><br><br><br>
+<br><br>
 <center>
 <h3>Team Name - {{teamname}}</h3>
-<br><br><br><br>
+
+<br><br>
 Registered emails-
-<br>
-	{%if data%}
+<br><br><br>
+{%if data%}
 	<table>
 		<tr>
-			<td><center><b>Email</center></td>
-			<td><center><b>Activated</center></td>
+			<td width=50%><center><b>Email</center></td>
+			<td width=50%><center><b>Activated</center></td>
 		</tr>
-	{%endif%}
+{%endif%}
 	{% for i in data %}
 		<tr>
-			<td><center>{{i[2]}}</center></td>
-			<td><center>{{i[1]}}</center></td>
+			<td><center><a href="/memberprofile?email={{i[2]}}">{{i[2]}}</center></td>
+			<td>
+				<center>
+					{%if i[1]%}
+					Yes
+					{% else %}
+					No
+					{%endif%}
+				</center>
+			</td>
 		</tr>
-		<!-- {{i}} -->
-
 	{% endfor %}
-
-</table>
+	</table>
+<br><br>
+<a href="/deleteteam" class="waves-effect waves-light btn">Delete Team</a><br><br>
+<br><br>
 <a href="/logout" class="waves-effect waves-light btn">Logout</a><br><br>
-<br>
 </body>
 </html>
