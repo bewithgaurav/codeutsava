@@ -5,12 +5,19 @@
 <script type="text/javascript" src="js/materialize.min.js"></script>
 
  <head>
+ <style>
+table{
+    table-layout: fixed;
+    width: 100%;
+}
+</style>
+
 	<title></title>
 </head>
 <body>
 <center>
 <br><br>
-<h3>My Books</h3>
+<h3>View All Teams</h3>
 {% for category, message in get_flashed_messages(with_categories=true) %}
 <h6>{{ message }}</h6>
 {% endfor %}
@@ -19,20 +26,24 @@
 	{%if data%}
 	<table>
 		<tr>
-			<td><center><b>Book ID</center></td>
-			<td><center><b>Book Title</center></td>
-			<td><center><b>Book Author</center></td>
-			<td><center><b>Issue Date</center></td>
-			<td><center><b>Due Date</center></td>
+			<td><center><b>Team Name</center></td>
+			<td><center><b>Institute</center></td>
+			<td><center><b>Registration Status</center></td>
 		</tr>
 	{%endif%}
 	{% for i in data %}
 		<tr>
-			<td><center>{{i[0]}}</center></td>
-			<td><center>{{i[2]}}</center></td>
+			<td><center><a href="/viewteam?team={{i[0]}}">{{i[0]}}</center></td>
 			<td><center>{{i[1]}}</center></td>
-			<td><center>{{i[3]}}</center></td>
-			<td><center>{{i[4]}}</center></td>
+			<td>
+				<center>
+					{%if i[1]%}
+					Complete
+					{% else %}
+					Incomplete
+					{%endif%}
+				</center>
+			</td>
 			
 		</tr>
 		<!-- {{i}} -->
@@ -41,8 +52,6 @@
 
 </table>
 </div>
-<br><br><br><br>
-<a href="/logout" class="waves-effect waves-light btn">Logout</a><br><br>
 <br>
 </center>
 </body>

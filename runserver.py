@@ -59,10 +59,18 @@ def activate():
     cursor.execute(query)
     id=cursor.fetchone()
     id=str(id[0])
-    f=(hashlib.md5(id.encode('utf-8')).hexdigest())
-    # print(f,hashstring,"update members set active=%s where id=%s",('1',id))
+    reverse=str(id[0])+email
+    f=(hashlib.md5(reverse.encode('utf-8')).hexdigest())
+    print(f,hashstring)
     if f==hashstring:
-        # print("yes equal")
+        print("yes equal")
+        try:
+            # print("INSERT INTO emails VALUES ('%s')"%(email))
+            cursor.execute("INSERT INTO emails VALUES ('%s')"%(email))
+            db.commit()
+            print("Email added to the mailing List")
+        except:
+            db.rollback()
         try:
             cursor.execute("""update members set active=%s where id=%s""",('1',id))
             db.commit()
@@ -71,6 +79,36 @@ def activate():
             db.rollback()
             return render_template("activated.html",value=False)
     return render_template("activated.html",value=False)
+
+@app.route('/allteams',methods=['GET','POST'])
+def showall():
+    q="select teamname,institute,active from teams"
+    cursor.execute(q)
+    d=cursor.fetchall()
+    l=[]
+    for i in d:
+        l.append((i[0],i[1],i[2]))
+    return render_template('allteams.html',data=l)  
+
+@app.route('/viewteam',methods=['GET','POST'])
+def viewteam():
+    name=request.args.get('team')
+    q="select name,degree,stream from members where teamname='%s'"%(name)
+    cursor.execute(q)
+    d=cursor.fetchall()
+    print(d)
+    q="select active from teams where teamname='%s'"%(name)
+    cursor.execute(q)
+    teamstatus=cursor.fetchone()
+    teamstatus=teamstatus[0]
+    if d:
+        c=[]
+        for i in d:
+            c.append((i[0],i[1],i[2]))
+        print(c)
+    else:
+        return("Wrong Team Name")
+    return render_template('viewteam.html',data=c,teamname=name,teamstatus=teamstatus)
 
 @app.route('/memberprofile',methods=['GET','POST'])
 def memprofile():
@@ -142,7 +180,7 @@ def register():
                 flash("Team Already Exists")
             else:
                 try:
-                    cursor.execute("""INSERT INTO teams (teamname, password) VALUES (%s,%s)""",(uname,password))
+                    cursor.execute("""INSERT INTO teams (teamname, password, institute) VALUES (%s,%s,%s)""",(uname,password,institute))
                     cursor.execute("""INSERT INTO members (teamname, email) VALUES (%s,%s)""",(uname,email1))
                     cursor.execute("""INSERT INTO members (teamname, email) VALUES (%s,%s)""",(uname,email2))
                     cursor.execute("""INSERT INTO members (teamname, email) VALUES (%s,%s)""",(uname,email3))
@@ -150,7 +188,7 @@ def register():
                         query="select id from members where email='%s'"%(email1)
                         cursor.execute(query)
                         id1=cursor.fetchone()
-                        id1=str(id1[0])
+                        id1=str(id1[0])+email1
                         print("tatti",id1)
                         f=str(hashlib.md5(id1.encode('utf-8')).hexdigest())
                         print(f)
@@ -164,7 +202,7 @@ def register():
                         query="select id from members where email='%s'"%(email2)
                         cursor.execute(query)
                         id2=cursor.fetchone()
-                        id2=str(id2[0])
+                        id2=str(id2[0])+email2
                         f=(hashlib.md5(id2.encode('utf-8')).hexdigest())
                         msgstring='Click here to confirm - '+'http://localhost:5000/activate?email='+email2+'&hash='+f 
                         msg = Message("registration successful", sender = 'gauravtatti@zoho.com', recipients = [email2])
@@ -174,13 +212,13 @@ def register():
                         query="select id from members where email='%s'"%(email3)
                         cursor.execute(query)
                         id3=cursor.fetchone()
-                        id3=str(id3[0])
+                        id3=str(id3[0])+email3
                         f=(hashlib.md5(id3.encode('utf-8')).hexdigest())
                         msgstring='Click here to confirm - '+'http://localhost:5000/activate?email='+email3+'&hash='+f 
                         msg = Message("registration successful", sender = 'gauravtatti@zoho.com', recipients = [email3])
                         msg.body = msgstring
                         mail.send(msg)
-                        
+    
                         flash("Emails sent, Please Verify E-mail IDs")
                         db.commit()
                     
@@ -211,6 +249,7 @@ def teamprofile():
         query="select * from teams where teamname='%s'"%(teamname)
         cursor.execute(query)
         d=cursor.fetchone()
+        institute=d[4]
         d=d[2]
         if d:
             status="Pending for Judgement"
@@ -227,7 +266,7 @@ def teamprofile():
                     db.rollback()
                     flash('Error Occurred')
 
-        return render_template("teamprofile.html",data=data,teamname=teamname,status=status)
+        return render_template("teamprofile.html",data=data,teamname=teamname,status=status,institute=institute)
     return ("You need to Login First")
 
 @app.route('/deleteteam',methods=['GET', 'POST'])
