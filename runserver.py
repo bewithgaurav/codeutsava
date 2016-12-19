@@ -55,12 +55,25 @@ def logout():
 def activate():
     email=request.args.get('email')
     hashstring=request.args.get('hash')
+    
+    # If email ALready Exists
     query="select teamname from members where email='%s' and active=%s"%(email,'1')
     cursor.execute(query)
     d=cursor.fetchone()
     if d:
         return render_template("activated.html",exist=1,teamname=d[0])
     
+    #For displaying Teamname and Password
+    query="select teamname from members where email='%s'"%(email)
+    cursor.execute(query)
+    d=cursor.fetchone()
+    teamname=d[0]
+    query="select password from teams where teamname='%s'"%(teamname)
+    cursor.execute(query)
+    d=cursor.fetchone()
+    password=d[0]
+
+    #Matching the hash received with the one from database
     query="select id from members where email='%s'"%(email)
     cursor.execute(query)
     id=cursor.fetchone()
@@ -80,7 +93,7 @@ def activate():
         try:
             cursor.execute("""update members set active=%s where id=%s""",('1',id))
             db.commit()
-            return render_template("activated.html",value=True)
+            return render_template("activated.html",value=True,teamname=teamname,password=password)
         except:
             db.rollback()
             return render_template("activated.html",value=False)
@@ -227,7 +240,7 @@ def register():
                         id2=cursor.fetchone()
                         id2=str(id2[0])+email2
                         f=(hashlib.md5(id2.encode('utf-8')).hexdigest())
-                        msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://localhost:5000/activate?email='+email1+'&hash='+f 
+                        msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://localhost:5000/activate?email='+email2+'&hash='+f 
                         msg = Message("Team Registration Successful", sender = 'gauravandsanskar@gmail.com', recipients = [email2])
                         msg.body = msgstring
                         mail.send(msg)
@@ -237,7 +250,7 @@ def register():
                         id3=cursor.fetchone()
                         id3=str(id3[0])+email3
                         f=(hashlib.md5(id3.encode('utf-8')).hexdigest())
-                        msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://localhost:5000/activate?email='+email1+'&hash='+f 
+                        msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://localhost:5000/activate?email='+email3+'&hash='+f 
                         msg = Message("Team Registration Successful", sender = 'gauravandsanskar@gmail.com', recipients = [email3])
                         msg.body = msgstring
                         mail.send(msg)
