@@ -55,6 +55,12 @@ def logout():
 def activate():
     email=request.args.get('email')
     hashstring=request.args.get('hash')
+    query="select teamname from members where email='%s' and active=%s"%(email,'1')
+    cursor.execute(query)
+    d=cursor.fetchone()
+    if d:
+        return render_template("activated.html",exist=1,teamname=d[0])
+    
     query="select id from members where email='%s'"%(email)
     cursor.execute(query)
     id=cursor.fetchone()
@@ -173,6 +179,23 @@ def register():
         email3=request.form.get('email3','')
         institute=request.form.get('institute','')
         if uname and password and email1 and email2 and email3 and institute:
+            query="select * from members where email='%s' and active=%s"%(email1,'1')
+            cursor.execute(query)
+            data1=cursor.fetchone()
+            query="select * from members where email='%s' and active=%s"%(email2,'1')
+            cursor.execute(query)
+            data2=cursor.fetchone()
+            query="select * from members where email='%s' and active=%s"%(email3,'1')
+            cursor.execute(query)
+            data3=cursor.fetchone()
+            if data1 or data2 or data3:
+                if data1:
+                    flash("Email ID "+email1+" Already Exists")
+                if data2:
+                    flash("Email ID "+email2+" Already Exists")
+                if data3:
+                    flash("Email ID "+email3+" Already Exists")
+                return render_template("register.html")
             query="select * from teams where teamname='%s'"%(uname)
             cursor.execute(query)
             data=cursor.fetchone()
@@ -191,11 +214,11 @@ def register():
                         id1=str(id1[0])+email1
                         print("tatti",id1)
                         f=str(hashlib.md5(id1.encode('utf-8')).hexdigest())
-                        print(f)
-                        msgstring='Click here to confirm - '+'http://localhost:5000/activate?email='+email1+'&hash='+f 
-                        print("Hello")
+                        # print(f)
+                        msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://localhost:5000/activate?email='+email1+'&hash='+f 
+                        # print("Hello")
                         
-                        msg = Message("registration successful", sender = 'gauravtatti@zoho.com', recipients = [email1])
+                        msg = Message("Team Registration Successful", sender = 'gauravandsanskar@gmail.com', recipients = [email1])
                         msg.body = msgstring
                         mail.send(msg)
                         
@@ -204,8 +227,8 @@ def register():
                         id2=cursor.fetchone()
                         id2=str(id2[0])+email2
                         f=(hashlib.md5(id2.encode('utf-8')).hexdigest())
-                        msgstring='Click here to confirm - '+'http://localhost:5000/activate?email='+email2+'&hash='+f 
-                        msg = Message("registration successful", sender = 'gauravtatti@zoho.com', recipients = [email2])
+                        msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://localhost:5000/activate?email='+email1+'&hash='+f 
+                        msg = Message("Team Registration Successful", sender = 'gauravandsanskar@gmail.com', recipients = [email2])
                         msg.body = msgstring
                         mail.send(msg)
                         
@@ -214,8 +237,8 @@ def register():
                         id3=cursor.fetchone()
                         id3=str(id3[0])+email3
                         f=(hashlib.md5(id3.encode('utf-8')).hexdigest())
-                        msgstring='Click here to confirm - '+'http://localhost:5000/activate?email='+email3+'&hash='+f 
-                        msg = Message("registration successful", sender = 'gauravtatti@zoho.com', recipients = [email3])
+                        msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://localhost:5000/activate?email='+email1+'&hash='+f 
+                        msg = Message("Team Registration Successful", sender = 'gauravandsanskar@gmail.com', recipients = [email3])
                         msg.body = msgstring
                         mail.send(msg)
     

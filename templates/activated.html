@@ -14,10 +14,15 @@
 <h6>{{ message }}</h6>
 {% endfor %}
 
+{% if exist %}
+<br><br>
+This email is already confirmed for the team <b>{{teamname}}</b>. 
+{% endif %}
+
 {% if value %}
 <br>Email Verified. Please fill your details by logging into the team.
 {% else %}
-<br>Email Could not be verified. Please try again.
+<br>Email Could not be verified.
 {% endif %}
 
 <br><br>
