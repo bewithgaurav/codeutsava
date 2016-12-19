@@ -45,33 +45,11 @@ def admin():
 @app.route('/logout')
 def logout():
     if 'deleted' in session:
-        return render_template("login.html",teamname=session['team'])
+        teamname=session['deleted']
+        session.clear()
+        return render_template("login.html",teamname=teamname)
     session.clear()
     return render_template("index.html")
-
-@app.route('/student',methods=['GET', 'POST'])
-def student():
-    # print(session["student"])
-    if "student" in session:
-        return redirect(url_for('studentprofile'))
-    if request.method=='POST':
-        uname=request.form.get('uname','')
-        password=request.form.get('password','')
-        query="select * from student where username='%s' and password='%s'"%(uname,password)
-        # print(query)
-        cursor.execute(query)
-        data=cursor.fetchone()
-        # print(data)
-        if (data):
-            session["student"]="yes"
-            session["studentusername"]=uname
-            session["studentpassword"]=password
-            session["studentname"]=data[3]
-            session["studentid"]=data[0]
-            return redirect(url_for('studentprofile'))
-        else:
-            flash("Wrong Username/Password")
-    return render_template("student.html")
 
 @app.route('/activate',methods=['GET', 'POST'])
 def activate():
@@ -98,6 +76,8 @@ def activate():
 def memprofile():
     if 'team' not in session:
         return("You Need to Login first")
+    if 'currentmember' not in session and not request.args.get('email'):
+        return redirect(url_for("teamprofile"))
     if request.method=='POST':
         name=request.form.get('name','')
         gender=request.form.get('gender','')
@@ -125,23 +105,25 @@ def memprofile():
             flash('Error Occurred')
     if request.args.get('email'):
         session['currentmember']=request.args.get('email')
-    query="select status from members where email='%s'"%(session['currentmember'])
+    query="select status,active from members where email='%s'"%(session['currentmember'])
     cursor.execute(query)
     data=cursor.fetchone()
-    data=data[0]
+    data1=data[0]
+    active=data[1]
+    data=data1
+    if not active:
+        flash("Please Verify %s to add Details. Check confirmation mail."%session['currentmember'])
+        return redirect(url_for("teamprofile"))
     if data:
-        decision='Edit'
+        decision='Edit/View'
         query="select * from members where email='%s'"%(session['currentmember'])
         cursor.execute(query)
         d=cursor.fetchone()
-        d=list(d)
-        for i in range(len(d)):
-            if d[i]:
-                continue
-            else:
-                d[i]=""
     else:
-        decision='Add'
+        decision="Add"
+        d=[]
+        for i in range(18):
+            d.append('')
     return render_template("memberprofile.html",email=session['currentmember'],decision=decision,data=d)
 @app.route('/register',methods=['GET', 'POST'])
 def register():
@@ -214,6 +196,7 @@ def register():
 @app.route('/teamprofile',methods=['GET', 'POST'])
 def teamprofile():
     if 'team' in session:
+        status="Incomplete"
         teamname=session['team']
         query="select * from members where teamname='%s'"%(teamname)
         cursor.execute(query)
@@ -225,21 +208,64 @@ def teamprofile():
         active1=mem1[1]
         active2=mem2[1]
         active3=mem3[1]
-        return render_template("teamprofile.html",data=data,teamname=teamname)
+        query="select * from teams where teamname='%s'"%(teamname)
+        cursor.execute(query)
+        d=cursor.fetchone()
+        d=d[2]
+        if d:
+            status="Pending for Judgement"
+        else:
+            s1=mem1[17]
+            s2=mem2[17]
+            s3=mem3[17]
+            if s1==1 and s2==1 and s3==1:
+                try:
+                    cursor.execute("""update teams set active=%s where teamname=%s""",('1',teamname))
+                    status="Pending for Judgement"
+                    db.commit()
+                except:
+                    db.rollback()
+                    flash('Error Occurred')
+
+        return render_template("teamprofile.html",data=data,teamname=teamname,status=status)
     return ("You need to Login First")
+
 @app.route('/deleteteam',methods=['GET', 'POST'])
 def deleteteam():
     if 'team' in session:
         teamname=session['team']
         try:
-            cursor.execute("""delete from members where teamname='%s'""",(teamname))
+            query="select * from members where teamname='%s'"%(teamname)
+            cursor.execute(query)
+            data=cursor.fetchall()
+            print(data)
+            cursor.execute("delete from members where teamname='%s'"%(teamname))
+            cursor.execute("delete from teams where teamname='%s'"%(teamname))
             db.commit()
             session['deleted']=1
-            return redirect(url_for(logout))
+            # print("tatti",dat)
+            mem1=data[0]
+            mem2=data[1]
+            mem3=data[2]
+            email1=mem1[2]
+            email2=mem2[2]
+            email3=mem3[2]
+            try:
+                msgstring="Your team %s has been deleted"%(session['team'])
+                msg = Message("Deletion of the team", sender = 'gauravandsanskar@gmail.com', recipients = [email1,email2,email3])
+                msg.body = msgstring
+                mail.send(msg)
+                print("DELETED")
+                return redirect(url_for('logout'))
+            except:
+                flash("Unable to send mail for deletion")
+            
         except:
             db.rollback()
             flash("A problem occurred during deletion. Please try again")
         return render_template("teamprofile.html")
+    else:
+        return("You need to Login First")
         
 
 @app.route('/login',methods=['GET', 'POST'])

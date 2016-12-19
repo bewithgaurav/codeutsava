@@ -3,8 +3,14 @@
 <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
 <script type="text/javascript" src="js/materialize.min.js"></script>
-
  <head>
+<style>
+table{
+    table-layout: fixed;
+    width: 100%;
+}
+</style>
+
 	<title></title>
 </head>
 <body>
@@ -12,14 +18,21 @@
 <center>
 <h3>Team Name - {{teamname}}</h3>
 
-<br><br>
-Registered emails-
+<br>
+{% for category, message in get_flashed_messages(with_categories=true) %}
+<h6>{{ message }}</h6>
+{% endfor %}
+<br>
+Status - {{status}}
+<!-- Registered emails- -->
 <br><br><br>
 {%if data%}
 	<table>
 		<tr>
-			<td width=50%><center><b>Email</center></td>
-			<td width=50%><center><b>Activated</center></td>
+			<td ><center><b>Email</center></td>
+			<td ><center><b>Email Verified</center></td>
+			<td ><center><b>Status Confirmed</center></td>
+			
 		</tr>
 {%endif%}
 	{% for i in data %}
@@ -28,6 +41,15 @@ Registered emails-
 			<td>
 				<center>
 					{%if i[1]%}
+					Yes
+					{% else %}
+					No
+					{%endif%}
+				</center>
+			</td>
+			<td>
+				<center>
+					{%if i[17]%}
 					Yes
 					{% else %}
 					No
