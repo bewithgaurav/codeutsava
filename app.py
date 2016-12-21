@@ -89,6 +89,7 @@ def activate():
 
 @app.route('/allteams',methods=['GET','POST'])
 def showall():
+    print("heywassup")
     q="select teamname,institute,active from teams"
     cursor.execute(q)
     d=cursor.fetchall()
