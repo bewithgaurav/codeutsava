@@ -87,7 +87,7 @@ def activate():
             return render_template("activated.html",value=False)
     return render_template("activated.html",value=False)
 
-@app.route('/allteams',methods=['GET','POST'])
+@app.route('/allteams')
 def showall():
     print("heywassup")
     q="select teamname,institute,active from teams"
