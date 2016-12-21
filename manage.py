@@ -29,18 +29,6 @@ def index():
         return redirect(url_for('teamprofile'))
     return render_template("index.html")
 
-@app.route('/admin',methods=['GET', 'POST'])
-def admin():
-    if request.method=='POST':
-        x=request.form.get('password','')
-        if x=='toor':
-            session['admin']='yes'
-        else:
-            return("Wrong Password. Please Try Again.")
-            
-        return render_template("admin.html")
-    else:
-        return "Please Log in First"
 
 @app.route('/logout')
 def logout():
