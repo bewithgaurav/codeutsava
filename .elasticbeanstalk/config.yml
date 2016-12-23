@@ -1,0 +1,17 @@
+branch-defaults:
+  master:
+    environment: codeutsava
+    group_suffix: null
+environment-defaults:
+  codeutsava:
+    branch: null
+    repository: null
+global:
+  application_name: team register
+  branch: null
+  default_ec2_keyname: null
+  default_platform: Python 3.4
+  default_region: ap-south-1
+  profile: eb-cli
+  repository: null
+  sc: git
