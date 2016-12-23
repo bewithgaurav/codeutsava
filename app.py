@@ -6,8 +6,11 @@ from flask_mail import Mail, Message
 import hashlib
 
 print("Hello!")
-db = MySQLdb.connect("mysql.cwpm2yjzxzkk.us-west-2.rds.amazonaws.com","root","12345678","codeutsava")
-cursor = db.cursor()
+try:
+    db = MySQLdb.connect("mysql1.gear.host","codeutsava","123!@#","codeutsava")
+    cursor = db.cursor()
+except:
+    print("Hello from the other side!")    
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
