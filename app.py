@@ -5,6 +5,7 @@ from datetime import *
 from flask_mail import Mail, Message
 import hashlib
 
+print("Hello!")
 db = MySQLdb.connect("mysql.cwpm2yjzxzkk.us-west-2.rds.amazonaws.com","root","12345678","codeutsava")
 cursor = db.cursor()
 app = Flask(__name__)
