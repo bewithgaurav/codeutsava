@@ -5,7 +5,7 @@ from datetime import *
 from flask_mail import Mail, Message
 import hashlib
 
-db = MySQLdb.connect("mysql1.gear.host","codeutsava","123!@#","codeutsava")
+db = MySQLdb.connect("mysql.cwpm2yjzxzkk.us-west-2.rds.amazonaws.com","root","12345678","codeutsava")
 cursor = db.cursor()
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -101,8 +101,8 @@ def showall():
 @app.route('/viewteam',methods=['GET','POST'])
 def viewteam():
     name=request.args.get('team')
-    q="select name,degree,stream from members where teamname='%s'"%(name)
-    cursor.execute(q)
+    q="select name,degree,stream from members where teamname='%s'"
+    cursor.execute(q,(name))
     d=cursor.fetchall()
     print(d)
     q="select active from teams where teamname='%s'"%(name)
