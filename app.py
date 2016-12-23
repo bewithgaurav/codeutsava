@@ -10,6 +10,7 @@ db = MySQLdb.connect("mysql.cwpm2yjzxzkk.us-west-2.rds.amazonaws.com","root","12
 cursor = db.cursor()
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
+print("Hello from the other side!")
 
 # +----+--------+-------+----------+--------+--------+---------+--------+------+------+------------+---------+-------+------+------+--------+--------+
 # | id | active | email | teamname | resume | github | contact | gender | dob  | yop  | experience | address | state | city | name | degree | stream |
