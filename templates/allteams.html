@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
 <script type="text/javascript" src="js/materialize.min.js"></script>
@@ -15,15 +18,40 @@ table{
 	<title></title>
 </head>
 <body>
+<div class="navbar-fixed">
+    <nav class="black">
+      <div class="nav-wrapper">
+        <a href="/index" class="brand-logo center">CODEUTSAVA 1.0</a>
+        <ul class="right hide-on-med-and-down">
+          
+		  <!--<li><a href="index.html">HOME</a></li>-->
+         
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <nav class="grey">
+      <div class="nav-wrapper">
+        <a href="codeutsava.in" class="brand-logo center" ></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#"></a></li>
+         
+        </ul>
+      </div>
+    </nav>
+        
 <center>
 <br><br>
-<h3>View All Teams</h3>
+<h3>VIEW ALL TEAMS</h3>
 {% for category, message in get_flashed_messages(with_categories=true) %}
 <h6>{{ message }}</h6>
 {% endfor %}
 <br><br>
+</center>
 <div class="container">
 	{%if data%}
+	
+
 	<table>
 		<tr>
 			<td><center><b>Team Name</center></td>
@@ -32,9 +60,10 @@ table{
 		</tr>
 	{%endif%}
 	{% for i in data %}
+	<center>
 		<tr>
-			<td><center><a href="/viewteam?team={{i[0]}}">{{i[0]}}</center></td>
-			<td><center>{{i[1]}}</center></td>
+			<td><center><a href="/viewteam?team={{i[0]}}">{{i[0]}}</td>
+			<td><center>{{i[1]}}</td>
 			<td>
 				<center>
 					{%if i[1]%}
@@ -42,17 +71,50 @@ table{
 					{% else %}
 					Incomplete
 					{%endif%}
-				</center>
+				
 			</td>
 			
 		</tr>
 		<!-- {{i}} -->
 
 	{% endfor %}
-
+</center>
 </table>
 </div>
 <br>
-</center>
+
+<footer class="page-footer grey">
+
+          <div class="container" style="background color:grey;">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">CODEUTSAVA 1.0</h5>
+                <p class="grey-text text-lighten-4">Be a part of one of the mega computer science
+				event of central India and feel the aura of our motto "Code | Innovate | Celebrate".
+				The event aims at encouraging and creating awareness among students to use the
+				technology for the betterment of society.
+</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">CONNECT WITH US</h5>
+                <ul>
+                  <li><a class="white-text" href="https://www.nitrr.ac.in">NIT RAIPUR</a></li><br/>
+                  <li><a class="white-text" href="#!">Lalit Chauhan</a></li>
+                  <li><a class="white-text" href="#!">Shubham Amraotkar</a></li>
+                  
+                </ul>
+              </div>
+            </div>
+          </div></div>
+		  <div class="black">
+          <div class="footer-copyright">
+            <div class="container">
+            Copyright 2016 ITSA NIT Raipur.
+            
+            </div>
+          </div>
+        </footer>
+		
+           
 </body>
 </html>

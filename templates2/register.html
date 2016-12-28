@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
+<link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+
+ <head>
+	<title></title>
+</head>
+<body><br>
+<center>
+{% for category, message in get_flashed_messages(with_categories=true) %}
+<h6>{{ message }}</h6>
+{% endfor %}</center>
+<br><br><br>
+<div class="container">
+	<!-- <div class="row"> -->
+	    <form action="/register" method="post" class="col s12">
+	      <div class="row">
+	        <div class="input-field col s6">
+	          <input placeholder="Team Username" id="uname" name="uname" type="text" class="validate">
+	          <!-- <label for="uname">Username</label> -->
+	        </div>
+
+	        <div class="input-field col s6">
+	          <input placeholder="Team Password" id="password" name="password" type="password" class="validate">
+	          <!-- <label for="password">Password</label> -->
+	        </div>
+	      </div>
+	      <!-- </div> -->
+	      <div class="row">
+	        <div class="input-field col s12">
+	          <input placeholder="Institute Name" id="institute" name="institute" type="text" class="validate">
+	          <!-- <label for="body">Destination</label> -->
+	        </div>
+	      </div>
+	      
+	      <div class="row">
+	        <div class="input-field col s12">
+	          <input placeholder="Email of 1st Member" id="email1" name="email1" type="text" class="validate">
+	          <!-- <label for="body">Destination</label> -->
+	        </div>
+	      </div>
+	      
+	      <div class="row">
+	          <div class="input-field col s12">
+	          <input placeholder="Email of 2nd Member" id="email2" name="email2" type="text" class="validate">
+	          <!-- <label for="body">Destination</label> -->
+	        </div>
+	      </div>
+	      <div class="row">
+	        <div class="input-field col s12">
+	          <input placeholder="Email of 3rd Member" id="email3" name="email3" type="text" class="validate">
+	          <!-- <label for="body">Destination</label> -->
+	        </div>
+	      </div>
+	      <div class="row">
+	      	<center><button class="btn waves-effect waves-light" type="submit" name="action">Register Team</button></center>
+          </div>
+	    </form>
+</div>
+<br>
+<div class="container">
+	{%if data%}
+	<table>
+		<tr>
+			<td><center><b>Student ID</center></td>
+			<td><center><b>Username</center></td>
+			<td><center><b>Password</center></td>
+			<td><center><b>Full Name</center></td>
+		</tr>
+	{%endif%}
+	{% for i in data %}
+		<tr>
+			<td><center>{{i[0]}}</center></td>
+			<td><center>{{i[1]}}</center></td>
+			<td><center>{{i[2]}}</center></td>
+			<td><center>{{i[3]}}</center></td>
+		</tr>
+		<!-- {{i}} -->
+
+	{% endfor %}
+
+</table>
+</div>
+</body>
+</html>

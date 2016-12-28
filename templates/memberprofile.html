@@ -2,14 +2,41 @@
 
 <!DOCTYPE html>
 <html>
-<link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
-<link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
-<script type="text/javascript" src="js/materialize.min.js"></script>
+<!--<link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
+<link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>-->
+<script type="text/javascript" src="static/js/materialize.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="static/js/materialize.min.js"></script>
+ <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+       
  <head>
 	<title></title>
 </head>
 <body>
+<div class="navbar-fixed">
+    <nav class="black">
+      <div class="nav-wrapper">
+        <a href="index.html" class="brand-logo center" >CODEUTSAVA 1.0</a>
+        <ul class="right hide-on-med-and-down">
+          
+         
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <nav class="grey">
+      <div class="nav-wrapper">
+        <a href="codeutsava.in" class="brand-logo center" ></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#"></a></li>
+         
+        </ul>
+      </div>
+    </nav>
 <center>
 <br><br>
 <h3>{{decision}} Details</h3>
@@ -30,32 +57,83 @@ For Email - {{email}}
 	        </div>
 
 	        <div class="input-field col s6">
-	          <input placeholder="Gender (m/f)" id="gender" name="gender" value="{{data[10]}}" type="text" class="validate">
+	          <!-- <input placeholder="Gender (m/f)" id="gender" name="gender" value="{{data[10]}}" type="text" class="validate"> -->
+	          <select name="gender" value="{{data[10]}}">
+					<option selected="selected">{{data[10]}}</option>
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+    			</select>
 	          <!-- <label for="password">Password</label> -->
 	        </div>
 	      </div>
 	      <div class="row">
-	        <div class="input-field col s6">
-	          <input placeholder="Degree" value="{{data[11]}}" id="degree" name="degree" type="text" class="validate">
-	          <!-- <label for="uname">Username</label> -->
-	        </div>
-
-	        <div class="input-field col s6">
-	          <input placeholder="Stream" id="stream" name="stream" value="{{data[15]}}" type="text" class="validate">
-	          <!-- <label for="password">Password</label> -->
-	        </div>
+	        <!-- <div class="input-field col s6">
+	          <input placeholder="Degree" id="degree" name="degree" type="text" class="validate">
+	          <label for="uname">Username</label>
+	        </div>-->
+	        <div class="input-field col s12">
+				<select name="degree" value="{{data[11]}}">
+					<option selected="selected">{{data[11]}}</option>
+					<option value="B.Tech">B.Tech</option>
+					<option value="M.Tech">M.Tech</option>
+					<option value="M.Sc">M.Sc</option>
+					<option value="B.Sc">B.Sc</option>
+					<option value="B.Com">B.Com</option>
+					<option value="BBA">BBA</option>
+					<option value="MA">MA</option>
+					<option value="BCA">BCA</option>
+					<option value="M.Com">M.Com</option>
+					<label>Degree</label>
+    			</select>
+			</div>
 	      </div>
+		  <div class="row">
+	        <div class="input-field col s12">
+	          <!-- <input placeholder="Stream" id="stream" name="stream" value="{{data[15]}}" type="text" class="validate"> -->
+	          <!-- <label for="password">Password</label> -->
+	        	<select name="stream" value="{{data[15]}}">
+					<option selected="selected">{{data[15]}}</option>
+					<option value="Mechanical">Mechanical</option>
+					<option value="Chemical">Chemical</option>
+					<option value="Civil">Civil</option>
+					<option value="Computer Science">Computer Science</option>
+					<option value="Information Technology">Information Technology</option>
+					<option value="Biomedical">Biomedical</option>
+					<option value="Electronics and Telecommunication">Electronics and Telecommunication</option>
+					<option value="Electrical">Electrical</option>
+					<option value="Electrical and Electronics">Electrical and Electronics</option>
+					<option value="Others">Others</option>
+					<label>Stream</label>
+    			</select>
+	</div>
+	</div>
 	      <!-- </div> -->
 	      <div class="row">
 	        <div class="input-field col s6">
-	          <input placeholder="Date Of Birth" id="dob" name="dob" value="{{data[6]}}" type="text" class="validate">
+			<label for="DOB">Date of Birth</label>
+			 <input type="date" class="datepicker" name="dob" value="{{data[6]}}">
+	          <!--<input placeholder="Date Of Birth" id="dob" name="dob" value="{{data[6]}}" type="text" class="validate">
 	          <!-- <label for="uname">Username</label> -->
 	        </div>
 
 	        <div class="input-field col s6">
-	          <input placeholder="Year Of Passing" id="yop" name="yop" value="{{data[7]}}" type="text" class="validate">
-	          <!-- <label for="password">Password</label> -->
-	        </div>
+			
+			
+			<select name="yop" value="{{data[7]}}">
+					<option selected="selected">{{data[7]}}</option>
+					<option value="2019">2019</option>
+					<option value="2018">2018</option>
+					<option value="2017">2017</option>
+					<option value="2016">2016</option>
+					<option value="2015">2015</option>
+					<option value="2014">2014</option>
+					<option value="2013">2013</option>
+					<option value="2012">2012</option>
+					<option value="2011">2011</option>
+    </select>
+	
+	          
+	        
 	      </div>
 	      <div class="row">
 	        <div class="input-field col s12">
@@ -103,9 +181,42 @@ For Email - {{email}}
 	      	<center><button class="btn waves-effect waves-light" type="submit" name="action">Save Details</button></center>
           </div>
 	    </form>
-</div>
+</div></div>
 <br>
 <br><br><br><center>
-<a href="/logout" class="waves-effect waves-light btn">Logout</a><br><br>
+<a href="/logout" class="waves-effect waves-light btn">Logout</a><br><br></center>
+<script src="static/js/main1.js"></script> 
+<footer class="page-footer grey">
+
+          <div class="container" style="background color:grey;">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">CODEUTSAVA 1.0</h5>
+                <p class="grey-text text-lighten-4">Be a part of one of the mega computer science
+				event of central India and feel the aura of our motto "Code | Innovate | Celebrate".
+				The event aims at encouraging and creating awareness among students to use the
+				technology for the betterment of society.
+</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">CONNECT WITH US</h5>
+                <ul>
+                  <li><a class="white-text" href="https://www.nitrr.ac.in">NIT RAIPUR</a></li><br/>
+                  <li><a class="white-text" href="#!">Lalit Chauhan</a></li>
+                  <li><a class="white-text" href="#!">Shubham Amraotkar</a></li>
+                  
+                </ul>
+              </div>
+            </div>
+          </div></div>
+		  <div class="black">
+          <div class="footer-copyright">
+            <div class="container">
+            Copyright 2016 ITSA NIT Raipur | All Rights Reserved.
+            
+            </div>
+          </div>
+        </footer>
+		
 </body>
 </html>

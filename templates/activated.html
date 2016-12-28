@@ -1,18 +1,53 @@
 <!DOCTYPE html>
 <html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
-<script type="text/javascript" src="js/materialize.min.js"></script>
+<!--<script type="text/javascript" src="js/materialize.min.js"></script>-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="static/js/materialize.min.js"></script>
+ <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+       
  <head>
 	<title></title>
 </head>
 <body>
-<center>
+<div class="navbar-fixed">
+    <nav class="black">
+      <div class="nav-wrapper">
+        <a href="index.html" class="brand-logo center" >CODEUTSAVA 1.0</a>
+        <ul class="right hide-on-med-and-down">
+          <!--<li><a href="index.html">HOME</a></li>-->
+         
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <nav class="grey">
+      <div class="nav-wrapper">
+        <a href="codeutsava.in" class="brand-logo center" ></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#"></a></li>
+         
+        </ul>
+      </div>
+    </nav>
+
 <br><br>
+<div class="container">
+<div calss="row">
+<div class="col s12 l12">
+<center>
 {% for category, message in get_flashed_messages(with_categories=true) %}
 <h6>{{ message }}</h6>
 {% endfor %}
+</div></div>
 
 {% if exist %}
 <br><br>
@@ -20,14 +55,50 @@ This email is already confirmed for the team <b>{{teamname}}</b>.
 {% endif %}
 
 {% if value %}
-<br>Email Verified. Please fill your details by logging into the team.
-<br> Your Team Name - {{teamname}}
-<br> Team Password - {{password}}
+</br></br> </br> Email Verified. Please fill your details by logging into the team.
+</br></br> </br>  Your Team Name - {{teamname}}
+</br></br> </br> Team Password - {{password}}
 {% else %}
 <br>Email Could not be verified.
 {% endif %}
-
-<br><br>
 </center>
+<br><br>
+</div>
+<footer class="page-footer grey">
+
+          <div class="container" style="background color:grey;">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">CODEUTSAVA 1.0</h5>
+                <p class="grey-text text-lighten-4">Be a part of one of the mega computer science
+				event of central India and feel the aura of our motto "Code | Innovate | Celebrate".
+				The event aims at encouraging and creating awareness among students to use the
+				technology for the betterment of society.
+</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">CONNECT WITH US</h5>
+                <ul>
+                  <li><a class="white-text" href="https://www.nitrr.ac.in">NIT RAIPUR</a></li><br/>
+                  <li><a class="white-text" href="#!">Lalit Chauhan</a></li>
+                  <li><a class="white-text" href="#!">Shubham Amraotkar</a></li>
+                  
+                </ul>
+              </div>
+            </div>
+          </div></div>
+		  <div class="black">
+          <div class="footer-copyright">
+            <div class="container">
+			<div class="row">
+			<div class="col   l6 s12">
+            Copyright 2016 ITSA NIT Raipur. 
+			</div>
+            
+            </div>
+          </div></div>
+          </div>
+        </footer>
+		
 </body>
 </html>

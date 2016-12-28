@@ -1,13 +1,125 @@
 <!DOCTYPE html>
 <html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
+<link  rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
-<script type="text/javascript" src="js/materialize.min.js"></script>
 
+<script type="text/javascript" src="static/js/materialize.min.js"></script>
+<script type="text/javascript" src="static/js/validation.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="static/js/materialize.min.js"></script>
+ <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+       
  <head>
 	<title></title>
+<style>
+html, body {
+  height: 100%;
+}
+.navbar-default {
+  background-color: #ffffff;
+  border-color: #ebebeb;
+}
+
+.navbar-fixed-top {
+    border-width: 0;
+    top: 0;
+}
+
+.navbar {
+	min-height: 45px;
+	box-shadow: 1px 1px 7px rgba(0,0,0,0.10);
+}
+
+.navbar-brand {
+  height: 45px;
+  padding: 7px;
+}
+
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+    background-color: transparent;
+    color: #848c91;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
+    background-color: #ebebeb;
+    color: #343842;
+    border-bottom: 3px solid #3bcdd8;
+}
+
+.navbar-nav > li > a {
+  padding-bottom: 15px;
+  padding-top: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  font-style:Helvetica Neue;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #343842;
+}
+
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+}
+
+.navbar-toggle {
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 0;
+    float: right;
+    margin-bottom: 8px;
+    margin-right: 15px;
+    margin-top: 10px;
+    padding: 9px 10px;
+    position: relative;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: transparent;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #343842;
+}
+
+</style>
 </head>
-<body><br>
+<body>
+<div class="navbar-fixed">
+    <nav class="black">
+      <div class="nav-wrapper">
+        <a href="index.html" class="brand-logo center" >CODEUTSAVA 1.0</a>
+        <ul class="right hide-on-med-and-down">
+          <!--<li><a href="index.html">HOME</a></li>-->
+         
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <nav class="grey">
+      <div class="nav-wrapper">
+        <a href="codeutsava.in" class="brand-logo center" ></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#"></a></li>
+         
+        </ul>
+      </div>
+    </nav>
+
+   
 <center>
 {% for category, message in get_flashed_messages(with_categories=true) %}
 <h6>{{ message }}</h6>
@@ -15,15 +127,17 @@
 <br><br><br>
 <div class="container">
 	<!-- <div class="row"> -->
-	    <form action="/register" method="post" class="col s12">
+	    <form action="/register" method="post" class="col s12" name="form1" onsubmit="return validateForm()">
 	      <div class="row">
 	        <div class="input-field col s6">
 	          <input placeholder="Team Username" id="uname" name="uname" type="text" class="validate">
+			  <p class="error" id="err1"></p>
 	          <!-- <label for="uname">Username</label> -->
 	        </div>
 
 	        <div class="input-field col s6">
 	          <input placeholder="Team Password" id="password" name="password" type="password" class="validate">
+			   <p class="error"id="err2"></p>
 	          <!-- <label for="password">Password</label> -->
 	        </div>
 	      </div>
@@ -31,6 +145,7 @@
 	      <div class="row">
 	        <div class="input-field col s12">
 	          <input placeholder="Institute Name" id="institute" name="institute" type="text" class="validate">
+			   <p class="error"id="err3"></p>
 	          <!-- <label for="body">Destination</label> -->
 	        </div>
 	      </div>
@@ -38,6 +153,7 @@
 	      <div class="row">
 	        <div class="input-field col s12">
 	          <input placeholder="Email of 1st Member" id="email1" name="email1" type="text" class="validate">
+			   <p class="error"id="err4"></p>
 	          <!-- <label for="body">Destination</label> -->
 	        </div>
 	      </div>
@@ -45,17 +161,19 @@
 	      <div class="row">
 	          <div class="input-field col s12">
 	          <input placeholder="Email of 2nd Member" id="email2" name="email2" type="text" class="validate">
+			   <p class="error"id="err5"></p>
 	          <!-- <label for="body">Destination</label> -->
 	        </div>
 	      </div>
 	      <div class="row">
 	        <div class="input-field col s12">
 	          <input placeholder="Email of 3rd Member" id="email3" name="email3" type="text" class="validate">
+			   <p class="error"id="err6"></p>
 	          <!-- <label for="body">Destination</label> -->
 	        </div>
 	      </div>
 	      <div class="row">
-	      	<center><button class="btn waves-effect waves-light" type="submit" name="action">Register Team</button></center>
+	      	<center><button class="btn waves-effect waves-light grey darken-1" type="submit" name="action">Register Team</button></center>
           </div>
 	    </form>
 </div>
@@ -63,12 +181,15 @@
 <div class="container">
 	{%if data%}
 	<table>
+		
 		<tr>
 			<td><center><b>Student ID</center></td>
 			<td><center><b>Username</center></td>
 			<td><center><b>Password</center></td>
 			<td><center><b>Full Name</center></td>
 		</tr>
+		
+		
 	{%endif%}
 	{% for i in data %}
 		<tr>
@@ -83,5 +204,37 @@
 
 </table>
 </div>
+<footer class="page-footer grey">
+
+          <div class="container" style="background color:grey;">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">CODEUTSAVA 1.0</h5>
+                <p class="grey-text text-lighten-4">Be a part of one of the mega computer science
+				event of central India and feel the aura of our motto "Code | Innovate | Celebrate".
+				The event aims at encouraging and creating awareness among students to use the
+				technology for the betterment of society.
+</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">CONNECT WITH US</h5>
+                <ul>
+                  <li><a class="white-text" href="https://www.nitrr.ac.in">NIT RAIPUR</a></li><br/>
+                  <li><a class="white-text" href="#!">Lalit Chauhan</a></li>
+                  <li><a class="white-text" href="#!">Shubham Amraotkar</a></li>
+                  
+                </ul>
+              </div>
+            </div>
+          </div></div>
+		  <div class="black">
+          <div class="footer-copyright">
+            <div class="container">
+            Copyright 2016 ITSA NIT Raipur.
+            
+            </div>
+          </div>
+        </footer>
+		
 </body>
 </html>

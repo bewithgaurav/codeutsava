@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
 <script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="static/js/materialize.min.js"></script>
+ <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+       
  <head>
 <style>
 table{
@@ -14,6 +25,26 @@ table{
 	<title></title>
 </head>
 <body>
+<div class="navbar-fixed">
+    <nav class="black">
+      <div class="nav-wrapper">
+        <a href="index.html" class="brand-logo center" >CODEUTSAVA 1.0</a>
+        <ul class="right hide-on-med-and-down">
+          <!--<li><a href="index.html">HOME</a></li>-->
+         
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <nav class="grey">
+      <div class="nav-wrapper">
+        <a href="codeutsava.in" class="brand-logo center" ></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#"></a></li>
+         
+        </ul>
+      </div>
+    </nav>
 <br><br>
 <center>
 <h3>Team Name - {{teamname}}</h3>
@@ -31,13 +62,14 @@ Status - {{status}}
 		<tr>
 			<td ><center><b>Email</center></td>
 			<td ><center><b>Email Verified</center></td>
-			<td ><center><b>Status Confirmed</center></td>
-			
+			<td ><center><b>Form Completed</center></td>
+			<td ><center><b>Confirmation Mail</center></td>
+      
 		</tr>
 {%endif%}
 	{% for i in data %}
 		<tr>
-			<td><center><a href="/memberprofile?email={{i[2]}}">{{i[2]}}</center></td>
+			<td><center><a href="/memberprofile?email={{i[2]}}">{{i[2]}}</a></center></td>
 			<td>
 				<center>
 					{%if i[1]%}
@@ -56,12 +88,51 @@ Status - {{status}}
 					{%endif%}
 				</center>
 			</td>
+      <td>
+        <center>
+          <a href="/resend?email={{i[2]}}">Resend</a>
+        </center>
+      </td>
 		</tr>
 	{% endfor %}
 	</table>
 <br><br>
-<a href="/deleteteam" class="waves-effect waves-light btn">Delete Team</a><br><br>
+<a href="/deleteteam" class="waves-effect waves-light btn grey darken-1">Delete Team</a><br><br>
 <br><br>
-<a href="/logout" class="waves-effect waves-light btn">Logout</a><br><br><br><br>
+<a href="/logout" class="waves-effect waves-light btn grey darken-1">Logout</a><br><br><br><br>
+<footer class="page-footer grey">
+<div class="left-align">
+          <div class="container" style="background color:grey;">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">CODEUTSAVA 1.0</h5>
+                <p class="grey-text text-lighten-4">Be a part of one of the mega computer science
+				event of central India and feel the aura of our motto "Code | Innovate | Celebrate".
+				The event aims at encouraging and creating awareness among students to use the
+				technology for the betterment of society.
+</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">CONNECT WITH US</h5>
+                <ul>
+                  <li><a class="white-text" href="https://www.nitrr.ac.in">NIT RAIPUR</a></li><br/>
+                  <li><a class="white-text" href="#!">Lalit Chauhan</a></li>
+                  <li><a class="white-text" href="#!">Shubham Amraotkar</a></li>
+                  
+                </ul>
+              </div>
+            
+          </div></div>
+		  <div class="black">
+          <div class="footer-copyright">
+            <div class="container">
+			<div class="row">
+			<div class="col l12 s12">
+            Copyright 2016 ITSA NIT Raipur.
+            
+            </div></div></div>
+          </div></div></div>
+        </footer>
+		
 </body>
 </html>

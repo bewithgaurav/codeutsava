@@ -4,12 +4,12 @@ import os
 from datetime import *
 from flask_mail import Mail, Message
 import hashlib
+from datetime import datetime
 
-db = MySQLdb.connect("35.166.173.156","root","12345678","codeutsava")
+db = MySQLdb.connect("localhost","root","toor","libmanage")
 cursor = db.cursor()
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-
 
 # +----+--------+-------+----------+--------+--------+---------+--------+------+------+------------+---------+-------+------+------+--------+--------+
 # | id | active | email | teamname | resume | github | contact | gender | dob  | yop  | experience | address | state | city | name | degree | stream |
@@ -30,11 +30,10 @@ def index():
         return redirect(url_for('teamprofile'))
     return render_template("index.html")
 
-
 @app.route('/logout')
 def logout():
     if 'deleted' in session:
-        teamname=session['deleted']
+        teamname=session['team']
         session.clear()
         return render_template("login.html",teamname=teamname)
     session.clear()
@@ -90,7 +89,7 @@ def activate():
 
 @app.route('/allteams')
 def showall():
-    print("heywassup")
+    # print("heywassup")
     q="select teamname,institute,active from teams"
     cursor.execute(q)
     d=cursor.fetchall()
@@ -101,9 +100,9 @@ def showall():
 
 @app.route('/viewteam',methods=['GET','POST'])
 def viewteam():
-    name=request.args.get('team')
-    q="select name,degree,stream from members where teamname='%s'"
-    cursor.execute(q,(name))
+    name=str(request.args.get('team'))
+    q="select name,degree,stream from members where teamname='%s'"%name
+    cursor.execute(q)
     d=cursor.fetchall()
     print(d)
     q="select active from teams where teamname='%s'"%(name)
@@ -118,6 +117,26 @@ def viewteam():
     else:
         return("Wrong Team Name")
     return render_template('viewteam.html',data=c,teamname=name,teamstatus=teamstatus)
+
+@app.route('/resend',methods=['GET'])
+def resend():
+    if 'team' not in session:
+        return("You Need to Login first")
+    resendemail=request.args.get('email')
+    try:
+        query="select id from members where email='%s'"%(resendemail)
+        cursor.execute(query)
+        id1=cursor.fetchone()
+        id1=str(id1[0])+resendemail
+        f=str(hashlib.md5(id1.encode('utf-8')).hexdigest())
+        msgstring='Click here to confirm the registration for your team '+session['team']+'- '+'http://localhost:5000/activate?email='+resendemail+'&hash='+f 
+        msg = Message("Team Registration Successful", sender = 'gauravandsanskar@gmail.com', recipients = [resendemail])
+        msg.body = msgstring
+        mail.send(msg)
+        flash("Confirmation Mail sent to "+resendemail)
+    except:
+        flash("An Error Occurred")
+    return redirect(url_for("teamprofile"))
 
 @app.route('/memberprofile',methods=['GET','POST'])
 def memprofile():
@@ -138,10 +157,18 @@ def memprofile():
         stream=request.form.get('stream','')
         city=request.form.get('city','')
         state=request.form.get('state','')
-        dob=request.form.get('dob','')
-        # print("DATEOFBIRTH", dob)
+        dob=str(request.form.get('dob',''))
         try:
-            print(session['currentmember'])
+            dob =str(datetime.strptime(dob, '%d %B, %Y'))
+            dob=dob.split()
+            dob=dob[0]
+        except:
+            pass
+        print("DATEOFBIRTH", dob)
+        # print("DATEOFBIRTH", str(datetime_object))
+        try:
+            # print(name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,session["currentmember"])
+
             # print("UPDATE members set status=%d,name='%s',gender='%s',github='%s',resume='%s',yop='%s',contact='%s',experience='%s',address='%s',degree='%s',stream='%s',city='%s',state='%s',dob='%s'  where email='%s'"%(1,name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,session["currentmember"]))
             cursor.execute("""UPDATE members set status=%s,name=%s,gender=%s,github=%s,resume=%s,yop=%s,contact=%s,experience=%s,address=%s,degree=%s,stream=%s,city=%s,state=%s,dob=%s where email=%s""",('1',name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,session["currentmember"]))
             # cursor.execute("""update members set status=%s where email=%s""",('1',session["currentmember"]))
@@ -172,6 +199,7 @@ def memprofile():
         for i in range(18):
             d.append('')
     return render_template("memberprofile.html",email=session['currentmember'],decision=decision,data=d)
+
 @app.route('/register',methods=['GET', 'POST'])
 def register():
     if request.method=="POST":
@@ -257,6 +285,7 @@ def register():
             flash("Enter All the fields")
     return render_template("register.html")
 
+
 @app.route('/teamprofile',methods=['GET', 'POST'])
 def teamprofile():
     if 'team' in session:
@@ -294,6 +323,7 @@ def teamprofile():
 
         return render_template("teamprofile.html",data=data,teamname=teamname,status=status,institute=institute)
     return ("You need to Login First")
+
 
 @app.route('/deleteteam',methods=['GET', 'POST'])
 def deleteteam():
@@ -333,6 +363,7 @@ def deleteteam():
         return("You need to Login First")
         
 
+
 @app.route('/login',methods=['GET', 'POST'])
 def login():
     if 'team' in session:
@@ -350,6 +381,7 @@ def login():
             else:
                 flash("Invalid Credentials") 
     return render_template("login.html")
+
 
 
 if __name__ == '__main__':
