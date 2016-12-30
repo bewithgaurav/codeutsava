@@ -25,6 +25,12 @@ app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
 @app.route('/',methods=['GET', 'POST'])
+def home():
+    if 'team' in session:
+        return redirect(url_for('teamprofile'))
+    return render_template("home.html")
+
+@app.route('/registration',methods=['GET', 'POST'])
 def index():
     if 'team' in session:
         return redirect(url_for('teamprofile'))
