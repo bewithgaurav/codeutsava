@@ -6,11 +6,11 @@
 <link  rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
+<link href="static/css/style5.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
-<script type="text/javascript" src="static/js/materialize.min.js"></script>
-<script type="text/javascript" src="static/js/validation.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src="static/js/materialize.min.js"></script>
+<script type="text/javascript" src="static/js/validation.js"></script>
+      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
  <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 
@@ -99,16 +99,26 @@ html, body {
 </head>
 <body>
 <div class="navbar-fixed">
-    <nav class="black">
-      <div class="nav-wrapper">
-        <a href="index.html" class="brand-logo center" >CODEUTSAVA 1.0</a>
-        <ul class="right hide-on-med-and-down">
-          <!--<li><a href="index.html">HOME</a></li>-->
-         
-        </ul>
-      </div>
-    </nav>
-  </div>
+  <nav class="black" role="navigation">
+    <div class="nav-wrapper">
+      <a id="logo-container " href="/" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="60px"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/login">LOGIN</a></li>
+        <li><a href="/">HOME PAGE</a></li>
+        <li><a href="/allteams">VIEW ALL TEAMS</a></li>
+                 
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="/login" class="btn waves-effect waves-light  grey lighten-1 ">LOGIN</a></li>
+        <li><a href="/" class="btn waves-effect waves-light  grey lighten-1 ">HOME PAGE</a></li>
+        <li><a href="/allteams" class="btn waves-effect waves-light  grey lighten-1 ">VIEW ALL TEAMS</a></li>
+        
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">menu</i></a>
+    </div>
+  </nav>
+</div>
   <nav class="grey">
       <div class="nav-wrapper">
         <a href="codeutsava.in" class="brand-logo center" ></a>
@@ -127,49 +137,49 @@ html, body {
 <br><br><br>
 <div class="container">
 	<!-- <div class="row"> -->
-	    <form action="/register" method="post" class="col s12" name="form1" onsubmit="return validateForm()">
+	    <form id="registerForm" action="/register" method="post" class="col s12" name="form1" onsubmit="return validateForm()">
 	      <div class="row">
 	        <div class="input-field col s6">
-	          <input placeholder="Team Username" id="uname" name="uname" type="text" class="validate">
+	          <input  id="uname" name="uname" type="text" class="validate" required >
 			  <p class="error" id="err1"></p>
-	          <!-- <label for="uname">Username</label> -->
+	          <label for="uname"> Team Username</label> 
 	        </div>
 
 	        <div class="input-field col s6">
-	          <input placeholder="Team Password" id="password" name="password" type="password" class="validate">
-			   <p class="error"id="err2"></p>
-	          <!-- <label for="password">Password</label> -->
+	          <input  id="password" name="password" type="password" class="validate" required minlength="6">
+			   <p class="error" id="err2"></p>
+	          <label for="password"> Team Password</label> 
 	        </div>
 	      </div>
 	      <!-- </div> -->
 	      <div class="row">
 	        <div class="input-field col s12">
-	          <input placeholder="Institute Name" id="institute" name="institute" type="text" class="validate">
-			   <p class="error"id="err3"></p>
-	          <!-- <label for="body">Destination</label> -->
+	          <input  id="institute" name="institute" type="text" class="validate">
+			   <p class="error" id="err3"></p>
+	           <label for="institute">Institute Name</label> 
 	        </div>
 	      </div>
 	      
 	      <div class="row">
 	        <div class="input-field col s12">
-	          <input placeholder="Email of 1st Member" id="email1" name="email1" type="text" class="validate">
-			   <p class="error"id="err4"></p>
-	          <!-- <label for="body">Destination</label> -->
+	          <input  id="email1" name="email1" type="email" class="validate" required>
+			   <p class="error" id="err4"></p>
+	           <label for="email1">Email of 1st Member</label> 
 	        </div>
 	      </div>
 	      
 	      <div class="row">
 	          <div class="input-field col s12">
-	          <input placeholder="Email of 2nd Member" id="email2" name="email2" type="text" class="validate">
-			   <p class="error"id="err5"></p>
-	          <!-- <label for="body">Destination</label> -->
+	          <input  id="email2" name="email2" type="email" class="validate" required>
+			   <p class="error" id="err5"></p>
+	          <label for="email2">Email of 2nd Member</label> 
 	        </div>
 	      </div>
 	      <div class="row">
 	        <div class="input-field col s12">
-	          <input placeholder="Email of 3rd Member" id="email3" name="email3" type="text" class="validate">
-			   <p class="error"id="err6"></p>
-	          <!-- <label for="body">Destination</label> -->
+	          <input id="email3" name="email3" type="email" class="validate" required>
+			   <p class="error" id="err6"></p>
+	           <label for="email3">Email of 3rd Member</label> 
 	        </div>
 	      </div>
 	      <div class="row">
@@ -235,6 +245,8 @@ html, body {
             </div>
           </div>
         </footer>
-		
+  <script >
+    $("#registerForm").validate();
+  </script>		
 </body>
 </html>

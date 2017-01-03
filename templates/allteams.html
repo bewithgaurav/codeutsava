@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
-<script type="text/javascript" src="js/materialize.min.js"></script>
+<link href="static/css/style5.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<script type="text/javascript" src="static/js/materialize.min.js"></script>
 
  <head>
  <style>
@@ -19,17 +20,30 @@ table{
 </head>
 <body>
 <div class="navbar-fixed">
-    <nav class="black">
-      <div class="nav-wrapper">
-        <a href="/index" class="brand-logo center">CODEUTSAVA 1.0</a>
-        <ul class="right hide-on-med-and-down">
-          
-		  <!--<li><a href="index.html">HOME</a></li>-->
+  <nav class="black" role="navigation">
+    <div class="nav-wrapper">
+      <a id="logo-container " href="/" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="60px"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/teamprofile">MY TEAM PROFILE</a></li>
+        <li><a href="/register">REGISTER</a></li>
+        <li><a href="/login">LOGIN</a></li>
+        <li><a href="/">HOME PAGE</a></li>
          
-        </ul>
-      </div>
-    </nav>
-  </div>
+                
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="/teamprofile" class="btn waves-effect waves-light  grey lighten-1 ">MY TEAM PROFILE</a></li>
+        <li><a href="/register" class="btn waves-effect waves-light  grey lighten-1 ">REGISTER</a></li>
+        <li><a href="/login" class="btn waves-effect waves-light  grey lighten-1 ">LOGIN</a></li>
+        <li><a href="/" class="btn waves-effect waves-light  grey lighten-1 ">HOME PAGE</a></li>
+        
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">menu</i></a>
+    </div>
+  </nav>
+</div>
+
   <nav class="grey">
       <div class="nav-wrapper">
         <a href="codeutsava.in" class="brand-logo center" ></a>
@@ -42,7 +56,7 @@ table{
         
 <center>
 <br><br>
-<h3>VIEW ALL TEAMS</h3>
+<h3>TEAMS</h3>
 {% for category, message in get_flashed_messages(with_categories=true) %}
 <h6>{{ message }}</h6>
 {% endfor %}
@@ -66,8 +80,8 @@ table{
 			<td><center>{{i[1]}}</td>
 			<td>
 				<center>
-					{%if i[1]%}
-					Complete
+					{%if i[2]%}
+					Pending For Judgement
 					{% else %}
 					Incomplete
 					{%endif%}

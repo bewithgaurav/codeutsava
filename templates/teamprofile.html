@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
+<link href="static/css/style5.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="static/js/materialize.min.js"></script>
@@ -26,16 +27,26 @@ table{
 </head>
 <body>
 <div class="navbar-fixed">
-    <nav class="black">
-      <div class="nav-wrapper">
-        <a href="index.html" class="brand-logo center" >CODEUTSAVA 1.0</a>
-        <ul class="right hide-on-med-and-down">
-          <!--<li><a href="index.html">HOME</a></li>-->
-         
-        </ul>
-      </div>
-    </nav>
-  </div>
+  <nav class="black" role="navigation">
+    <div class="nav-wrapper">
+      <a id="logo-container " href="/" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="60px"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/">HOME PAGE</a></li>
+        <li><a href="/allteams">VIEW ALL TEAMS</a></li>
+        <li><a href="/logout">LOGOUT</a></li>
+               
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="/">HOME PAGE</a></li>
+        <li><a href="/allteams" class="btn waves-effect waves-light  grey lighten-1 ">VIEW ALL TEAMS</a></li>
+        <li><a href="/logout" class="btn waves-effect waves-light  grey lighten-1 ">LOGOUT</a></li>
+        
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">Menu</i></a>
+    </div>
+  </nav>
+</div>
   <nav class="grey">
       <div class="nav-wrapper">
         <a href="codeutsava.in" class="brand-logo center" ></a>

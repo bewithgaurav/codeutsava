@@ -5,10 +5,13 @@
   <meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
-<script type="text/javascript" src="js/materialize.min.js"></script>
-<script type="text/javascript" src="static/js/loginvalidation.js"></script>
+<link href="static/css/style5.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<script type="text/javascript" src="static/js/materialize.min.js"></script>
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src="static/js/materialize.min.js"></script>
+
+<script type="text/javascript" src="static/js/validation.js"></script>
+      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
  <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 
@@ -23,16 +26,32 @@
 </head>
 <body>
 <div class="navbar-fixed">
-    <nav class="black">
-      <div class="nav-wrapper">
-        <a href="index.html" class="brand-logo center" >CODEUTSAVA 1.0</a>
-        <ul class="right hide-on-med-and-down">
-          <!--<li><a href="index.html">HOME</a></li>-->
+  <nav class="black" role="navigation">
+    <div class="nav-wrapper">
+      <a id="logo-container " href="/" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="60px"></a>
+      <ul class="right hide-on-med-and-down">
+        <!-- <li><a href="#!">LOGIN</a></li> -->
+        <li><a href="/register">REGISTER</a></li>
+        <li><a href="/">HOME PAGE</a></li>
+        <li><a href="/allteams">VIEW ALL TEAMS</a></li>
          
-        </ul>
-      </div>
-    </nav>
-  </div>
+        <!-- <li><a href="#!">LOGOUT</a></li> -->
+                
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <!-- <li><a href="#!" class="btn waves-effect waves-light  grey lighten-1 ">LOGIN</a></li> -->
+        <li><a href="/register" class="btn waves-effect waves-light  grey lighten-1 ">REGISTER</a></li>
+        <li><a href="/" class="btn waves-effect waves-light  grey lighten-1 ">HOME PAGE</a></li>
+        <li><a href="/allteams" class="btn waves-effect waves-light  grey lighten-1 ">VIEW ALL TEAMS</a></li>
+         
+        <!-- <li><a href="#!" class="btn waves-effect waves-light  grey lighten-1 ">LOGOUT</a></li> -->
+       
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">Menu</i></a>
+    </div>
+  </nav>
+</div>
   <nav class="grey">
       <div class="nav-wrapper">
         <a href="codeutsava.in" class="brand-logo center" ></a>
@@ -52,13 +71,17 @@
 {%if teamname%}
 Team {{teamname}} successfuly deleted.
 {% endif %}</center>
-<br><br><br>
+<br><br>
 <div class="container">
 	<!-- <div class="row"> -->
-	    <form action="/login" method="post" class="col s12" name="form1" onsubmit="return validateForm()">
-	      <div class="row">
-	        <div class="input-field col s12">
-	          <input placeholder="Team Username" id="uname" name="uname" type="text" class="validate">
+	    <form id="myForm" action="/login" method="post" class="col s12" name="form1" onsubmit="return validateForm()">
+	      <input name=_csrf_token type=hidden value="{{ csrf_token() }}">
+        <div class="row">
+	        <font face="Calibri" size=2 >Team Username</font>
+          
+          <div class="input-field col s12">
+            <input  id="uname" name="uname" type="text" class="validate" required>
+			   <!-- <label for="uname">Team Username</label> -->
 			  <p class="error" id="err1"></p>
 	          <!-- <label for="uname">Username</label> -->
 	        </div>
@@ -66,8 +89,11 @@ Team {{teamname}} successfuly deleted.
 	      </div>
 	      <!-- </div> -->
 	      <div class="row">
-	        <div class="input-field col s12">
-	          <input placeholder="Team Password" id="password" name="password" type="password" class="validate">
+	        <font face="Calibri" size=2 >Team Password</font>
+          <div class="input-field col s12">
+	        <!-- Team Password   -->
+            <input  id="password" name="password" type="password" class="validate" required minlength="6">
+			  <!-- <label for="password">Team Password</label> -->
 			   <p class="error" id="err2"></p>
 	          <!-- <label for="body">Destination</label> -->
 	        </div>
@@ -111,6 +137,8 @@ Team {{teamname}} successfuly deleted.
           </div>
         </footer>
 		
-
+<script >
+  $("#myForm").validate();
+</script>
 </body>
 </html>

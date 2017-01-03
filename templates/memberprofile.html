@@ -6,10 +6,11 @@
 <link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>-->
 <script type="text/javascript" src="static/js/materialize.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="static/js/materialize.min.js"></script>
+
+      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
  <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-
+<link href="static/css/style5.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
        
@@ -18,16 +19,26 @@
 </head>
 <body>
 <div class="navbar-fixed">
-    <nav class="black">
-      <div class="nav-wrapper">
-        <a href="index.html" class="brand-logo center" >CODEUTSAVA 1.0</a>
-        <ul class="right hide-on-med-and-down">
-          
-         
-        </ul>
-      </div>
-    </nav>
-  </div>
+  <nav class="black" role="navigation">
+    <div class="nav-wrapper">
+      <a id="logo-container " href="/" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="60px"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/">HOME PAGE</a></li>
+        <li><a href="/teamprofile">MY TEAM PROFILE</a></li>
+        <li><a href="/logout">LOGOUT</a></li>
+        
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="/">HOME PAGE</a></li>
+        <li><a href="/teamprofile" class="btn waves-effect waves-light  grey lighten-1 ">MY TEAM PROFILE</a></li>
+        <li><a href="/logout" class="btn waves-effect waves-light  grey lighten-1 ">LOGOUT</a></li>
+       	
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">Menu</i></a>
+    </div>
+  </nav>
+</div>
   <nav class="grey">
       <div class="nav-wrapper">
         <a href="codeutsava.in" class="brand-logo center" ></a>
@@ -49,21 +60,22 @@ For Email - {{email}}
 </center>
 <div class="container">
 	<!-- <div class="row"> -->
-	    <form action="/memberprofile" method="post" class="col s12">
+	    <form id="userDetailForm" action="/memberprofile" method="post" class="col s12">
+	    <input name=_csrf_token type=hidden value="{{ csrf_token() }}">
 	      <div class="row">
 	        <div class="input-field col s6">
-	          <input placeholder="Name" id="name" name="name" value="{{data[16]}}" type="text" class="validate">
-	          <!-- <label for="uname">Username</label> -->
+	          <input id="name" name="name" value="{{data[16]}}" type="text" class="validate" required>
+	           <label for="Name">Full Name</label> 
 	        </div>
 
 	        <div class="input-field col s6">
 	          <!-- <input placeholder="Gender (m/f)" id="gender" name="gender" value="{{data[10]}}" type="text" class="validate"> -->
-	          <select name="gender" value="{{data[10]}}">
+	          <select name="gender" value="{{data[10]}}" required>
 					<option selected="selected">{{data[10]}}</option>
 					<option value="Male">Male</option>
 					<option value="Female">Female</option>
     			</select>
-	          <!-- <label for="password">Password</label> -->
+	          <label for="gender">Gender</label> 
 	        </div>
 	      </div>
 	      <div class="row">
@@ -72,7 +84,8 @@ For Email - {{email}}
 	          <label for="uname">Username</label>
 	        </div>-->
 	        <div class="input-field col s12">
-				<select name="degree" value="{{data[11]}}">
+			
+				<select name="degree" value="{{data[11]}}" required>
 					<option selected="selected">{{data[11]}}</option>
 					<option value="B.Tech">B.Tech</option>
 					<option value="M.Tech">M.Tech</option>
@@ -83,15 +96,17 @@ For Email - {{email}}
 					<option value="MA">MA</option>
 					<option value="BCA">BCA</option>
 					<option value="M.Com">M.Com</option>
-					<label>Degree</label>
+					
     			</select>
+				<label for="Degree">Degree</label>
+			
 			</div>
 	      </div>
 		  <div class="row">
 	        <div class="input-field col s12">
 	          <!-- <input placeholder="Stream" id="stream" name="stream" value="{{data[15]}}" type="text" class="validate"> -->
 	          <!-- <label for="password">Password</label> -->
-	        	<select name="stream" value="{{data[15]}}">
+	        	<select name="stream" value="{{data[15]}}" required>
 					<option selected="selected">{{data[15]}}</option>
 					<option value="Mechanical">Mechanical</option>
 					<option value="Chemical">Chemical</option>
@@ -105,21 +120,23 @@ For Email - {{email}}
 					<option value="Others">Others</option>
 					<label>Stream</label>
     			</select>
+				<label for="stream">Stream</label>
+			
 	</div>
 	</div>
 	      <!-- </div> -->
 	      <div class="row">
 	        <div class="input-field col s6">
 			<label for="DOB">Date of Birth</label>
-			 <input type="date" class="datepicker" name="dob" value="{{data[6]}}">
+			 <input type="date" class="datepicker" name="dob" value="{{data[6]}}" required>
 	          <!--<input placeholder="Date Of Birth" id="dob" name="dob" value="{{data[6]}}" type="text" class="validate">
-	          <!-- <label for="uname">Username</label> -->
+	           <label for="uname">Username</label> -->
 	        </div>
 
 	        <div class="input-field col s6">
 			
 			
-			<select name="yop" value="{{data[7]}}">
+			<select name="yop" value="{{data[7]}}" required>
 					<option selected="selected">{{data[7]}}</option>
 					<option value="2019">2019</option>
 					<option value="2018">2018</option>
@@ -131,60 +148,70 @@ For Email - {{email}}
 					<option value="2012">2012</option>
 					<option value="2011">2011</option>
     </select>
+	<label for="yop">Year of Passing</label>
+			
 	
 	          
 	        
 	      </div>
 	      <div class="row">
 	        <div class="input-field col s12">
-	          <input placeholder="Github Link" id="github" name="github" value="{{data[5]}}" type="text" class="validate">
-	          <!-- <label for="body">Destination</label> -->
-	        </div>
-	      </div>
-	      <div class="row">
-	        <div class="input-field col s12">
-	          <input placeholder="Resume Link" id="resume" name="resume" value="{{data[4]}}" type="text" class="validate">
-	          <!-- <label for="body">Destination</label> -->
-	        </div>
-	      </div>
-	      <div class="row">
-	        <div class="input-field col s12">
-	          <input placeholder="Address" id="address" name="address" value="{{data[9]}}" type="text" class="validate">
-	          <!-- <label for="body">Destination</label> -->
-	        </div>
-	       </div>
-	      <div class="row">
-	        <div class="input-field col s6">
-	          <input placeholder="State" id="state" name="state" value="{{data[13]}}" type="text" class="validate">
-	          <!-- <label for="uname">Username</label> -->
-	        </div>
-
-	        <div class="input-field col s6">
-	          <input placeholder="City" id="city" name="city" value="{{data[14]}}" type="text" class="validate">
-	          <!-- <label for="password">Password</label> -->
-	        </div>
-	      </div>
-	      <div class="row">
-	        <div class="input-field col s12">
-	          <input placeholder="Contact" value="{{data[12]}}" id="contact" name="contact" type="text" class="validate">
-	          <!-- <label for="body">Destination</label> -->
-	        </div>
-	      </div>
-	      <div class="row">
-	        <div class="input-field col s12">
-	          <input placeholder="Previous Hackathon Experience" id="experience" value="{{data[8]}}" name="experience" type="text" class="validate">
-	          <!-- <label for="body">Destination</label> -->
+	          <input  id="github" name="github" value="{{data[5]}}" type="url" class="validate" required>
+	           <label for="github">Github Link</label> 
 	        </div>
 	      </div>
 	      
 	      <div class="row">
-	      	<center><button class="btn waves-effect waves-light" type="submit" name="action">Save Details</button></center>
+	        <div class="input-field col s12">
+	          <input  id="twitter" name="twitter" value="{{data[18]}}" type="url" class="validate" required>
+	           <label for="twitter">Twitter Link</label> 
+	        </div>
+	      </div>
+	      
+	      <div class="row">
+	        <div class="input-field col s12">
+	          <input  id="resume" name="resume" value="{{data[4]}}" type="url" class="validate" required>
+	          <label for="resume">Resume Link</label> 
+	        </div>
+	      </div>
+	      <div class="row">
+	        <div class="input-field col s12">
+	          <input id="address" name="address" value="{{data[9]}}" type="text" class="validate">
+	          <label for="address">Address</label> 
+	        </div>
+	       </div>
+	      <div class="row">
+	        <div class="input-field col s6">
+	          <input  id="state" name="state" value="{{data[13]}}" type="text" class="validate" required>
+	          <label for="state">State</label>
+	        </div>
+
+	        <div class="input-field col s6">
+	          <input  id="city" name="city" value="{{data[14]}}" type="text" class="validate" required>
+	          <label for="city">City</label> 
+	        </div>
+	      </div>
+	      <div class="row">
+	        <div class="input-field col s12">
+	          <input value="{{data[12]}}" id="contact" name="contact" type="text" class="validate" required>
+	           <label for="contact">Contact</label> 
+	        </div>
+	      </div>
+	      <div class="row">
+	        <div class="input-field col s12">
+	          <input  id="experience" value="{{data[8]}}" name="experience" type="text" class="validate" required>
+	           <label for="experience">Previous Hackathon Experience</label> 
+	        </div>
+	      </div>
+	      
+	      <div class="row">
+	      	<center><button class="btn waves-effect waves-light grey darken-1 " type="submit" name="action">Save Details</button></center>
           </div>
 	    </form>
 </div></div>
 <br>
 <br><br><br><center>
-<a href="/logout" class="waves-effect waves-light btn">Logout</a><br><br></center>
+<a href="/logout" class="waves-effect waves-light btn grey darken-1">Logout</a><br><br></center>
 <script src="static/js/main1.js"></script> 
 <footer class="page-footer grey">
 
@@ -217,6 +244,8 @@ For Email - {{email}}
             </div>
           </div>
         </footer>
-		
+		<script>
+			$("#userDetailForm").validate();
+		</script>
 </body>
 </html>
