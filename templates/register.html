@@ -133,11 +133,12 @@ html, body {
 <center>
 {% for category, message in get_flashed_messages(with_categories=true) %}
 <h6>{{ message }}</h6>
-{% endfor %}</center>
-<br><br><br>
+{% endfor %}
+<br><br><br><h4>REGISTER A NEW TEAM</h4><br><br></center>
 <div class="container">
 	<!-- <div class="row"> -->
 	    <form id="registerForm" action="/register" method="post" class="col s12" name="form1" onsubmit="return validateForm()">
+      <input name=_csrf_token type=hidden value="{{ csrf_token() }}">
 	      <div class="row">
 	        <div class="input-field col s6">
 	          <input  id="uname" name="uname" type="text" class="validate" required >

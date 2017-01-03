@@ -8,7 +8,7 @@ from datetime import datetime
 import string
 import random
 
-db = MySQLdb.connect("localhost","root","toor","libmanage")
+db = MySQLdb.connect("localhost","root","toor","codeutsava")
 cursor = db.cursor()
 app = Flask(__name__)
 # app.secret_key = os.urandom(24)
@@ -201,13 +201,14 @@ def memprofile():
         # print("DATEOFBIRTH", str(datetime_object))
         try:
             # print(name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,session["currentmember"])
-
+            # cursor.execute("""INSERT INTO list (email, gender, github, resume, yop, contact, experience, address, ) VALUES (%s,%s,%s)""",[uname,password,institute])
             # print("UPDATE members set status=%d,name='%s',gender='%s',github='%s',resume='%s',yop='%s',contact='%s',experience='%s',address='%s',degree='%s',stream='%s',city='%s',state='%s',dob='%s'  where email='%s'"%(1,name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,session["currentmember"]))
             cursor.execute("""UPDATE members set status=%s,name=%s,gender=%s,github=%s,resume=%s,yop=%s,contact=%s,experience=%s,address=%s,degree=%s,stream=%s,city=%s,state=%s,dob=%s,twitter=%s where email=%s""",['1',name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,twitter,session["currentmember"]])
             # cursor.execute("""update members set status=%s where email=%s""",('1',session["currentmember"]))
             db.commit()
             flash('Successfully Saved')
-        except:
+        except Exception as e:
+            print(str(e))
             db.rollback()
             flash('Error Occurred while Updating the Database. Please Try Again ')
     if request.args.get('email'):
@@ -219,7 +220,7 @@ def memprofile():
     active=data[1]
     data=data1
     if not active:
-        flash("Please Verify %s to add Details. Check confirmation mail."%session['currentmember'])
+        flash("Please verify %s to add Details. Check confirmation mail."%session['currentmember'])
         return redirect(url_for("teamprofile"))
     if data:
         decision='Edit/View'
@@ -246,22 +247,22 @@ def register():
         institute=request.form.get('institute','')
         print(request.form.get('_csrf_token',''))
         if uname and password and email1 and email2 and email3 and institute:
-            query="select * from members where email=%s and active=%s"
-            cursor.execute(query,[email1,'1'])
+            query="select * from members where email=%s"
+            cursor.execute(query,[email1])
             data1=cursor.fetchone()
-            query="select * from members where email=%s and active=%s"
-            cursor.execute(query,[email2,'1'])
+            query="select * from members where email=%s"
+            cursor.execute(query,[email2])
             data2=cursor.fetchone()
-            query="select * from members where email=%s and active=%s"
-            cursor.execute(query,[email3,'1'])
+            query="select * from members where email=%s"
+            cursor.execute(query,[email3])
             data3=cursor.fetchone()
             if data1 or data2 or data3:
                 if data1:
-                    flash("Email ID "+email1+" Already Exists")
+                    flash("Email ID "+email1+" already exists in team "+data1[3])
                 if data2:
-                    flash("Email ID "+email2+" Already Exists")
+                    flash("Email ID "+email2+" already exists in team "+data2[3])
                 if data3:
-                    flash("Email ID "+email3+" Already Exists")
+                    flash("Email ID "+email3+" already exists in team "+data3[3])
                 return render_template("register.html")
             query="select * from teams where teamname=%s"
             cursor.execute(query,[uname])
@@ -279,9 +280,9 @@ def register():
                         cursor.execute(query,[email1])
                         id1=cursor.fetchone()
                         id1=str(id1[0])+email1
-                        print("tatti",id1)
+                        # print("tatti",id1)
                         f=str(hashlib.md5(id1.encode('utf-8')).hexdigest())
-                        # print(f)
+                        print(f)
                         msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://codeutsava.in/activate?email='+email1+'&hash='+f 
                         # print("Hello")
                         
@@ -294,6 +295,7 @@ def register():
                         id2=cursor.fetchone()
                         id2=str(id2[0])+email2
                         f=(hashlib.md5(id2.encode('utf-8')).hexdigest())
+                        print(f)
                         msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://codeutsava.in/activate?email='+email2+'&hash='+f 
                         msg = Message("Team Registration Successful", sender = 'gauravandsanskar@gmail.com', recipients = [email2])
                         msg.body = msgstring
@@ -304,6 +306,7 @@ def register():
                         id3=cursor.fetchone()
                         id3=str(id3[0])+email3
                         f=(hashlib.md5(id3.encode('utf-8')).hexdigest())
+                        print(f)
                         msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://codeutsava.in/activate?email='+email3+'&hash='+f 
                         msg = Message("Team Registration Successful", sender = 'gauravandsanskar@gmail.com', recipients = [email3])
                         msg.body = msgstring
@@ -314,7 +317,8 @@ def register():
                     
                     except:
                         flash("There was a Problem sending Mails")
-                except:
+                except Exception as e:
+                   print(str(e)) 
                    db.rollback()
                    flash("Unexpected Error occurred")
         else:
