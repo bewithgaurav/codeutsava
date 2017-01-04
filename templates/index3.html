@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <title>Codeutsava 1.0</title>
-<link rel="icon" type="image/png" href="static/img/logo1.png">
+
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -12,9 +12,6 @@
    <link href="static/css/style5.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link  rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="static/js/analytics.js"></script>		
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 </head>
 <body>
 <div id="fb-root"></div>
@@ -25,39 +22,33 @@
   js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-  <div id="loader-wrapper">
-        <div id="loader"></div>        
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
-    </div>
-
-  <nav class="white" >
-    <div class="nav-wrapper" role="navigation">
-      <a id="logo-container " href="#" class="brand-logo"><img src="static/img/logo1.png" alt="Codeutsava" height="60px"></a>
-      <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-black">menu</i></a>
+  <div class="navbar-fixed">
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper">
+      <a id="logo-container " href="/" class="brand-logo"><img src="static/img/logo1.png" alt="Codeutsava" height="60px"></a>
       <ul class="right hide-on-med-and-down">
-        <li ><a class="page-scroll" href="#aboutus">HACKATHON REGISTRATION</a></li>
-        <li ><a class="page-scroll" href="#aboutus">ABOUT US</a></li>
-        <li ><a  class="page-scroll" href="#schedule">SCHEDULE</a></li>
-        <li><a  class="page-scroll" href="#mentors">MENTORS</a></li>
-        <li><a class="page-scroll" href="#spons">SPONSORS</a></li>
-        <li><a class="page-scroll" href="#faqs">FAQs</a></li>
-        <li><a class="page-scroll" href="#contactus">CONTACT US</a></li>          
+        <li><a href="/registration" target="_blank">HACKATHON REGISTRATION</a></li>
+        <li><a href="#aboutus">ABOUT US</a></li>
+        <li><a href="#schedule">SCHEDULE</a></li>
+        <li><a href="#mentors">MENTORS</a></li>
+        <li><a href="#spons">SPONSORS</a></li>
+        <li><a href="#faqs">FAQs</a></li>
+        <li><a href="#contactus">CONTACT US</a></li>          
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a class="page-scroll" href="#aboutus" >HACKATHON REGISTRATION</a></li>
-        <li><a class="page-scroll" href="#aboutus" >ABOUT US</a></li>
-        <li><a class="page-scroll" href="#schedule">SCHEDULE</a></li>
-        <li><a class="page-scroll" href="#mentors" >MENTORS</a></li>
-        <li><a class="page-scroll" href="#spons" >SPONSORS</a></li>
-        <li><a class="page-scroll" href="#faqs" >FAQs</a></li>
-        <li><a class="page-scroll" href="#contactus" >CONTACT US</a></li>
+      	<li><a href="/registration" target="_blank">HACKATHON REGISTRATION</a></li>
+        <li><a href="#aboutus" class="btn waves-effect waves-light  grey lighten-1 ">ABOUT US</a></li>
+        <li><a href="#schedule" class="btn waves-effect waves-light  grey lighten-1 ">SCHEDULE</a></li>
+        <li><a href="#mentors" class="btn waves-effect waves-light  grey lighten-1 ">MENTORS</a></li>
+        <li><a href="#spons" class="btn waves-effect waves-light  grey lighten-1 ">SPONSORS</a></li>
+        <li><a href="#faqs" class="btn waves-effect waves-light  grey lighten-1 ">FAQs</a></li>
+        <li><a href="#contactus" class="btn waves-effect waves-light  grey lighten-1 ">CONTACT US</a></li>
       </ul>
-     
+      <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-black">menu</i></a>
     </div>
   </nav>
-
+</div>
   <div id="index-banner" class="parallax-container" >
     <div class="section no-pad-bot" style="padding-top: 7.5%">
       <div class="container">
@@ -192,24 +183,135 @@
 					
 			
 			</div>
-				</div>	<br><br>
-			</div>
+				</div>	
+<br><br>			</div>
 		<div id="schedule">
 		<div class="timeline">
 	
       <div class="section">
 	  <div class="row">&nbsp;</div>
-	  <!-- <div class="row">&nbsp;</div> -->
-		<h4 class="center-align ">TIMELINE OF EVENTS</h4>
-		 <div class="row">&nbsp;</div>
+	  <div class="row">&nbsp;</div>
+		<h4 class="center-align ">TIMELINE OF EVENTS</h4><br><br>
 		 <img class=" materialboxed responsive-img  hoverable waves-effect " src="static/img/timeline.jpg">
 		 <div class="row">&nbsp;</div>
-
 	  
 	</div>
 	  </div>
 	  </div>
-     <div id="faqs">
+     
+    <div id="spons">
+
+	<div class="Sponsor black-text">
+		<div class="container">
+		<div class="section">
+			<div class="row" " >
+				<div class="row">&nbsp;</div>
+				<div class="row   center-align"><h2>OUR SPONSORS</h2></div>
+				<div class="row">&nbsp;</div>
+        <div class="row center">
+				<h5 class=" center-align "> CLOUD PARTNER<hr width="230px"/></h5>
+					<div class="col s12 m6 l6 offset-l3 offset-m3">
+					<!--<div class="card animated bounceInUp">
+					 <div class="card-image">-->
+					 
+            		   <a href="http://digitalocean.com/" target="_blank" class=" center-align">
+      					<img src="static/img/spons/digitalocean.png " alt="digitalocean">
+      					</a>
+					 <!--</div>            	
+					</div>-->
+					</div>
+				</div>
+        <div class="row">&nbsp;</div>
+				<div class="row">
+				<h5 class=" center-align"> TELEPHONY PARTNER</h5><hr width="230px"/>
+					<div class="col s8 m4 l4 offset-s2 offset-l5 offset-m4" style="padding-left: 0px;">
+					
+            		 <a href="https://exotel.in/" target="_blank" class=" center-align">
+       <img  src="static/img/spons/exotel.png" alt="Exotel"></a>
+       </div>            	
+					
+				</div>
+				<div class="row">&nbsp;</div>
+        <div class="row">
+				<h5 class=" center-align"> IOT PARTNER</h5><hr width="230px"/>
+					<div class="col s8 m4 l4 offset-s2 offset-l5 offset-m4">
+				
+            		 <a href="https://temboo.com/" target="_blank">
+       <img  src="static/img/spons/temboo.png" alt="Temboo"></a>
+       </div>            	
+					
+				</div>
+				
+				<div class="row">&nbsp;</div>
+				<div class="row">
+				<h5 class=" center-align"> EDUCATION PARTNER</h5><hr width="230px"/>
+					<div class="col s8 m4 l4 offset-s2 offset-l5 offset-m4" style="padding-left: 0px;">
+					 <a href="http://www.thenerdyacademy.com/" target="_blank" class=" center-align">
+            		
+       <img  src="static/img/spons/nerdy.jpg" alt="Nerdy Academy"></a>
+       </div>            	
+					
+				</div>
+
+				<div class="row">&nbsp;</div>
+				<div class="row">
+				<h5 class=" center-align"> MAILING PARTNER</h5><hr width="230px"/>
+					<div class="col s8 m4 l4 offset-s2 offset-l5 offset-m4" style="padding-left: 0px;">
+					
+            		 <a href="https://sendgrid.com/" target="_blank" class=" center-align">
+       <img  src="static/img/spons/sendgrid.png" alt="Send Grid"></a>
+       </div>            	
+					
+				</div>
+				<div class="row">&nbsp;</div>
+				<div class="row">
+				<h5 class=" center-align"> ICON PARTNER</h5><hr width="230px"/>
+					<div class="col s6 m5 l5 offset-s3 offset-l5 offset-m5" style="padding-left: 0px;">
+					 <a href="https://iconscout.com/" target="_blank" class=" center-align">
+            		
+       <img  src="static/img/iconscout.png" height=175 alt="IconScout"></a>
+       </div>            	
+					
+				</div>
+				<div class="row">&nbsp;</div>
+				<div class="row">
+				<h5 class=" center-align"> GOODIES PARTNER</h5><hr width="230px"/>
+					<div class="col s1 m4 l4  offset-l4 offset-m4 " style="padding-left: 0px;">
+					 <a href="http://giftrees.in/" target="_blank" class=" center-align">
+            		
+       <img  src="static/img/spons/giftrees.png" height=110 alt="giftrees"></a>
+       </div>            	
+					
+				</div>
+				
+				<div class="row">&nbsp;</div>
+				<div class="row">
+				<h5 class=" center-align"> PATRONS<hr width="230px"/></h5>
+					<div class="col s8 m3 l3 offset-s2 offset-l3 offset-m3">
+					
+              <a href="https://www.codacy.com/" target="_blank" class="center-align">
+       <img  src="static/img/spons/codacy.png" alt="Codacy"></a>
+      
+    
+       </div>            	
+					<div class="caw">
+					<div class="col s8 m6 l3 offset-s2">
+					
+               <a href="https://codeanywhere.com/" target="_blank">
+       <img  src="static/img/spons/codeanywhere.png" alt="Code Any Where"></a>
+          
+       </div>            	
+					
+				</div>
+				</div>
+
+				<div class="row">&nbsp;</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	</div>
+<div id="faqs">
     <div class="FAQs">
 	 
     <div class="section">
@@ -273,119 +375,6 @@
 </div>
 </div>
 </div>
-    <div id="spons">
-
-	<div class="Sponsor black-text">
-		<div class="container">
-		<div class="section">
-			<div class="row" " >
-				<div class="row">&nbsp;</div>
-				<div class="row   center-align"><h2>OUR SPONSORS</h2></div>
-				<div class="row">&nbsp;</div>
-        <div class="row center">
-				<h5 class=" center-align "> CLOUD PARTNER<hr width="230px"/></h5>
-					<div class="col s12 m6 l6 offset-l3 offset-m3">
-					<!--<div class="card animated bounceInUp">
-					 <div class="card-image">-->
-					 
-            		   <a href="http://digitalocean.com/" target="_blank" class=" center-align">
-      					<img src="static/img/spons/digitalocean.png " alt="digitalocean">
-      					</a>
-					 <!--</div>            	
-					</div>-->
-					</div>
-				</div>
-        <div class="row">&nbsp;</div>
-				<div class="row">
-				<h5 class=" center-align"> TELEPHONY PARTNER</h5><hr width="230px"/>
-					<div class="col s8 m4 l4 offset-s2 offset-l5 offset-m4" style="padding-left: 0px;">
-					
-            		 <a href="https://exotel.in/" target="_blank" class=" center-align">
-       <img  src="static/img/spons/exotel.png" alt="Exotel"></a>
-       </div>            	
-					
-				</div>
-				<div class="row">&nbsp;</div>
-        <div class="row">
-				<h5 class=" center-align"> IOT PARTNER</h5><hr width="230px"/>
-					<div class="col s8 m4 l4 offset-s2 offset-l5 offset-m4">
-				
-            		 <a href="https://temboo.com/" target="_blank">
-       <img  src="static/img/spons/temboo.png" alt="Temboo"></a>
-       </div>            	
-					
-				</div>
-				
-				<div class="row">&nbsp;</div>
-				<div class="row">
-				<h5 class=" center-align"> EDUCATION PARTNER</h5><hr width="230px"/>
-					<div class="col s8 m4 l4 offset-s2 offset-l5 offset-m4" style="padding-left: 0px;">
-					 <a href="http://www.thenerdyacademy.com/" target="_blank" class=" center-align">
-            		
-       <img  src="static/img/spons/nerdy.png" alt="Nerdy Academy"></a>
-       </div>            	
-					
-				</div>
-
-				<div class="row">&nbsp;</div>
-				<div class="row">
-				<h5 class=" center-align"> MAILING PARTNER</h5><hr width="230px"/>
-					<div class="col s8 m4 l4 offset-s2 offset-l5 offset-m4" style="padding-left: 0px;">
-					
-            		 <a href="https://sendgrid.com/" target="_blank" class=" center-align">
-       <img  src="static/img/spons/sendgrid.png" alt="Send Grid"></a>
-       </div>            	
-					
-				</div>
-				<div class="row">&nbsp;</div>
-				<div class="row">
-				<h5 class=" center-align"> ICON PARTNER</h5><hr width="230px"/>
-					<div class="col s6 m5 l5 offset-s3 offset-l5 offset-m5" style="padding-left: 0px;">
-					 <a href="https://iconscout.com/" target="_blank" class=" center-align">
-            		
-       <img  src="static/img/iconscout.png" height=175 alt="IconScout"></a>
-       </div>            	
-					
-				</div>
-				<div class="row">&nbsp;</div>
-				<div class="row">
-				<h5 class=" center-align"> CREATIVITY PARTNER</h5><hr width="230px"/>
-					<div class="col s1 m4 l4  offset-l4 offset-m4 " style="padding-left: 0px;">
-					 <a href="http://giftrees.in/" target="_blank" class=" center-align">
-            		
-       <img  src="static/img/spons/giftrees.png" height=110 alt="giftrees"></a>
-       </div>            	
-					
-				</div>
-				
-				<div class="row">&nbsp;</div>
-				<div class="row">
-				<h5 class=" center-align"> PATRONS<hr width="230px"/></h5>
-					<div class="col s8 m3 l3 offset-s2 offset-l3 offset-m3">
-					
-              <a href="https://www.codacy.com/" target="_blank" class="center-align">
-       <img  src="static/img/spons/codacy.png" alt="Codacy"></a>
-      
-    
-       </div>            	
-					<div class="caw">
-					<div class="col s8 m6 l3 offset-s2">
-					
-               <a href="https://codeanywhere.com/" target="_blank">
-       <img  src="static/img/spons/codeanywhere.png" alt="Code Any Where"></a>
-          
-       </div>            	
-					
-				</div>
-				</div>
-
-				<div class="row">&nbsp;</div>
-			</div>
-		</div>
-		</div>
-	</div>
-	</div>
-
 <div id="contactus" class="contactus grey lighten-4">
     <div class="section">
       <div class="container">
@@ -472,8 +461,8 @@
           <p class="grey-text text-lighten-4">CodeUtsava 1.0 is a mega computer science event and will span for two days: 4th and 5th Feb, 2017. The event will consists of a 28-hour hackathon that will run in parallel to Guest Lecture sessions. The event aims at encouraging the use of newer and advanced technologies and to promote better and cleaner ways of software and product development.</p>
         </div>
          <div class="col l6 s12">
-         <div class="fb-page" data-href="https://www.facebook.com/codeutsava" data-tabs="timeline" data-height="130" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/codeutsava" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/codeutsava" target="_blank">CodeUtsava 1.0</a></blockquote></div>
-          
+          <div class="fb-page" data-href="https://www.facebook.com/codeutsava" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/codeutsava" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/codeutsava">CodeUtsava 1.0</a></blockquote>
+          </div>
          </div>
     </div>
 	</div>
@@ -488,14 +477,7 @@
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="static/js/materialize.js"></script>
-  
   <script src="static/js/init.js"></script>
-	<script type="text/javascript">
-		$(".page-scroll").click(function(event){		
-	  	event.preventDefault();
-	  	$('html,body').animate({scrollTop:$(this.hash).offset().top}, 800);
-	  	
-	  });
-	</script>
+
   </body>
 </html>
