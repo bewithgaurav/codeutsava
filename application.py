@@ -172,7 +172,7 @@ def resend():
         msg = Message("Team Registration Successful", sender = 'codeutsava@gmail.com', recipients = [resendemail])
         msg.body = msgstring
         mail.send(msg)
-        flash("Confirmation Mail sent to "+resendemail)
+        flash("Confirmation Mail sent to "+resendemail+". Please check Spam Folder.")
     except Exception as e:
         print(str(e))
         flash("An Error Occurred")
@@ -230,7 +230,7 @@ def memprofile():
     active=data[1]
     data=data1
     if not active:
-        flash("Please verify %s to add Details. Check confirmation mail."%session['currentmember'])
+        flash("Please verify %s to add Details. Check confirmation mail. If not present, Check Spam folder"%session['currentmember'])
         return redirect(url_for("teamprofile"))
     if data:
         decision='Edit/View'
@@ -322,7 +322,7 @@ def register():
                         msg.body = msgstring
                         mail.send(msg)
     
-                        flash("Emails sent, Please Verify E-mail IDs")
+                        flash("Emails sent, Please Verify E-mail IDs. Be Sure to check the Spam Folder")
                         db.commit()
                     
                     except:

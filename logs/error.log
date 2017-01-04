@@ -1,0 +1,133 @@
+[2017-01-04 20:07:51 +0000] [16698] [INFO] Starting gunicorn 19.6.0
+[2017-01-04 20:07:51 +0000] [16698] [INFO] Listening at: http://127.0.0.1:8000 (16698)
+[2017-01-04 20:07:51 +0000] [16698] [INFO] Using worker: sync
+[2017-01-04 20:07:51 +0000] [16703] [INFO] Booting worker with pid: 16703
+[2017-01-04 20:09:56 +0000] [16703] [INFO] Worker exiting (pid: 16703)
+[2017-01-04 20:09:56 +0000] [16698] [INFO] Handling signal: term
+[2017-01-04 20:09:56 +0000] [16698] [INFO] Shutting down: Master
+[2017-01-04 20:21:11 +0000] [16713] [INFO] Starting gunicorn 19.6.0
+[2017-01-04 20:21:11 +0000] [16713] [INFO] Listening at: http://127.0.0.1:8000 (16713)
+[2017-01-04 20:21:11 +0000] [16713] [INFO] Using worker: sync
+[2017-01-04 20:21:11 +0000] [16718] [INFO] Booting worker with pid: 16718
+[2017-01-04 20:46:02 +0000] [16713] [INFO] Handling signal: hup
+[2017-01-04 20:46:02 +0000] [16713] [INFO] Hang up: Master
+[2017-01-04 20:46:02 +0000] [18594] [INFO] Booting worker with pid: 18594
+[2017-01-04 20:55:06 +0000] [16713] [INFO] Handling signal: hup
+[2017-01-04 20:55:06 +0000] [16713] [INFO] Hang up: Master
+[2017-01-04 20:55:06 +0000] [20424] [INFO] Booting worker with pid: 20424
+[2017-01-04 20:55:26,223] ERROR in app: Exception on /adminpanel [POST]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 372, in adminpanel
+    return render_template("adminpanel.html",members=members,teams=teams)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/templating.py", line 133, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/environment.py", line 851, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/environment.py", line 812, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/environment.py", line 786, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/environment.py", line 565, in compile
+    self.handle_exception(exc_info, source_hint=source_hint)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/environment.py", line 754, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/backend/templates/adminpanel.html", line 81, in template
+    {%endif%}
+TemplateSyntaxError: Encountered unknown tag 'endif'.
+[2017-01-04 20:55:39,140] ERROR in app: Exception on /adminpanel [POST]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 372, in adminpanel
+    return render_template("adminpanel.html",members=members,teams=teams)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/templating.py", line 133, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/environment.py", line 851, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/environment.py", line 812, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/environment.py", line 786, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/environment.py", line 565, in compile
+    self.handle_exception(exc_info, source_hint=source_hint)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/environment.py", line 754, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/backend/templates/adminpanel.html", line 81, in template
+    {%endif%}
+TemplateSyntaxError: Encountered unknown tag 'endif'.
+[2017-01-04 20:57:34 +0000] [16713] [INFO] Handling signal: hup
+[2017-01-04 20:57:34 +0000] [16713] [INFO] Hang up: Master
+[2017-01-04 20:57:34 +0000] [20941] [INFO] Booting worker with pid: 20941
+[2017-01-04 21:01:14,913] ERROR in app: Exception on /activate [GET]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 96, in activate
+    teamname=d[0]
+TypeError: 'NoneType' object has no attribute '__getitem__'
+[2017-01-04 21:02:00,407] ERROR in app: Exception on /activate [GET]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 96, in activate
+    teamname=d[0]
+TypeError: 'NoneType' object has no attribute '__getitem__'
+[2017-01-04 21:02:34,928] ERROR in app: Exception on /activate [GET]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 96, in activate
+    teamname=d[0]
+TypeError: 'NoneType' object has no attribute '__getitem__'
+[2017-01-04 21:41:05 +0000] [16713] [INFO] Handling signal: hup
+[2017-01-04 21:41:05 +0000] [16713] [INFO] Hang up: Master
+[2017-01-04 21:41:05 +0000] [29652] [INFO] Booting worker with pid: 29652
+[2017-01-04 21:48:24 +0000] [16713] [INFO] Handling signal: hup
+[2017-01-04 21:48:24 +0000] [16713] [INFO] Hang up: Master
+[2017-01-04 21:48:24 +0000] [31118] [INFO] Booting worker with pid: 31118

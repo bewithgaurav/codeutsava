@@ -74,32 +74,8 @@ table{
 		</tr>
 	{% endfor %}
 	</table>
-{%endif%}
 <br><br>
-{%if teams%}
-  <table>
-    <tr>
-      <td ><center><b>ID</center></td>
-      <td ><center><b>Email</center></td>
-      <td ><center><b>Name</center></td>
-      <td ><center><b>Team</center></td>
-      <td ><center><b>Degree</center></td>
-      <td ><center><b>Stream</center></td>
-      
-    </tr>
-
-  {% for i in members %}
-    <tr>
-      <td><center>{{i[0]}}</center></td>
-      <td><center><a href="/viewmember?email={{i[2]}}">{{i[2]}}</a></center></td>
-      <td><center>{{i[16]}}</center></td>
-      <td><center>{{i[3]}}</center></td>
-      <td><center>{{i[6]}}</center></td>
-      <td><center>{{i[11]}}</center></td>
-      
-    </tr>
-  {% endfor %}
-  </table>
+</table>
 <br><br>
 {%endif%}		
 </body>
