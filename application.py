@@ -9,6 +9,7 @@ import string
 import random
 
 db = MySQLdb.connect("localhost","root","toor","codeutsava")
+db.ping(True)
 cursor = db.cursor()
 app = Flask(__name__)
 # app.secret_key = os.urandom(24)
@@ -19,7 +20,7 @@ app.secret_key = 'lAltCodeUtsvaGaurAvMayaNk'
 
 # app.config['MAIL_SERVER']='smtp.gmail.com'
 # app.config['MAIL_PORT'] = 465
-# app.config['MAIL_USERNAME'] = 'gauravandsanskar@gmail.com'
+# app.config['MAIL_USERNAME'] = 'codeutsava@gmail.com'
 # app.config['MAIL_PASSWORD'] = '8602229193'
 # app.config['MAIL_USE_TLS'] = False
 # app.config['MAIL_USE_SSL'] = True
@@ -30,6 +31,12 @@ app.config['MAIL_PASSWORD'] = 'SG.dQxNyWOzT1S0HPG0RYfnbg.mqpZz-xlhFdhKDEyPrsZhMO
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = False
 app.config['MAIL_DEBUG']= True
+# app.config['MAIL_PORT'] = 587
+# app.config['MAIL_USERNAME'] = 'apikey'
+# app.config['MAIL_PASSWORD'] = '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'
+# app.config['MAIL_USE_TLS'] = True
+# app.config['MAIL_USE_SSL'] = False
+# app.config['MAIL_DEBUG']= True
 mail = Mail(app)
 
 def some_random_string(size=8, chars=string.ascii_uppercase + string.digits):
@@ -45,7 +52,7 @@ def csrf_protect():
 def generate_csrf_token():
     if '_csrf_token' not in session:
         session['_csrf_token'] = some_random_string()
-        print(session['_csrf_token'])
+        # print(session['_csrf_token'])
     return session['_csrf_token']
 
 app.jinja_env.globals['csrf_token'] = generate_csrf_token
@@ -162,11 +169,12 @@ def resend():
         id1=str(id1[0])+resendemail
         f=str(hashlib.md5(id1.encode('utf-8')).hexdigest())
         msgstring='Click here to confirm the registration for your team '+session['team']+'- '+'http://codeutsava.in/activate?email='+resendemail+'&hash='+f 
-        msg = Message("Team Registration Successful", sender = 'gauravandsanskar@gmail.com', recipients = [resendemail])
+        msg = Message("Team Registration Successful", sender = 'codeutsava@gmail.com', recipients = [resendemail])
         msg.body = msgstring
         mail.send(msg)
         flash("Confirmation Mail sent to "+resendemail)
-    except:
+    except Exception as e:
+        print(str(e))
         flash("An Error Occurred")
     return redirect(url_for("teamprofile"))
 
@@ -192,12 +200,14 @@ def memprofile():
         state=request.form.get('state','')
         dob=str(request.form.get('dob',''))
         try:
+            # print(dob)
             dob =str(datetime.strptime(dob, '%d %B, %Y'))
             dob=dob.split()
             dob=dob[0]
+            # print(dob)
         except:
             pass
-        print("DATEOFBIRTH", dob)
+        # print("DATEOFBIRTH", dob)
         # print("DATEOFBIRTH", str(datetime_object))
         try:
             # print(name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,session["currentmember"])
@@ -286,7 +296,7 @@ def register():
                         msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://codeutsava.in/activate?email='+email1+'&hash='+f 
                         # print("Hello")
                         
-                        msg = Message("Team Registration Successful", sender = 'gauravandsanskar@gmail.com', recipients = [email1])
+                        msg = Message("Team Registration Successful", sender = 'codeutsava@gmail.com', recipients = [email1])
                         msg.body = msgstring
                         mail.send(msg)
                         
@@ -297,7 +307,7 @@ def register():
                         f=(hashlib.md5(id2.encode('utf-8')).hexdigest())
                         print(f)
                         msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://codeutsava.in/activate?email='+email2+'&hash='+f 
-                        msg = Message("Team Registration Successful", sender = 'gauravandsanskar@gmail.com', recipients = [email2])
+                        msg = Message("Team Registration Successful", sender = 'codeutsava@gmail.com', recipients = [email2])
                         msg.body = msgstring
                         mail.send(msg)
                         
@@ -308,7 +318,7 @@ def register():
                         f=(hashlib.md5(id3.encode('utf-8')).hexdigest())
                         print(f)
                         msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://codeutsava.in/activate?email='+email3+'&hash='+f 
-                        msg = Message("Team Registration Successful", sender = 'gauravandsanskar@gmail.com', recipients = [email3])
+                        msg = Message("Team Registration Successful", sender = 'codeutsava@gmail.com', recipients = [email3])
                         msg.body = msgstring
                         mail.send(msg)
     
@@ -324,6 +334,45 @@ def register():
         else:
             flash("Enter All the fields")
     return render_template("register.html")
+
+@app.route('/viewmember', methods=['GET'])
+def viewmember():
+    if 'admin' in session:
+        email=str(request.args.get('email'))
+        query="select * from members where email=%s"
+        cursor.execute(query,[email])
+        member=cursor.fetchone()
+        query="select teamname from members where email=%s"
+        cursor.execute(query,[email])
+        teamname=cursor.fetchone()
+        teamname=teamname[0]
+        query="select institute from teams where teamname=%s"
+        cursor.execute(query,[teamname])
+        institute=cursor.fetchone()
+        institute=institute[0]
+        return render_template("viewmember.html",i=member,institute=institute)
+    else:
+        return ("Stay where you belong. Please.")
+
+@app.route('/adminpanel', methods=['GET', 'POST'])
+def adminpanel():
+    if 'team' in session:
+        return("Denied")
+    if request.method=="POST":
+        password=request.form.get('password','')
+        ticket=hashlib.md5(password.encode('utf-8')).hexdigest()
+        if ticket=="cd48af533cef6cb12a60c400dee83f76":
+            session["admin"]=1
+            query="select * from members"
+            cursor.execute(query)
+            members=cursor.fetchall()
+            query="select * from teams"
+            cursor.execute(query)
+            teams=cursor.fetchall()
+            return render_template("adminpanel.html",members=members,teams=teams)
+        else:
+            return ("Stay where you belong. Please.")
+    return render_template("adminpassword.html")
 
 
 @app.route('/teamprofile',methods=['GET', 'POST'])
@@ -387,7 +436,7 @@ def deleteteam():
             email3=mem3[2]
             try:
                 msgstring="Your team %s has been deleted"%(session['team'])
-                msg = Message("Deletion of the team", sender = 'gauravandsanskar@gmail.com', recipients = [email1,email2,email3])
+                msg = Message("Deletion of the team", sender = 'codeutsava@gmail.com', recipients = [email1,email2,email3])
                 msg.body = msgstring
                 mail.send(msg)
                 print("DELETED")

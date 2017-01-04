@@ -80,7 +80,7 @@ Status - {{status}}
 {%endif%}
 	{% for i in data %}
 		<tr>
-			<td><center><a href="/memberprofile?email={{i[2]}}">{{i[2]}}</a></center></td>
+			<td><center>{{i[2]}} (<a href="/memberprofile?email={{i[2]}}">Details</a>)</center></td>
 			<td>
 				<center>
 					{%if i[1]%}

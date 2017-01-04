@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
+<link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
+<link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
+<link href="static/css/style5.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="static/js/materialize.min.js"></script>
+ <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+       
+ <head>
+<style>
+table{
+    table-layout: fixed;
+    width: 100%;
+}
+</style>
+
+	<title></title>
+</head>
+<body>
+<div class="navbar-fixed">
+  <nav class="black" role="navigation">
+    <div class="nav-wrapper">
+      <a id="logo-container " href="/" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="60px"></a>
+      
+       <ul class="right hide-on-med-and-down">
+        <li><a href="/logout">LOGOUT</a></li>
+               
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="/logout" class="btn waves-effect waves-light  grey lighten-1 ">LOGOUT</a></li>
+        
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">Menu</i></a>
+    </div>
+  </nav>
+</div>
+<br><br>
+<center>
+<h3>Member Details</h3>
+<br>
+{% for category, message in get_flashed_messages(with_categories=true) %}
+<h6>{{ message }}</h6>
+{% endfor %}
+<table>
+		<tr>
+      <td ><center><b>Status</b></center></td>
+      <td><center>{{i[17]}}</center></td>
+    </tr>
+    <tr>
+      <td ><center><b>ID</b></center></td>
+      <td><center>{{i[0]}}</center></td>
+		</tr>
+    <tr>
+    	<td><center><b>Email</b></center></td>
+      <td><center>{{i[2]}}</center></td>
+		</tr>	
+    <tr>
+      <td ><center><b>Name</b></center></td>
+      <td><center>{{i[16]}}</center></td>
+    </tr> 
+    <tr>
+      <td ><center><b>Team</b></center></td>
+      <td><center>{{i[3]}}</center></td>
+    </tr> 
+    <tr>
+      <td ><center><b>DOB</b></center></td>
+      <td><center>{{i[6]}}</center></td>
+    </tr> 
+    <tr>
+      <td ><center><b>Degree</b></center></td>
+      <td><center>{{i[11]}}</center></td>
+    </tr> 
+    <tr>
+      <td ><center><b>Stream</b></center></td>
+      <td><center>{{i[15]}}</center></td>
+    </tr> 
+    <tr>
+      <td ><center><b>Institute</b></center></td>
+      <td><center>{{institute}}</center></td>
+    </tr> 
+    <tr>
+      <td ><center><b>Resume</b></center></td>
+      <td><center><a href="{{i[4]}}">Click Here</a></center></td>
+    </tr> 
+    <tr>
+      <td ><center><b>Github</b></center></td>
+      <td><center><a href="{{i[5]}}">Click Here</a></center></td>
+    </tr> 
+    <tr>
+      <td ><center><b>Experience</b></center></td>
+      <td><center>{{i[8]}}</center></td>
+    </tr> 
+    <tr>
+      <td ><center><b>City</b></center></td>
+      <td><center>{{i[14]}}</center></td>
+    </tr> 
+    <tr>
+      <td ><center><b>Address</b></center></td>
+      <td><center>{{i[9]}}</center></td>
+    </tr> 
+    <tr>
+      <td ><center><b>Gender</b></center></td>
+      <td><center>{{i[10]}}</center></td>
+    </tr> 
+    <tr>
+      <td ><center><b>YOP</b></center></td>
+      <td><center>{{i[7]}}</center></td>
+    </tr> 
+    <tr>
+      <td ><center><b>Contact</b></center></td>
+      <td><center>{{i[12]}}</center></td>
+    </tr> 
+    <tr>
+      <td ><center><b>Twitter</b></center></td>
+      <td><center><a href="{{i[18]}}">Click Here</a></center></td>
+    </tr> 
+      
+		
+	</table>
+<br><br>
+		
+</body>
+</html>

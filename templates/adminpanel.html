@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
+<link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
+<link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
+<link href="static/css/style5.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="static/js/materialize.min.js"></script>
+ <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+       
+ <head>
+<style>
+table{
+    table-layout: fixed;
+    width: 100%;
+}
+</style>
+
+	<title></title>
+</head>
+<body>
+<div class="navbar-fixed">
+  <nav class="black" role="navigation">
+    <div class="nav-wrapper">
+      <a id="logo-container " href="/" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="60px"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/logout">LOGOUT</a></li>
+               
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="/logout" class="btn waves-effect waves-light  grey lighten-1 ">LOGOUT</a></li>
+        
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">Menu</i></a>
+    </div>
+  </nav>
+</div>
+<br><br>
+<center>
+<h3>Members Database</h3>
+<br>
+{% for category, message in get_flashed_messages(with_categories=true) %}
+<h6>{{ message }}</h6>
+{% endfor %}
+{%if members%}
+	<table>
+		<tr>
+      <td ><center><b>ID</center></td>
+			<td ><center><b>Email</center></td>
+			<td ><center><b>Name</center></td>
+			<td ><center><b>Team</center></td>
+			<td ><center><b>Degree</center></td>
+      <td ><center><b>Stream</center></td>
+      
+		</tr>
+
+	{% for i in members %}
+		<tr>
+      <td><center>{{i[0]}}</center></td>
+			<td><center><a href="/viewmember?email={{i[2]}}">{{i[2]}}</a></center></td>
+			<td><center>{{i[16]}}</center></td>
+      <td><center>{{i[3]}}</center></td>
+      <td><center>{{i[6]}}</center></td>
+      <td><center>{{i[11]}}</center></td>
+      
+		</tr>
+	{% endfor %}
+	</table>
+{%endif%}
+<br><br>
+{%if teams%}
+  <table>
+    <tr>
+      <td ><center><b>ID</center></td>
+      <td ><center><b>Email</center></td>
+      <td ><center><b>Name</center></td>
+      <td ><center><b>Team</center></td>
+      <td ><center><b>Degree</center></td>
+      <td ><center><b>Stream</center></td>
+      
+    </tr>
+
+  {% for i in members %}
+    <tr>
+      <td><center>{{i[0]}}</center></td>
+      <td><center><a href="/viewmember?email={{i[2]}}">{{i[2]}}</a></center></td>
+      <td><center>{{i[16]}}</center></td>
+      <td><center>{{i[3]}}</center></td>
+      <td><center>{{i[6]}}</center></td>
+      <td><center>{{i[11]}}</center></td>
+      
+    </tr>
+  {% endfor %}
+  </table>
+<br><br>
+{%endif%}		
+</body>
+</html>

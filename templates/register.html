@@ -9,15 +9,14 @@
 <link href="static/css/style5.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="static/js/validation.js"></script>
+
       <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
  <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-       
- <head>
+  <head>
 	<title></title>
 <style>
 html, body {
@@ -133,58 +132,64 @@ html, body {
 <center>
 {% for category, message in get_flashed_messages(with_categories=true) %}
 <h6>{{ message }}</h6>
-{% endfor %}
-<br><br><br><h4>REGISTER A NEW TEAM</h4><br><br></center>
+{% endfor %}</center>
+<br><br><br>
 <div class="container">
 	<!-- <div class="row"> -->
 	    <form id="registerForm" action="/register" method="post" class="col s12" name="form1" onsubmit="return validateForm()">
       <input name=_csrf_token type=hidden value="{{ csrf_token() }}">
 	      <div class="row">
-	        <div class="input-field col s6">
-	          <input  id="uname" name="uname" type="text" class="validate" required >
+	        <div class="col s6">
+	          <font face="Calibri" size=2 >Team Username</font>
+            <input  id="uname" name="uname" type="text" class="validate" required >
 			  <p class="error" id="err1"></p>
-	          <label for="uname"> Team Username</label> 
+	          <!--<label for="uname"> Team Username</label> -->
 	        </div>
 
-	        <div class="input-field col s6">
-	          <input  id="password" name="password" type="password" class="validate" required minlength="6">
+	        <div class="col s6">
+          <font face="Calibri" size=2 >Team Password</font>
+	          <input  placeholder="Team Password" id="password" name="password" type="password" class="validate" required minlength="8">
 			   <p class="error" id="err2"></p>
-	          <label for="password"> Team Password</label> 
+	          <!--<label for="password"> Team Password</label> -->
 	        </div>
 	      </div>
 	      <!-- </div> -->
 	      <div class="row">
-	        <div class="input-field col s12">
-	          <input  id="institute" name="institute" type="text" class="validate">
+	        <div class="col s12">
+          <font face="Calibri" size=2 >Institute Name</font>
+	          <input  id="institute" name="institute" type="text"  class="validate" required>
 			   <p class="error" id="err3"></p>
-	           <label for="institute">Institute Name</label> 
+	          <!-- <label for="institute">Institute Name</label> -->
 	        </div>
 	      </div>
 	      
 	      <div class="row">
-	        <div class="input-field col s12">
+	        <div class="col s12">
+          <font face="Calibri" size=2 >Email of 1st Member</font>
 	          <input  id="email1" name="email1" type="email" class="validate" required>
 			   <p class="error" id="err4"></p>
-	           <label for="email1">Email of 1st Member</label> 
+	         <!--  <label for="email1">Email of 1st Member</label> -->
 	        </div>
 	      </div>
 	      
 	      <div class="row">
-	          <div class="input-field col s12">
+	          <div class="col s12">
+            <font face="Calibri" size=2 >Email of 2nd Member</font>
 	          <input  id="email2" name="email2" type="email" class="validate" required>
 			   <p class="error" id="err5"></p>
-	          <label for="email2">Email of 2nd Member</label> 
+	          <!--<label for="email2">Email of 2nd Member</label> -->
 	        </div>
 	      </div>
 	      <div class="row">
-	        <div class="input-field col s12">
+	        <div class="col s12">
+          <font face="Calibri" size=2 >Email of 3rd Member</font>
 	          <input id="email3" name="email3" type="email" class="validate" required>
 			   <p class="error" id="err6"></p>
-	           <label for="email3">Email of 3rd Member</label> 
+	           <!--<label for="email3">Email of 3rd Member</label>--> 
 	        </div>
 	      </div>
 	      <div class="row">
-	      	<center><button class="btn waves-effect waves-light grey darken-1" type="submit" name="action">Register Team</button></center>
+	      	<center><button class=" btn waves-effect waves-light grey darken-1" type="submit" name="action" >Register Team</button></center>
           </div>
 	    </form>
 </div>
@@ -246,8 +251,9 @@ html, body {
             </div>
           </div>
         </footer>
-  <script >
+ <script >
     $("#registerForm").validate();
-  </script>		
+  </script>	
+ 
 </body>
 </html>
