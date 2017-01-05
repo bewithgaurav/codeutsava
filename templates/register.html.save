@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
+<link  rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
+<link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
+<link href="static/css/style5.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+ <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  <head>
+	<title></title>
+<style>
+html, body {
+  height: 100%;
+}
+.navbar-default {
+  background-color: #ffffff;
+  border-color: #ebebeb;
+}
+
+.navbar-fixed-top {
+    border-width: 0;
+    top: 0;
+}
+
+.navbar {
+	min-height: 45px;
+	box-shadow: 1px 1px 7px rgba(0,0,0,0.10);
+}
+
+.navbar-brand {
+  height: 45px;
+  padding: 7px;
+}
+
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+    background-color: transparent;
+    color: #848c91;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
+    background-color: #ebebeb;
+    color: #343842;
+    border-bottom: 3px solid #3bcdd8;
+}
+
+.navbar-nav > li > a {
+  padding-bottom: 15px;
+  padding-top: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  font-style:Helvetica Neue;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #343842;
+}
+
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+}
+
+.navbar-toggle {
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 0;
+    float: right;
+    margin-bottom: 8px;
+    margin-right: 15px;
+    margin-top: 10px;
+    padding: 9px 10px;
+    position: relative;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: transparent;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #343842;
+}
+
+</style>
+</head>
+<body>
+<div class="navbar-fixed">
+  <nav class="black" role="navigation">
+    <div class="nav-wrapper">
+      <a id="logo-container " href="/" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="60px"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/login">LOGIN</a></li>
+        <li><a href="/">HOME PAGE</a></li>
+        <li><a href="/allteams">VIEW ALL TEAMS</a></li>
+                 
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="/login" class="btn waves-effect waves-light  grey lighten-1 ">LOGIN</a></li>
+        <li><a href="/" class="btn waves-effect waves-light  grey lighten-1 ">HOME PAGE</a></li>
+        <li><a href="/allteams" class="btn waves-effect waves-light  grey lighten-1 ">VIEW ALL TEAMS</a></li>
+        
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">menu</i></a>
+    </div>
+  </nav>
+</div>
+  <nav class="grey">
+      <div class="nav-wrapper">
+        <a href="codeutsava.in" class="brand-logo center" ></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#"></a></li>
+         
+        </ul>
+      </div>
+    </nav>
+
+   
+<center>
+{% for category, message in get_flashed_messages(with_categories=true) %}
+<h6>{{ message }}</h6>
+{% endfor %}</center>
+<br><br><br>
+<div class="container">
+	<!-- <div class="row"> -->
+	    <form id="registerForm" action="/register" method="post" class="col s12" name="form1" onsubmit="return validateForm()">
+      <input name=_csrf_token type=hidden value="{{ csrf_token() }}">
+	      <div class="row">
+	        <div class="col s6">
+	          <font face="Calibri" size=2 >Team Username</font>
+            <input  id="uname" name="uname" type="text" class="validate" required >
+			  <p class="error" id="err1"></p>
+	          <!--<label for="uname"> Team Username</label> -->
+	        </div>
+
+	        <div class="col s6">
+          <font face="Calibri" size=2 >Team Password</font>
+	          <input  placeholder="Team Password" id="password" name="password" type="password" class="validate" required minlength="8">
+			   <p class="error" id="err2"></p>
+	          <!--<label for="password"> Team Password</label> -->
+	        </div>
+	      </div>
+	      <!-- </div> -->
+	      <div class="row">
+	        <div class="col s12">
+          <font face="Calibri" size=2 >Institute Name</font>
+	          <input  id="institute" name="institute" type="text"  class="validate" required>
+			   <p class="error" id="err3"></p>
+	          <!-- <label for="institute">Institute Name</label> -->
+	        </div>
+	      </div>
+	      
+	      <div class="row">
+	        <div class="col s12">
+          <font face="Calibri" size=2 >Email of 1st Member</font>
+	          <input  id="email1" name="email1" type="email" class="validate" required>
+			   <p class="error" id="err4"></p>
+	         <!--  <label for="email1">Email of 1st Member</label> -->
+	        </div>
+	      </div>
+	      
+	      <div class="row">
+	          <div class="col s12">
+            <font face="Calibri" size=2 >Email of 2nd Member</font>
+	          <input  id="email2" name="email2" type="email" class="validate" required>
+			   <p class="error" id="err5"></p>
+	          <!--<label for="email2">Email of 2nd Member</label> -->
+	        </div>
+	      </div>
+	      <div class="row">
+	        <div class="col s12">
+          <font face="Calibri" size=2 >Email of 3rd Member</font>
+	          <input id="email3" name="email3" type="email" class="validate" required>
+			   <p class="error" id="err6"></p>
+	           <!--<label for="email3">Email of 3rd Member</label>--> 
+	        </div>
+	      </div>
+	      <div class="row">
+	      	<center><button class=" btn waves-effect waves-light grey darken-1" type="submit" name="action" >Register Team</button></center>
+          </div>
+	    </form>
+</div>
+<br>
+<div class="container">
+	{%if data%}
+	<table>
+		
+		<tr>
+			<td><center><b>Student ID</center></td>
+			<td><center><b>Username</center></td>
+			<td><center><b>Password</center></td>
+			<td><center><b>Full Name</center></td>
+		</tr>
+		
+		
+	{%endif%}
+	{% for i in data %}
+		<tr>
+			<td><center>{{i[0]}}</center></td>
+			<td><center>{{i[1]}}</center></td>
+			<td><center>{{i[2]}}</center></td>
+			<td><center>{{i[3]}}</center></td>
+		</tr>
+		<!-- {{i}} -->
+
+	{% endfor %}
+
+</table>
+</div>
+<footer class="page-footer grey">
+
+          <div class="container" style="background color:grey;">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">CODEUTSAVA 1.0</h5>
+                <p class="grey-text text-lighten-4">Be a part of one of the mega computer science
+				event of central India and feel the aura of our motto "Code | Innovate | Celebrate".
+				The event aims at encouraging and creating awareness among students to use the
+				technology for the betterment of society.
+</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">CONNECT WITH US</h5>
+                <ul>
+                  <li><a class="white-text" href="https://www.nitrr.ac.in">NIT RAIPUR</a></li><br/>
+                  <li><a class="white-text" href="#!">Lalit Chauhan</a></li>
+                  <li><a class="white-text" href="#!">Shubham Amraotkar</a></li>
+                  
+                </ul>
+              </div>
+            </div>
+          </div></div>
+		  <div class="black">
+          <div class="footer-copyright">
+            <div class="container">
+            Copyright 2016 ITSA NIT Raipur.
+            
+            </div>
+          </div>
+        </footer>
+ <script >
+    $("#registerForm").validate();
+  </script>	
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-88889014-1', 'auto');
+  ga('send', 'pageview');
+
+</script> 
+</body>
+</html>
