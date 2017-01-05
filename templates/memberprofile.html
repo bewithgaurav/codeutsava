@@ -139,7 +139,7 @@ For Email - {{email}}
 	      <!-- </div> -->
 	      <div class="row">
 	        <div class="col s6">
-	        <font face="Calibri" size=2 >Date Of Birth</font>
+	        <font face="Calibri" size=2 >Date Of Birth(If not Displayed, Keep Selecting minimum year)</font>
 			<!-- <label for="DOB">Date of Birth</label> -->
 			 <input type="date" class="datepicker" name="dob" value="{{data[6]}}" required>
 	          <!--<input placeholder="Date Of Birth" id="dob" name="dob" value="{{data[6]}}" type="text" class="validate">
@@ -169,7 +169,7 @@ For Email - {{email}}
 	      </div>
 	      <div class="row">
 	        <div class="col s12">
-	           <font face="Calibri" size=2 >Github link</font>
+	           <font face="Calibri" size=2 >Github link (Starting with http:// or https://)</font>
 	          <input  id="github" name="github" value="{{data[5]}}" type="url" class="validate" required>
 	           
 	        </div>
@@ -177,7 +177,7 @@ For Email - {{email}}
 	      
 	      <div class="row">
 	        <div class="col s12">
-	           <font face="Calibri" size=2 >Twitter link</font>
+	           <font face="Calibri" size=2 >Twitter link (Starting with http:// or https://)</font>
 	          <input  id="twitter" name="twitter" value="{{data[18]}}" type="url" class="validate" required>
 	           
 	        </div>
@@ -185,7 +185,7 @@ For Email - {{email}}
 	      
 	      <div class="row">
 	        <div class="col s12">
-	           <font face="Calibri" size=2 >Resume link (Paste Sharable Link - e.g. Dropbox or Google Drive Public Links)</font>
+	          <font face="Calibri" size=2 >Resume link (Paste Sharable Link - e.g. Dropbox or Google Drive Public Links, Starting with http:// or https://)</font>
 	          <input  id="resume" name="resume" value="{{data[4]}}" type="url" class="validate" required>
 	          
 	        </div>
@@ -212,8 +212,8 @@ For Email - {{email}}
 	      </div>
 	      <div class="row">
 	        <div class="col s12">
-	           <font face="Calibri" size=2 >Contact</font>
-	          <input value="{{data[12]}}" id="contact" name="contact" type="text" class="validate" required minlength="10">
+	           <font face="Calibri" size=2 >Contact (10 Digits)</font>
+	          <input value="{{data[12]}}" id="contact" name="contact" type="text" class="validate" required length="10">
 	           
 	        </div>
 	      </div>
