@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+ <title>Codeutsava 1.0 | Team Profile</title>
+  <link rel="icon" type="image/png" href="static/img/logo1.png">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
@@ -28,7 +30,9 @@
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-       
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
  <head>
 <style>
 table{
@@ -37,14 +41,14 @@ table{
 }
 </style>
 
-	<title></title>
+	<!-- <title></title> -->
 </head>
 <body>
-<div class="navbar-fixed">
-  <nav class="black" role="navigation">
+<nav class="black" role="navigation">
     <div class="nav-wrapper">
-      <a id="logo-container " href="/" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="60px"></a>
-      <ul class="right hide-on-med-and-down">
+      <a href="#" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="50px"></a>
+       <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-black">menu</i></a>
+      <ul class="right hide-on-med-and-down">        
         <li><a href="/">HOME PAGE</a></li>
         <li><a href="/allteams">VIEW ALL TEAMS</a></li>
         <li><a href="/logout">LOGOUT</a></li>
@@ -53,23 +57,14 @@ table{
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="/">HOME PAGE</a></li>
-        <li><a href="/allteams" class="btn waves-effect waves-light  grey lighten-1 ">VIEW ALL TEAMS</a></li>
-        <li><a href="/logout" class="btn waves-effect waves-light  grey lighten-1 ">LOGOUT</a></li>
+        <li><a href="/allteams" class="btn waves-effect waves-light  darkgrey lighten-1 ">VIEW ALL TEAMS</a></li>
+        <li><a href="/logout" class="btn waves-effect waves-light  darkgrey lighten-1 ">LOGOUT</a></li>
         
       </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">Menu</i></a>
+      <!-- <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">Menu</i></a> -->
     </div>
   </nav>
 </div>
-  <nav class="grey">
-      <div class="nav-wrapper">
-        <a href="codeutsava.in" class="brand-logo center" ></a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="#"></a></li>
-         
-        </ul>
-      </div>
-    </nav>
 <br><br>
 <center>
 <h3>Team Name - {{teamname}}</h3>
@@ -158,6 +153,16 @@ Status - {{status}}
             </div></div></div>
           </div></div></div>
         </footer>
-		
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+      
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  
+
+  <script src="static/js/init.js"></script>
+  <script type="text/javascript" src="static/js/analytics.js"></script>   
+   
+
 </body>
 </html>

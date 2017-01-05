@@ -24,20 +24,107 @@
 <meta property="og:description" content="CodeUtsava 1.0 is a mega computer science event and will span for two days: 4th and 5th Feb, 2017. The event will consists of a 28-hour hackathon that will run in parallel to 5-6 Guest Lecture sessions. The event aims at encouraging the use of newer and advanced technologies and to promote better and cleaner ways of software and product development." />
 
 
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
  <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
- 
+
   <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
   <head>
+	<title></title>
+<style>
+html, body {
+  height: 100%;
+}
+.navbar-default {
+  background-color: #ffffff;
+  border-color: #ebebeb;
+}
+
+.navbar-fixed-top {
+    border-width: 0;
+    top: 0;
+}
+
+.navbar {
+	min-height: 45px;
+	box-shadow: 1px 1px 7px rgba(0,0,0,0.10);
+}
+
+.navbar-brand {
+  height: 45px;
+  padding: 7px;
+}
+
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+    background-color: transparent;
+    color: #848c91;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
+    background-color: #ebebeb;
+    color: #343842;
+    border-bottom: 3px solid #3bcdd8;
+}
+
+.navbar-nav > li > a {
+  padding-bottom: 15px;
+  padding-top: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  font-style:Helvetica Neue;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #343842;
+}
+
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+}
+
+.navbar-toggle {
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 0;
+    float: right;
+    margin-bottom: 8px;
+    margin-right: 15px;
+    margin-top: 10px;
+    padding: 9px 10px;
+    position: relative;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: transparent;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #343842;
+}
+
+</style>
 </head>
 <body>
+  <div id="loader-wrapper">
+        <div id="loader"></div>        
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
 
 
+<div class="navbar-fixed">
   <nav class="black" role="navigation">
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="50px"></a>
-       <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-black">menu</i></a>
+      <a id="logo-container " href="#" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="60px"></a>
+      <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="/login">LOGIN</a></li>
         <li><a href="/">HOME PAGE</a></li>
@@ -45,17 +132,25 @@
                  
       </ul>
 
-      <ul class="side-nav" id="nav-mobile">
-        <li><a href="/login" class="btn waves-effect waves-light  darkgrey lighten-1 ">LOGIN</a></li>
-        <li><a href="/" class="btn waves-effect waves-light  darkgrey lighten-1 ">HOME PAGE</a></li>
-        <li><a href="/allteams" class="btn waves-effect waves-light  darkgrey lighten-1 ">VIEW ALL TEAMS</a></li>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="/login" >LOGIN</a></li>
+        <li><a href="/" >HOME PAGE</a></li>
+        <li><a href="/allteams">VIEW ALL TEAMS</a></li>
         
       </ul>
       
     </div>
   </nav>
-
-  
+</div>
+  <nav class="grey">
+      <div class="nav-wrapper">
+        <a href="codeutsava.in" class="brand-logo center" ></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#"></a></li>
+         
+        </ul>
+      </div>
+    </nav>
 
    
 <center>
@@ -180,21 +275,9 @@
             </div>
           </div>
         </footer>
-
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
-      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-      
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-  
-
-  <script src="static/js/init.js"></script>
-	<script type="text/javascript" src="static/js/analytics.js"></script>		
-   
-  
  <script >
     $("#registerForm").validate();
   </script>	
+ 
 </body>
 </html>

@@ -2,7 +2,9 @@
 <html>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
+<meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
+<title>Codeutsava 1.0 | Login</title>
+<link rel="icon" type="image/png" href="static/img/logo1.png">
 <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
 <link href="static/css/style5.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -30,20 +32,22 @@
 <meta property="og:url" content="http://www.codeutsava.in/" />
 <meta property="og:image" content="http://codeutsava.in/static/img/timeline.jpg" />
 <meta property="og:description" content="CodeUtsava 1.0 is a mega computer science event and will span for two days: 4th and 5th Feb, 2017. The event will consists of a 28-hour hackathon that will run in parallel to 5-6 Guest Lecture sessions. The event aims at encouraging the use of newer and advanced technologies and to promote better and cleaner ways of software and product development." />
- 
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <head>
-	<title></title>
+	<!-- <title></title> -->
 <script>
 	
 </script>
 </head>
 <body>
-<div class="navbar-fixed">
-  <nav class="black" role="navigation">
+<nav class="black" role="navigation">
     <div class="nav-wrapper">
-      <a id="logo-container " href="/" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="60px"></a>
+      <a href="#" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="50px"></a>
+       <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-black">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <!-- <li><a href="#!">LOGIN</a></li> -->
+          <!-- <li><a href="#!">LOGIN</a></li> -->
         <li><a href="/register">REGISTER</a></li>
         <li><a href="/">HOME PAGE</a></li>
         <li><a href="/allteams">VIEW ALL TEAMS</a></li>
@@ -54,26 +58,17 @@
 
       <ul id="nav-mobile" class="side-nav">
         <!-- <li><a href="#!" class="btn waves-effect waves-light  grey lighten-1 ">LOGIN</a></li> -->
-        <li><a href="/register" class="btn waves-effect waves-light  grey lighten-1 ">REGISTER</a></li>
-        <li><a href="/" class="btn waves-effect waves-light  grey lighten-1 ">HOME PAGE</a></li>
-        <li><a href="/allteams" class="btn waves-effect waves-light  grey lighten-1 ">VIEW ALL TEAMS</a></li>
+        <li><a href="/register" class="btn waves-effect waves-light  darkgrey lighten-1 ">REGISTER</a></li>
+        <li><a href="/" class="btn waves-effect waves-light  darkgrey lighten-1 ">HOME PAGE</a></li>
+        <li><a href="/allteams" class="btn waves-effect waves-light  darkgrey lighten-1 ">VIEW ALL TEAMS</a></li>
          
         <!-- <li><a href="#!" class="btn waves-effect waves-light  grey lighten-1 ">LOGOUT</a></li> -->
        
       </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">Menu</i></a>
+      <!-- <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">Menu</i></a> -->
     </div>
   </nav>
 </div>
-  <nav class="grey">
-      <div class="nav-wrapper">
-        <a href="codeutsava.in" class="brand-logo center" ></a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="#"></a></li>
-         
-        </ul>
-      </div>
-    </nav>
 
 <center>
 <br><br>
@@ -149,7 +144,17 @@ Team {{teamname}} successfuly deleted.
             </div>
           </div>
         </footer>
-		
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+      
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  
+
+  <script src="static/js/init.js"></script>
+  <script type="text/javascript" src="static/js/analytics.js"></script>   
+   
+
 <script >
   $("#myForm").validate();
 </script>
