@@ -20,7 +20,7 @@ app.secret_key = 'lAltCodeUtsvaGaurAvMayaNk'
 
 # app.config['MAIL_SERVER']='smtp.gmail.com'
 # app.config['MAIL_PORT'] = 465
-# app.config['MAIL_USERNAME'] = 'codeutsava@gmail.com'
+# app.config['MAIL_USERNAME'] = 'Codeutsava@codeutsava.in'
 # app.config['MAIL_PASSWORD'] = '8602229193'
 # app.config['MAIL_USE_TLS'] = False
 # app.config['MAIL_USE_SSL'] = True
@@ -87,26 +87,32 @@ def activate():
     cursor.execute(query,[email,'1'])
     d=cursor.fetchone()
     if d:
-        return render_template("activated.html",exist=1,teamname=d[0])
+        query="select password from teams where teamname=%s"
+        cursor.execute(query,[d[0]])
+        password=cursor.fetchone()
+        password=password[0]
+        return render_template("activated.html",exist=1,teamname=d[0],password=password)
     
     #For displaying Teamname and Password
-    query="select teamname from members where email=%s"
-    cursor.execute(query,[email])
-    d=cursor.fetchone()
-    teamname=d[0]
-    query="select password from teams where teamname=%s"
-    cursor.execute(query,[teamname])
-    d=cursor.fetchone()
-    password=d[0]
-
+    try:
+        query="select teamname from members where email=%s"
+        cursor.execute(query,[email])
+        d=cursor.fetchone()
+        teamname=d[0]
+        query="select password from teams where teamname=%s"
+        cursor.execute(query,[teamname])
+        d=cursor.fetchone()
+        password=d[0]
+    except:
+        pass
     #Matching the hash received with the one from database
     query="select id from members where email=%s"
     cursor.execute(query,[email])
     id=cursor.fetchone()
-    id=str(id[0])
+    # id=str(id[0])
     reverse=str(id[0])+email
     f=(hashlib.md5(reverse.encode('utf-8')).hexdigest())
-    print(f,hashstring)
+    print(f,hashstring,reverse)
     if f==hashstring:
         print("yes equal")
         try:
@@ -142,7 +148,7 @@ def viewteam():
     q="select name,degree,stream from members where teamname=%s"
     cursor.execute(q,[name])
     d=cursor.fetchall()
-    print(d)
+    # print(d)
     q="select active,institute from teams where teamname=%s"
     cursor.execute(q,[name])
     teamstatus=cursor.fetchone()
@@ -168,9 +174,11 @@ def resend():
         id1=cursor.fetchone()
         id1=str(id1[0])+resendemail
         f=str(hashlib.md5(id1.encode('utf-8')).hexdigest())
-        msgstring='Click here to confirm the registration for your team '+session['team']+'- '+'http://codeutsava.in/activate?email='+resendemail+'&hash='+f 
-        msg = Message("Team Registration Successful", sender = 'codeutsava@gmail.com', recipients = [resendemail])
-        msg.body = msgstring
+        # msgstring='Click here to confirm the registration for your team '+session['team']+'- '+'http://codeutsava.in/activate?email='+resendemail+'&hash='+f 
+        msg = Message("Team Registration Successful", sender = 'Codeutsava@codeutsava.in', recipients = [resendemail])
+        # msg.body = msgstring
+        msg.html = render_template('email.html', teamname=session['team'],email=resendemail, hash=f)
+                        
         mail.send(msg)
         flash("Confirmation Mail sent to "+resendemail+". Please check Spam Folder.")
     except Exception as e:
@@ -211,7 +219,12 @@ def memprofile():
         # print("DATEOFBIRTH", str(datetime_object))
         try:
             # print(name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,session["currentmember"])
-            # cursor.execute("""INSERT INTO list (email, gender, github, resume, yop, contact, experience, address, ) VALUES (%s,%s,%s)""",[uname,password,institute])
+            try:
+                cursor.execute("""UPDATE list set name=%s,gender=%s,github=%s,resume=%s,yop=%s,contact=%s,experience=%s,address=%s,degree=%s,stream=%s,city=%s,state=%s,dob=%s,twitter=%s where email=%s""",[name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,twitter,session["currentmember"]])
+                # cursor.execute("""update members set status=%s where email=%s""",('1',session["currentmember"]))
+                db.commit()
+            except:
+                pass
             # print("UPDATE members set status=%d,name='%s',gender='%s',github='%s',resume='%s',yop='%s',contact='%s',experience='%s',address='%s',degree='%s',stream='%s',city='%s',state='%s',dob='%s'  where email='%s'"%(1,name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,session["currentmember"]))
             cursor.execute("""UPDATE members set status=%s,name=%s,gender=%s,github=%s,resume=%s,yop=%s,contact=%s,experience=%s,address=%s,degree=%s,stream=%s,city=%s,state=%s,dob=%s,twitter=%s where email=%s""",['1',name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,twitter,session["currentmember"]])
             # cursor.execute("""update members set status=%s where email=%s""",('1',session["currentmember"]))
@@ -281,6 +294,19 @@ def register():
                 flash("Team Already Exists")
             else:
                 try:
+                    cursor.execute("""INSERT INTO list (email) VALUES (%s)""",[email1])
+                except:
+                    pass
+                try:
+                    cursor.execute("""INSERT INTO list (email) VALUES (%s)""",[email2])
+                except:
+                    pass
+                try:
+                    cursor.execute("""INSERT INTO list (email) VALUES (%s)""",[email3])
+                except:
+                    pass
+                
+                try:
                     cursor.execute("""INSERT INTO teams (teamname, password, institute) VALUES (%s,%s,%s)""",[uname,password,institute])
                     cursor.execute("""INSERT INTO members (teamname, email) VALUES (%s,%s)""",[uname,email1])
                     cursor.execute("""INSERT INTO members (teamname, email) VALUES (%s,%s)""",[uname,email2])
@@ -292,12 +318,12 @@ def register():
                         id1=str(id1[0])+email1
                         # print("tatti",id1)
                         f=str(hashlib.md5(id1.encode('utf-8')).hexdigest())
-                        print(f)
-                        msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://codeutsava.in/activate?email='+email1+'&hash='+f 
+                        print("hash id "+f)
+                        # msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://codeutsava.in/activate?email='+email1+'&hash='+f 
                         # print("Hello")
                         
-                        msg = Message("Team Registration Successful", sender = 'codeutsava@gmail.com', recipients = [email1])
-                        msg.body = msgstring
+                        msg = Message("Team Registration Successful", sender = 'Codeutsava@codeutsava.in', recipients = [email1])
+                        msg.html = render_template('email.html', teamname=uname,email=email1, hash=f)
                         mail.send(msg)
                         
                         query="select id from members where email=%s"
@@ -306,9 +332,9 @@ def register():
                         id2=str(id2[0])+email2
                         f=(hashlib.md5(id2.encode('utf-8')).hexdigest())
                         print(f)
-                        msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://codeutsava.in/activate?email='+email2+'&hash='+f 
-                        msg = Message("Team Registration Successful", sender = 'codeutsava@gmail.com', recipients = [email2])
-                        msg.body = msgstring
+                        # msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://codeutsava.in/activate?email='+email2+'&hash='+f 
+                        msg = Message("Team Registration Successful", sender = 'Codeutsava@codeutsava.in', recipients = [email2])
+                        msg.html = render_template('email.html', teamname=uname,email=email2, hash=f)
                         mail.send(msg)
                         
                         query="select id from members where email=%s"
@@ -317,9 +343,10 @@ def register():
                         id3=str(id3[0])+email3
                         f=(hashlib.md5(id3.encode('utf-8')).hexdigest())
                         print(f)
-                        msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://codeutsava.in/activate?email='+email3+'&hash='+f 
-                        msg = Message("Team Registration Successful", sender = 'codeutsava@gmail.com', recipients = [email3])
-                        msg.body = msgstring
+                        # msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://codeutsava.in/activate?email='+email3+'&hash='+f 
+                        msg = Message("Team Registration Successful", sender = 'Codeutsava@codeutsava.in', recipients = [email3])
+                        # msg.body = msgstring
+                        msg.html = render_template('email.html', teamname=uname,email=email3, hash=f)
                         mail.send(msg)
     
                         flash("Emails sent, Please Verify E-mail IDs. Be Sure to check the Spam Folder")
@@ -435,15 +462,16 @@ def deleteteam():
             email2=mem2[2]
             email3=mem3[2]
             try:
-                msgstring="Your team %s has been deleted"%(session['team'])
-                msg = Message("Deletion of the team", sender = 'codeutsava@gmail.com', recipients = [email1,email2,email3])
-                msg.body = msgstring
+                # msgstring="Your team %s has been deleted"%(session['team'])
+                msg = Message("Deletion of the team", sender = 'Codeutsava@codeutsava.in', recipients = [email1,email2,email3])
+                # msg.body = msgstring
+                msg.html = render_template('deleteemail.html', teamname=session['team'],email1=email1, email2=email2,email3=email3)
                 mail.send(msg)
                 print("DELETED")
-                return redirect(url_for('logout'))
+                # return redirect(url_for('logout'))
             except:
-                flash("Unable to send mail for deletion")
-            
+                flash("Unable to send mail for deletion.")
+            return redirect(url_for('logout'))
         except:
             db.rollback()
             flash("A problem occurred during deletion. Please try again")

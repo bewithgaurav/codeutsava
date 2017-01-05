@@ -59,8 +59,11 @@
 
 {% if exist %}
 <br><br>
-This email is already confirmed for the team <b>{{teamname}}</b>. 
-{% endif %}
+This email is already confirmed for the team <b>{{teamname}}</b>.
+</br></br> </br>  Your Team Name - {{teamname}}
+</br></br> </br> Team Password - {{password}}
+
+{% else %}
 
 {% if value %}
 </br></br> </br> Email Verified. Please fill your details by logging into the team.
@@ -70,6 +73,8 @@ This email is already confirmed for the team <b>{{teamname}}</b>.
 <br>Email Could not be verified.
 {% endif %}
 </center>
+{% endif %}
+
 <br><br>
 </div>
 <footer class="page-footer grey">
