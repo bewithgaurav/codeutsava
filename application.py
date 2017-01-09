@@ -452,7 +452,7 @@ def adminpanel():
             query="select * from pythonworkshop"
             cursor.execute(query)
             python=cursor.fetchall()
-            return render_template("adminpanel.html",members=members,linux=linux,python=python)
+            return render_template("adminpanel.html",members=members,linux=linux,python=python,memlen=len(members),linuxlen=len(linux),pythonlen=len(python))
         else:
             return ("Stay where you belong. Please.")
     return render_template("adminpassword.html")

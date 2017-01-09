@@ -45,7 +45,7 @@ table{
 </div>
 <br><br>
 <center>
-<h3>Members Database</h3>
+<h3>Members Database (<b>{{memlen}}</b> Members)</h3>
 <br>
 {% for category, message in get_flashed_messages(with_categories=true) %}
 <h6>{{ message }}</h6>
@@ -76,7 +76,7 @@ table{
 	</table>
 <br><br>
 {%endif%}
-<h3>Linux Workshop Database</h3>
+<h3>Linux Workshop Database (<b>{{linuxlen}}</b> Members)</h3>
 <br>
 {%if linux%}
   <table>
@@ -84,7 +84,7 @@ table{
   {% for i in linux %}
     <tr>
       <td><center>{{i[0]}}</center></td>
-      <td><center>{{i[1]}}</a></center></td>
+      <td><center>{{i[1]}}</center></td>
       <td><center>{{i[2]}}</center></td>
       <td><center>{{i[3]}}</center></td>
       <td><center>{{i[4]}}</center></td>
@@ -97,7 +97,7 @@ table{
   </table>
 <br><br>
 {%endif%}   
-<h3>Python Workshop Database</h3>
+<h3>Python Workshop Database (<b>{{pythonlen}}</b> Members)</h3>
 <br>
 {%if python%}
   <table>
