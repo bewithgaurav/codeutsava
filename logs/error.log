@@ -132,3 +132,7 @@ TypeError: 'NoneType' object has no attribute '__getitem__'
 [2017-01-04 21:48:24 +0000] [16713] [INFO] Hang up: Master
 [2017-01-04 21:48:24 +0000] [31118] [INFO] Booting worker with pid: 31118
 [2017-01-05 07:37:51 +0000] [24261] [INFO] Booting worker with pid: 24261
+[2017-01-09 12:14:57 +0000] [2022] [INFO] Booting worker with pid: 2022
+[2017-01-09 17:54:09 +0000] [517] [INFO] Handling signal: hup
+[2017-01-09 17:54:09 +0000] [517] [INFO] Hang up: Master
+[2017-01-09 17:54:10 +0000] [2260] [INFO] Booting worker with pid: 2260
