@@ -57,8 +57,7 @@ table{
 			<td ><center><b>Email</center></td>
 			<td ><center><b>Name</center></td>
 			<td ><center><b>Team</center></td>
-			<td ><center><b>Degree</center></td>
-      <td ><center><b>Stream</center></td>
+			<td ><center><b>Stream</center></td>
       
 		</tr>
 
@@ -68,15 +67,50 @@ table{
 			<td><center><a href="/viewmember?email={{i[2]}}">{{i[2]}}</a></center></td>
 			<td><center>{{i[16]}}</center></td>
       <td><center>{{i[3]}}</center></td>
-      <td><center>{{i[6]}}</center></td>
-      <td><center>{{i[11]}}</center></td>
+      <td><center>{{i[15]}}</center></td>
       
 		</tr>
 	{% endfor %}
 	</table>
 <br><br>
-</table>
+{%endif%}
+<h3>Python Workshop Database</h3>
+<br>
+{%if python%}
+  <table>
+    
+  {% for i in python %}
+    <tr>
+      <td><center>{{i[0]}}</center></td>
+      <td><center>{{i[1]}}</a></center></td>
+      <td><center>{{i[2]}}</center></td>
+      <td><center>{{i[3]}}</center></td>
+      <td><center>{{i[4]}}</center></td>
+      <td><center>{{i[5]}}</center></td>
+      
+    </tr>
+  {% endfor %}
+  </table>
 <br><br>
 {%endif%}		
+<h3>Linux Workshop Database</h3>
+<br>
+{%if linux%}
+  <table>
+    
+  {% for i in linux %}
+    <tr>
+      <td><center>{{i[0]}}</center></td>
+      <td><center>{{i[1]}}</a></center></td>
+      <td><center>{{i[2]}}</center></td>
+      <td><center>{{i[3]}}</center></td>
+      <td><center>{{i[4]}}</center></td>
+      <td><center>{{i[5]}}</center></td>
+      
+    </tr>
+  {% endfor %}
+  </table>
+<br><br>
+{%endif%}   
 </body>
 </html>

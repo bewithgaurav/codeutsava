@@ -438,18 +438,21 @@ def viewmember():
 def adminpanel():
     if 'team' in session:
         return("Denied")
-    if request.method=="POST":
+    if request.method=="POST" or ('admin' in session):
         password=request.form.get('password','')
         ticket=hashlib.md5(password.encode('utf-8')).hexdigest()
-        if ticket=="cd48af533cef6cb12a60c400dee83f76":
+        if ticket=="cd48af533cef6cb12a60c400dee83f76" or ('admin' in session):
             session["admin"]=1
             query="select * from members"
             cursor.execute(query)
             members=cursor.fetchall()
-            query="select * from teams"
+            query="select * from linuxworkshop"
             cursor.execute(query)
-            teams=cursor.fetchall()
-            return render_template("adminpanel.html",members=members,teams=teams)
+            linux=cursor.fetchall()
+            query="select * from pythonworkshop"
+            cursor.execute(query)
+            python=cursor.fetchall()
+            return render_template("adminpanel.html",members=members,linux=linux,python=python)
         else:
             return ("Stay where you belong. Please.")
     return render_template("adminpassword.html")
