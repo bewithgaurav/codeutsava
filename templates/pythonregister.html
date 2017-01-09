@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html>
- <title>Codeutsava 1.0 | Add/Edit Details</title>
+ <title>Codeutsava 1.0 | Workshop Registration</title>
   <link rel="icon" type="image/png" href="static/img/logo1.png">
 <!-- Jim Moriarty. Hi. Thanks For Checking Out the Code.  -->
 <script type="text/javascript" src="static/js/materialize.min.js"></script>
@@ -41,15 +41,15 @@
       <ul class="right hide-on-med-and-down">        
        <li><a href="/">HOME PAGE</a></li>
         <li><a href="/registration">REGISTRATION PORTAL</a></li>
-        <li><a href="/teamprofile">MY TEAM PROFILE</a></li>
         <li><a href="/logout">LOGOUT</a></li>
+        
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="/" class="btn waves-effect waves-light  darkgrey lighten-1 ">HOME PAGE</a></li>
-        <li><a href="/registration" class="btn waves-effect waves-light  darkgrey lighten-1 ">REGISTRATION</a></li>
-        <li><a href="/teamprofile" class="btn waves-effect waves-light  darkgrey lighten-1 ">MY TEAM PROFILE</a></li>
+        <li><a href="/registration" class="btn waves-effect waves-light  darkgrey lighten-1">REGISTRATION</a></li>
         <li><a href="/logout" class="btn waves-effect waves-light  darkgrey lighten-1 ">LOGOUT</a></li>
+       	
       </ul>
       <!-- <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">Menu</i></a> -->
     </div>
@@ -58,38 +58,41 @@
       
 <center>
 <br><br>
-<h3>{{decision}} Details</h3>
+<h3>Registration For Python Workshop</h3>
 {% for category, message in get_flashed_messages(with_categories=true) %}
 <h6>{{ message }}</h6>
 {% endfor %}
 <br>
-For Email - {{email}}
-<br>
+For NIT Raipur Students Only
+<br><br>
+{% if success %}
+Registered Successfully.
+{% endif %}
 </center>
+<br>
 <div class="container">
 	<!-- <div class="row"> -->
-	    <form id="userDetailForm" action="/memberprofile" method="post" class="col s12">
+	    <form id="userDetailForm" action="/pythonregister" method="post" class="col s12">
 	    <input name=_csrf_token type=hidden value="{{ csrf_token() }}">
 	      <div class="row">
-	        <div class="col s6">
+	        <div class="col s12">
 		        <font face="Calibri" size=2 >Full Name</font>
 		        <!-- <div class="col s6"> -->
-		          <input id="name" name="name" value="{{data[16]}}" type="text" class="validate" required>
+		          <input id="name" name="name" type="text" class="validate" required>
 		        <!-- </div> -->
 	        </div>
-	        <font face="Calibri" size=2 >Gender</font>
-	        <div class="col s6">
-	          <!-- <input placeholder="Gender (m/f)" id="gender" name="gender" value="{{data[10]}}" type="text" class="validate"> -->
 	        
-	          <select name="gender" value="{{data[10]}}" required>
-					<option selected="selected">{{data[10]}}</option>
-					<option value="Male">Male</option>
-					<option value="Female">Female</option>
-    			</select>
-	          
-	          <!-- <label for="gender">Gender</label>  -->
-	        </div>
 	      </div>
+	      <div class="row">
+	        <div class="col s12">
+		        <font face="Calibri" size=2 >Email</font>
+		        <!-- <div class="col s6"> -->
+		          <input id="email" name="email" type="email" class="validate" required>
+		        <!-- </div> -->
+	        </div>
+	        
+	      </div>
+	      
 	      <div class="row">
 	        <!-- <div class="col s6">
 	          <input placeholder="Degree" id="degree" name="degree" type="text" class="validate">
@@ -97,17 +100,11 @@ For Email - {{email}}
 	        </div>-->
 	        <div class="col s12">
 			<font face="Calibri" size=2>Degree</font>
-				<select name="degree" value="{{data[11]}}" required>
-					<option selected="selected">{{data[11]}}</option>
+				<select name="degree" required>
+					<option disabled selected="">Choose Your Option</option>
 					<option value="B.Tech">B.Tech</option>
 					<option value="M.Tech">M.Tech</option>
-					<option value="M.Sc">M.Sc</option>
-					<option value="B.Sc">B.Sc</option>
-					<option value="B.Com">B.Com</option>
-					<option value="BBA">BBA</option>
-					<option value="MA">MA</option>
-					<option value="BCA">BCA</option>
-					<option value="M.Com">M.Com</option>
+					<option value="Others">Others</option>
 					
     			</select>
 				<label for="Degree">Degree</label>
@@ -115,31 +112,11 @@ For Email - {{email}}
 			</div>
 	      </div>
 		  <div class="row">
-	        <!-- <div class="col s6">
-	          <input placeholder="Degree" id="degree" name="degree" type="text" class="validate">
-	          <label for="uname">Username</label>
-	        </div>-->
-	        <div class="col s12">
-			<font face="Calibri" size=2>T-Shirt Size</font>
-				<select name="tshirt" value="{{data[19]}}" required>
-					<option selected="selected">{{data[19]}}</option>
-					<option value="XL">XL</option>
-					<option value="L">L</option>
-					<option value="M">M</option>
-					<option value="S">S</option>
-					
-    			</select>
-				<label for="tshirt">T-Shirt Size</label>
-			
-			</div>
-	      </div>
-		  <div class="row">
 	        <div class="col s12">
 			<font face="Calibri" size=2>Stream</font>
-	          <!-- <input placeholder="Stream" id="stream" name="stream" value="{{data[15]}}" type="text" class="validate"> -->
 	          <!-- <label for="password">Password</label> -->
-	        	<select name="stream" value="{{data[15]}}" required>
-					<option selected="selected">{{data[15]}}</option>
+	        	<select name="stream" required>
+					<option disabled selected="">Choose Your Option</option>
 					<option value="Mechanical">Mechanical</option>
 					<option value="Chemical">Chemical</option>
 					<option value="Civil">Civil</option>
@@ -158,19 +135,12 @@ For Email - {{email}}
 	</div>
 	      <!-- </div> -->
 	      <div class="row">
-	        <div class="col s6">
-	        <font face="Calibri" size=2 >Date Of Birth(If not Displayed, Keep Selecting minimum year)</font>
-			<!-- <label for="DOB">Date of Birth</label> -->
-			 <input type="date" class="datepicker" name="dob" value="{{data[6]}}" required>
-	          <!--<input placeholder="Date Of Birth" id="dob" name="dob" value="{{data[6]}}" type="text" class="validate">
-	           <label for="uname">Username</label> -->
-	        </div>
-
-	        <div class="col s6">
+	        
+	        <div class="col s12">
 			
 			<font face="Calibri" size=2 >Year Of Passing</font>
-			<select name="yop" value="{{data[7]}}" required>
-					<option selected="selected">{{data[7]}}</option>
+			<select name="yop" required>
+					<option disabled selected="">Choose Your Option</option>
 					<option value="2019">2022</option>
 					<option value="2019">2021</option>
 					<option value="2019">2020</option>
@@ -183,80 +153,30 @@ For Email - {{email}}
 					<option value="2013">2013</option>
 					<option value="2012">2012</option>
 					<option value="2011">2011</option>
-    </select>
+			</select>
 	<!-- <label for="yop">Year of Passing</label> -->
 			
 	
 	          
 	        </div>
 	      </div>
-	      <div class="row">
-	        <div class="col s12">
-	           <font face="Calibri" size=2 >Github link (Starting with http:// or https://)</font>
-	          <input  id="github" name="github" value="{{data[5]}}" type="url" class="validate" required>
-	           
-	        </div>
-	      </div>
 	      
-	      <div class="row">
-	        <div class="col s12">
-	           <font face="Calibri" size=2 >Twitter link (Starting with http:// or https://)</font>
-	          <input  id="twitter" name="twitter" value="{{data[18]}}" type="url" class="validate">
-	           
-	        </div>
-	      </div>
-	      
-	      <div class="row">
-	        <div class="col s12">
-	          <font face="Calibri" size=2 >Resume link (Paste Sharable Link - e.g. Dropbox or Google Drive Public Links, Starting with http:// or https://)</font>
-	          <input  id="resume" name="resume" value="{{data[4]}}" type="url" class="validate" required>
-	          
-	        </div>
-	      </div>
-	      <div class="row">
-	        <div class="col s12">
-				   <font face="Calibri" size=2 >Address</font>
-	          <input id="address" name="address" value="{{data[9]}}" type="text" class="validate">
-	          
-	        </div>
-	       </div>
-	      <div class="row">
-	        <div class="col s6">
-	           <font face="Calibri" size=2 >State</font>
-	          <input  id="state" name="state" value="{{data[13]}}" type="text" class="validate" required>
-	          
-	        </div>
-
-	        <div class="col s6">
-	           <font face="Calibri" size=2 >City</font>
-	          <input  id="city" name="city" value="{{data[14]}}" type="text" class="validate" required>
-	          
-	        </div>
-	      </div>
 	      <div class="row">
 	        <div class="col s12">
 	           <font face="Calibri" size=2 >Contact (10 Digits)</font>
-	          <input value="{{data[12]}}" id="contact" name="contact" type="text" class="validate" required length="10">
-	           
-	        </div>
-	      </div>
-	      <div class="row">
-	        <div class="col s12">
-	           <font face="Calibri" size=2 >Previous Development Experience (Maximum 100 words)</font>
-	          <textarea name="experience" id="experience" class="materialize-textarea validate" required maxlength="500">{{data[8]}}</textarea>
-	          <!-- <input  id="experience" value="{{data[8]}}" name="experience" type="text" class="validate" required maxlength="500"> -->
+	          <input id="contact" name="contact" type="text" class="validate" required length="10">
 	           
 	        </div>
 	      </div>
 	      
 	      <div class="row">
-	      	<center><button class="btn waves-effect waves-light grey darken-1 " type="submit" name="action">Save Details</button></center>
+	      	<center><button class="btn waves-effect waves-light grey darken-1 " type="submit" name="action">Register</button></center>
           </div>
 	    </form>
 </div></div></div>
 <br>
 <br><br><br><center>
-<a href="/logout" class="waves-effect waves-light btn grey darken-1">Logout</a><br><br></center>
+<!-- <a href="/logout" class="waves-effect waves-light btn grey darken-1">Logout</a><br><br></center> -->
 <script src="static/js/main1.js"></script> 
 <footer class="page-footer grey">
 
@@ -272,10 +192,12 @@ For Email - {{email}}
               </div>
               <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">CONNECT WITH US</h5>
-                	<a class="white-text" target="_blank" href="http://www.facebook.com/codeutsava/">Facebook</a><br/>
+                
+                  <a class="white-text" target="_blank" href="http://www.facebook.com/codeutsava/">Facebook</a><br/>
                   <a class="white-text" target="_blank" href="http://twitter.com/codeutsavaNitrr">Twitter</a><br/>
                   <a class="white-text" target="_blank" href="http://www.nitrr.ac.in">NIT RAIPUR</a></li><br/>
                   
+                
               </div>
             </div>
           </div></div>
@@ -297,7 +219,8 @@ For Email - {{email}}
   <script src="static/js/init.js"></script>
 	<script type="text/javascript" src="static/js/analytics.js"></script>		
    
-<script>
+
+	<script>
 		
 jQuery.validator.addMethod('phoneIND', function(phone_number, element) {
 	phone_number = phone_number.replace(/\(|\)|\s+|-/g,'');
@@ -321,6 +244,5 @@ jQuery.validator.addMethod('phoneIND', function(phone_number, element) {
 	}
 });
 		</script>
-		
 </body>
 </html>

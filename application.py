@@ -68,6 +68,12 @@ def index():
         return redirect(url_for('teamprofile'))
     return render_template("registerindex.html")
 
+@app.route('/workshopregister',methods=['GET', 'POST'])
+def workshopregister():
+    if 'team' in session:
+        return redirect(url_for('teamprofile'))
+    return render_template("workshopindex.html")
+
 @app.route('/logout')
 def logout():
     if 'deleted' in session:
@@ -186,6 +192,52 @@ def resend():
         flash("An Error Occurred")
     return redirect(url_for("teamprofile"))
 
+@app.route('/linuxregister',methods=['GET','POST'])
+def linuxregister():
+    success=False
+    if request.method=='POST':
+        name=request.form.get('name','')
+        email=request.form.get('email','')
+        yop=request.form.get('yop','')
+        institute=request.form.get('institute','')
+        contact=request.form.get('contact','')
+        experience=request.form.get('experience','')
+        degree=request.form.get('degree','')
+        stream=request.form.get('stream','')
+        print(name,email,yop,institute,contact,experience,degree,stream)
+        try:
+            cursor.execute("""INSERT INTO linuxworkshop (name,email,yop,institute,contact,experience,degree,stream) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)""",[name,email,yop,institute,contact,experience,degree,stream])
+            db.commit()
+            success=True
+        except Exception as e:
+            db.rollback()
+            print(str(e))
+            flash("An Error Occurred. Please Try Later")
+        
+    return render_template("linuxregister.html",success=success)
+
+
+@app.route('/pythonregister',methods=['GET','POST'])
+def pythonregister():
+    success=False
+    if request.method=='POST':
+        name=request.form.get('name','')
+        email=request.form.get('email','')
+        yop=request.form.get('yop','')
+        contact=request.form.get('contact','')
+        degree=request.form.get('degree','')
+        stream=request.form.get('stream','')
+        try:
+            cursor.execute("""INSERT INTO pythonworkshop (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
+            db.commit()
+            success=True
+        except:
+            db.rollback()
+            print(str(e))
+            flash("An Error Occurred. Please Try Later")
+        
+    return render_template("pythonregister.html",success=success)
+        
 @app.route('/memberprofile',methods=['GET','POST'])
 def memprofile():
     if 'team' not in session:
@@ -205,6 +257,7 @@ def memprofile():
         degree=request.form.get('degree','')
         stream=request.form.get('stream','')
         city=request.form.get('city','')
+        tshirt=request.form.get('tshirt','')
         state=request.form.get('state','')
         dob=str(request.form.get('dob',''))
         try:
@@ -226,7 +279,7 @@ def memprofile():
             except:
                 pass
             # print("UPDATE members set status=%d,name='%s',gender='%s',github='%s',resume='%s',yop='%s',contact='%s',experience='%s',address='%s',degree='%s',stream='%s',city='%s',state='%s',dob='%s'  where email='%s'"%(1,name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,session["currentmember"]))
-            cursor.execute("""UPDATE members set status=%s,name=%s,gender=%s,github=%s,resume=%s,yop=%s,contact=%s,experience=%s,address=%s,degree=%s,stream=%s,city=%s,state=%s,dob=%s,twitter=%s where email=%s""",['1',name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,twitter,session["currentmember"]])
+            cursor.execute("""UPDATE members set tshirt=%s,status=%s,name=%s,gender=%s,github=%s,resume=%s,yop=%s,contact=%s,experience=%s,address=%s,degree=%s,stream=%s,city=%s,state=%s,dob=%s,twitter=%s where email=%s""",[tshirt,'1',name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,twitter,session["currentmember"]])
             # cursor.execute("""update members set status=%s where email=%s""",('1',session["currentmember"]))
             db.commit()
             flash('Successfully Saved')

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
- <title>Codeutsava 1.0 </title>
+<!-- Jim Moriarty. Hi. Thanks For Checking Out the Code.  -->
+ <title>Codeutsava 1.0 | Registration Portal</title>
   <link rel="icon" type="image/png" href="static/img/logo1.png">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -8,17 +9,17 @@
 <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
 <link href="static/css/style5.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-<!--<script type="text/javascript" src="js/materialize.min.js"></script>-->
+<script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src="static/js/materialize.min.js"></script>
+     <script type="text/javascript" src="static/js/materialize.min.js"></script>
  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"> -->
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+        
  <head>
 	<!-- <title></title> -->
 </head>
@@ -28,58 +29,32 @@
       <a href="#" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="50px"></a>
        <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-black">menu</i></a>
       <ul class="right hide-on-med-and-down">        
-        <li><a href="/login">LOGIN</a></li>
-        <li><a href="/teamprofile">MY TEAM PROFILE</a></li>
-        <li><a href="/register">REGISTER</a></li>
-        <li><a href="/">HOME PAGE</a></li>
-        
-                
+         <li><a href="/">HOME</a></li>
+         <li><a href="/registration">REGISTRATION PORTAL</a></li>
+         
+                 
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="/login" class="btn waves-effect waves-light  darkgrey lighten-1 ">LOGIN</a></li>
-        <li><a href="/teamprofile" class="btn waves-effect waves-light  darkgrey lighten-1 ">MY TEAM PROFILE</a></li>
-        <li><a href="/register" class="btn waves-effect waves-light  darkgrey lighten-1 ">REGISTER</a></li>
         <li><a href="/" class="btn waves-effect waves-light  darkgrey lighten-1 ">HOME PAGE</a></li>
-        
+        <li><a href="/registration" class="btn waves-effect waves-light  darkgrey lighten-1 ">REGISTER HOME</a></li>
+         
       </ul>
-      <!-- <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">menu</i></a> -->
+      <!-- <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">Menu</i></a>  -->
     </div>
   </nav>
 </div>
-<br><br>
-<div class="container">
-<div calss="row">
-<div class="col s12 l12">
 <center>
-{% for category, message in get_flashed_messages(with_categories=true) %}
-<h6>{{ message }}</h6>
-{% endfor %}
-</div></div>
+<br><br><h3>WORKSHOP REGISTRATION</h3><br><br>
 
-{% if exist %}
-<br><br>
-This email is already confirmed for the team <b>{{teamname}}</b>.
-</br></br> </br>  Your Team Name - {{teamname}}
-</br></br> </br> Team Password - {{password}}
-
-{% else %}
-
-{% if value %}
-</br></br> </br> Email Verified. Please fill your details by logging into the team.
-</br></br> </br>  Your Team Name - {{teamname}}
-</br></br> </br> Team Password - {{password}}
-{% else %}
-<br>Email Could not be verified.
-{% endif %}
+<a href="/pythonregister" target="_blank" class="waves-effect waves-light btn grey darken-1 ">REGISTER FOR PYTHON WORKSHOP</a><br><br><br/>
+<a href="/linuxregister" target="_blank" class="waves-effect waves-light btn grey darken-1">REGISTER FOR LINUX WORKSHOP</a><br/><br/>
+<!-- <a href="/allteams" class="waves-effect waves-light btn grey darken-1">All Teams</a><br/><br/> -->
+<br>
 </center>
-{% endif %}
-
-<br><br>
-</div>
 <footer class="page-footer grey">
 
-          <div class="container" style="background color:grey;">
+          <div class="container" style="background color:black;">
             <div class="row">
               <div class="col l6 s12">
                 <h5 class="white-text">CODEUTSAVA 1.0</h5>
@@ -91,25 +66,21 @@ This email is already confirmed for the team <b>{{teamname}}</b>.
               </div>
               <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">CONNECT WITH US</h5>
-                <ul>
-                  <li><a class="white-text" target="_blank" href="https://www.facebook.com/codeutsava/">Facebook</a></li>
-                  <li><a class="white-text" target="_blank" href="https://twitter.com/codeutsavaNitrr">Twitter</a></li>
-                  <li><a class="white-text" target="_blank" href="https://www.nitrr.ac.in">NIT RAIPUR</a></li><br/>
+                
+                  <a class="white-text" target="_blank" href="http://www.facebook.com/codeutsava/">Facebook</a><br/>
+                  <a class="white-text" target="_blank" href="http://twitter.com/codeutsavaNitrr">Twitter</a><br/>
+                  <a class="white-text" target="_blank" href="http://www.nitrr.ac.in">NIT RAIPUR</a></li><br/>
                   
-                </ul>
+                
               </div>
             </div>
           </div></div>
 		  <div class="black">
           <div class="footer-copyright">
             <div class="container">
-			<div class="row">
-			<div class="col   l6 s12">
-            Copyright 2016 ITSA NIT Raipur. 
-			</div>
+            Copyright 2017 ITSA NIT Raipur | All Rights Reserved.
             
             </div>
-          </div></div>
           </div>
         </footer>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
