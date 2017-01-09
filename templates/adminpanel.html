@@ -58,6 +58,7 @@ table{
 			<td ><center><b>Name</center></td>
 			<td ><center><b>Team</center></td>
 			<td ><center><b>Stream</center></td>
+      <td ><center><b>T-Shirt</center></td>
       
 		</tr>
 
@@ -68,31 +69,13 @@ table{
 			<td><center>{{i[16]}}</center></td>
       <td><center>{{i[3]}}</center></td>
       <td><center>{{i[15]}}</center></td>
+      <td><center>{{i[19]}}</center></td>
       
 		</tr>
 	{% endfor %}
 	</table>
 <br><br>
 {%endif%}
-<h3>Python Workshop Database</h3>
-<br>
-{%if python%}
-  <table>
-    
-  {% for i in python %}
-    <tr>
-      <td><center>{{i[0]}}</center></td>
-      <td><center>{{i[1]}}</a></center></td>
-      <td><center>{{i[2]}}</center></td>
-      <td><center>{{i[3]}}</center></td>
-      <td><center>{{i[4]}}</center></td>
-      <td><center>{{i[5]}}</center></td>
-      
-    </tr>
-  {% endfor %}
-  </table>
-<br><br>
-{%endif%}		
 <h3>Linux Workshop Database</h3>
 <br>
 {%if linux%}
@@ -107,6 +90,25 @@ table{
       <td><center>{{i[4]}}</center></td>
       <td><center>{{i[5]}}</center></td>
       <td><center>{{i[6]}}</center></td>
+      <td><center>{{i[7]}}</center></td>
+      
+    </tr>
+  {% endfor %}
+  </table>
+<br><br>
+{%endif%}   
+<h3>Python Workshop Database</h3>
+<br>
+{%if python%}
+  <table>
+    
+  {% for i in python %}
+    <tr>
+      <td><center>{{i[0]}}</center></td>
+      <td><center>{{i[1]}}</a></center></td>
+      <td><center>{{i[3]}}</center></td>
+      <td><center>{{i[4]}}</center></td>
+      <td><center>{{i[5]}}</center></td>
       
     </tr>
   {% endfor %}
