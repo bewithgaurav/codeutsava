@@ -7,6 +7,7 @@ import hashlib
 from datetime import datetime
 import string
 import random
+from flask_recaptcha import ReCaptcha
 
 db = MySQLdb.connect("localhost","root","toor","codeutsava")
 db.ping(True)
@@ -17,7 +18,9 @@ app.secret_key = 'lAltCodeUtsvaGaurAvMayaNk'
 # +----+--------+-------+----------+--------+--------+---------+--------+------+------+------------+---------+-------+------+------+--------+--------+
 # | id | active | email | teamname | resume | github | contact | gender | dob  | yop  | experience | address | state | city | name | degree | stream |
 # +----+--------+-------+----------+--------+--------+---------+--------+------+------+------------+---------+-------+------+------+--------+--------+
-
+# recaptcha = ReCaptcha()
+# recaptcha.init_app(app)
+recaptcha = ReCaptcha(app=app)
 # app.config['MAIL_SERVER']='smtp.gmail.com'
 # app.config['MAIL_PORT'] = 465
 # app.config['MAIL_USERNAME'] = 'Codeutsava@codeutsava.in'
@@ -38,6 +41,13 @@ app.config['MAIL_DEBUG']= True
 # app.config['MAIL_USE_SSL'] = False
 # app.config['MAIL_DEBUG']= True
 mail = Mail(app)
+RECAPTCHA_ENABLED = True
+RECAPTCHA_SITE_KEY = "6LcbfhEUAAAAALPhMJ07H7AHvqn6X4M4DBRIoVNr"
+RECAPTCHA_SECRET_KEY = "6LcbfhEUAAAAACgg5XiNL3wNLwAmi5wmYhGM7Sv_"
+RECAPTCHA_THEME = "dark"
+RECAPTCHA_TYPE = "image"
+RECAPTCHA_SIZE = "compact"
+RECAPTCHA_RTABINDEX = 10
 
 def some_random_string(size=8, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
