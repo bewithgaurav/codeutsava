@@ -4,6 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
 <title>Codeutsava 1.0 | Team Registration</title>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
 <link rel="icon" type="image/png" href="static/img/logo1.png">
 <link  rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
@@ -118,37 +120,23 @@
 	        </div>
 	      </div>
 	      <div class="row">
+	        <div class="col s12">
+		        <!-- <font face="Calibri" size=2 >Captcha</font> -->
+		        <!-- <div class="col s6"> -->
+		        
+		          <center><div class="g-recaptcha" data-sitekey="6LcbfhEUAAAAALPhMJ07H7AHvqn6X4M4DBRIoVNr"></div></center>
+		        
+		        <!-- </div> -->
+	        </div>
+	        
+	      </div>
+
+	      <div class="row">
 	      	<center><button class=" btn waves-effect waves-light grey darken-1" type="submit" name="action" >Register Team</button></center>
           </div>
 	    </form>
 </div>
-<br>
-<div class="container">
-	{%if data%}
-	<table>
-		
-		<tr>
-			<td><center><b>Student ID</center></td>
-			<td><center><b>Username</center></td>
-			<td><center><b>Password</center></td>
-			<td><center><b>Full Name</center></td>
-		</tr>
-		
-		
-	{%endif%}
-	{% for i in data %}
-		<tr>
-			<td><center>{{i[0]}}</center></td>
-			<td><center>{{i[1]}}</center></td>
-			<td><center>{{i[2]}}</center></td>
-			<td><center>{{i[3]}}</center></td>
-		</tr>
-		<!-- {{i}} -->
-
-	{% endfor %}
-
-</table>
-</div>
+<br><br>
 <footer class="page-footer grey">
 
           <div class="container" style="background color:grey;">

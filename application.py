@@ -8,6 +8,12 @@ from datetime import datetime
 import string
 import random
 from flask_recaptcha import ReCaptcha
+try:
+    # For Python 3.0 and later
+    from urllib.request import urlopen
+except ImportError:
+    # Fall back to Python 2's urllib2
+    from urllib2 import urlopen
 
 db = MySQLdb.connect("localhost","root","toor","codeutsava")
 db.ping(True)
@@ -20,7 +26,7 @@ app.secret_key = 'lAltCodeUtsvaGaurAvMayaNk'
 # +----+--------+-------+----------+--------+--------+---------+--------+------+------+------------+---------+-------+------+------+--------+--------+
 # recaptcha = ReCaptcha()
 # recaptcha.init_app(app)
-recaptcha = ReCaptcha(app=app)
+# recaptcha = ReCaptcha(app=app)
 # app.config['MAIL_SERVER']='smtp.gmail.com'
 # app.config['MAIL_PORT'] = 465
 # app.config['MAIL_USERNAME'] = 'Codeutsava@codeutsava.in'
@@ -41,13 +47,32 @@ app.config['MAIL_DEBUG']= True
 # app.config['MAIL_USE_SSL'] = False
 # app.config['MAIL_DEBUG']= True
 mail = Mail(app)
-RECAPTCHA_ENABLED = True
-RECAPTCHA_SITE_KEY = "6LcbfhEUAAAAALPhMJ07H7AHvqn6X4M4DBRIoVNr"
-RECAPTCHA_SECRET_KEY = "6LcbfhEUAAAAACgg5XiNL3wNLwAmi5wmYhGM7Sv_"
-RECAPTCHA_THEME = "dark"
-RECAPTCHA_TYPE = "image"
-RECAPTCHA_SIZE = "compact"
-RECAPTCHA_RTABINDEX = 10
+# recaptcha = ReCaptcha(site_key="6LcbfhEUAAAAALPhMJ07H7AHvqn6X4M4DBRIoVNr", secret_key="6LcbfhEUAAAAACgg5XiNL3wNLwAmi5wmYhGM7Sv_")    
+# RECAPTCHA_ENABLED = True
+# RECAPTCHA_SITE_KEY = "6LcbfhEUAAAAALPhMJ07H7AHvqn6X4M4DBRIoVNr"
+# RECAPTCHA_SECRET_KEY = "6LcbfhEUAAAAACgg5XiNL3wNLwAmi5wmYhGM7Sv_"
+# RECAPTCHA_THEME = "dark"
+# RECAPTCHA_TYPE = "image"
+# RECAPTCHA_SIZE = "compact"
+# RECAPTCHA_TABINDEX = 10
+# print(recaptcha.get_code())
+SITE_KEY = "6LcbfhEUAAAAALPhMJ07H7AHvqn6X4M4DBRIoVNr"
+SECRET_KEY = "6LcbfhEUAAAAACgg5XiNL3wNLwAmi5wmYhGM7Sv_"
+
+
+def checkRecaptcha(response, secretkey):
+    url = 'https://www.google.com/recaptcha/api/siteverify?'
+    url = url + 'secret=' +secretkey
+    url = url + '&response=' +response
+    try:
+        jsonobj = json.loads(urlopen(url).read())
+        if jsonobj['success']:
+            return True
+        else:
+            return False
+    except Exception as e:
+        print(str(e))
+    return False
 
 def some_random_string(size=8, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
@@ -68,9 +93,24 @@ def generate_csrf_token():
 app.jinja_env.globals['csrf_token'] = generate_csrf_token
 
 
-@app.route('/',methods=['GET', 'POST'])
+@app.route('/')
 def home():
     return render_template("index.html")
+
+@app.route('/blogs',methods=['GET'])
+def blogs():
+    blog=str(request.args.get('page'))
+    if blog=="1":
+        return render_template("blog1.html")    
+    elif blog=="2":
+        return render_template("blog2.html")    
+    elif blog=="3":
+        return render_template("blog3.html")    
+    elif blog=="4":
+        return render_template("blog4.html")    
+    else:
+        return render_template("blog.html")
+
 
 @app.route('/registration',methods=['GET', 'POST'])
 def index():
@@ -131,13 +171,6 @@ def activate():
     print(f,hashstring,reverse)
     if f==hashstring:
         print("yes equal")
-        try:
-            # print("INSERT INTO emails VALUES ('%s')"%(email))
-            cursor.execute("INSERT INTO emails VALUES (%s)",[email])
-            db.commit()
-            print("Email added to the mailing List")
-        except:
-            db.rollback()
         try:
             cursor.execute("""update members set active=%s where id=%s""",['1',id])
             db.commit()
@@ -206,24 +239,27 @@ def resend():
 def linuxregister():
     success=False
     if request.method=='POST':
-        name=request.form.get('name','')
-        email=request.form.get('email','')
-        yop=request.form.get('yop','')
-        institute=request.form.get('institute','')
-        contact=request.form.get('contact','')
-        experience=request.form.get('experience','')
-        degree=request.form.get('degree','')
-        stream=request.form.get('stream','')
-        print(name,email,yop,institute,contact,experience,degree,stream)
-        try:
-            cursor.execute("""INSERT INTO linuxworkshop (name,email,yop,institute,contact,experience,degree,stream) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)""",[name,email,yop,institute,contact,experience,degree,stream])
-            db.commit()
-            success=True
-        except Exception as e:
-            db.rollback()
-            print(str(e))
-            flash("An Error Occurred. Please Try Later")
-        
+        response = request.form.get('g-recaptcha-response')
+        if checkRecaptcha(response,SECRET_KEY):
+            name=request.form.get('name','')
+            email=request.form.get('email','')
+            yop=request.form.get('yop','')
+            institute=request.form.get('institute','')
+            contact=request.form.get('contact','')
+            experience=request.form.get('experience','')
+            degree=request.form.get('degree','')
+            stream=request.form.get('stream','')
+            print(name,email,yop,institute,contact,experience,degree,stream)
+            try:
+                cursor.execute("""INSERT INTO linuxworkshop (name,email,yop,institute,contact,experience,degree,stream) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)""",[name,email,yop,institute,contact,experience,degree,stream])
+                db.commit()
+                success=True
+            except Exception as e:
+                db.rollback()
+                print(str(e))
+                flash("An Error Occurred. Please Try Later")
+        else:
+            flash("Captcha Could not be Verified")
     return render_template("linuxregister.html",success=success)
 
 
@@ -231,20 +267,25 @@ def linuxregister():
 def pythonregister():
     success=False
     if request.method=='POST':
-        name=request.form.get('name','')
-        email=request.form.get('email','')
-        yop=request.form.get('yop','')
-        contact=request.form.get('contact','')
-        degree=request.form.get('degree','')
-        stream=request.form.get('stream','')
-        try:
-            cursor.execute("""INSERT INTO pythonworkshop (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
-            db.commit()
-            success=True
-        except:
-            db.rollback()
-            print(str(e))
-            flash("An Error Occurred. Please Try Later")
+        response = request.form.get('g-recaptcha-response')
+        if checkRecaptcha(response,SECRET_KEY):
+            print("yeah")
+            name=request.form.get('name','')
+            email=request.form.get('email','')
+            yop=request.form.get('yop','')
+            contact=request.form.get('contact','')
+            degree=request.form.get('degree','')
+            stream=request.form.get('stream','')
+            try:
+                cursor.execute("""INSERT INTO pythonworkshop (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
+                db.commit()
+                success=True
+            except:
+                db.rollback()
+                print(str(e))
+                flash("An Error Occurred. Please Try Later")
+        else:
+            flash("Captcha Could not be Verified")
         
     return render_template("pythonregister.html",success=success)
         
@@ -255,48 +296,54 @@ def memprofile():
     if 'currentmember' not in session and not request.args.get('email'):
         return redirect(url_for("teamprofile"))
     if request.method=='POST':
-        name=request.form.get('name','')
-        gender=request.form.get('gender','')
-        github=request.form.get('github','')
-        twitter=request.form.get('twitter','')
-        resume=request.form.get('resume','')
-        yop=request.form.get('yop','')
-        contact=request.form.get('contact','')
-        experience=request.form.get('experience','')
-        address=request.form.get('address','')
-        degree=request.form.get('degree','')
-        stream=request.form.get('stream','')
-        city=request.form.get('city','')
-        tshirt=request.form.get('tshirt','')
-        state=request.form.get('state','')
-        dob=str(request.form.get('dob',''))
-        try:
-            # print(dob)
-            dob =str(datetime.strptime(dob, '%d %B, %Y'))
-            dob=dob.split()
-            dob=dob[0]
-            # print(dob)
-        except:
-            pass
-        # print("DATEOFBIRTH", dob)
-        # print("DATEOFBIRTH", str(datetime_object))
-        try:
-            # print(name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,session["currentmember"])
+        response = request.form.get('g-recaptcha-response')
+        if checkRecaptcha(response,SECRET_KEY):
+            name=request.form.get('name','')
+            gender=request.form.get('gender','')
+            github=request.form.get('github','')
+            twitter=request.form.get('twitter','')
+            resume=request.form.get('resume','')
+            yop=request.form.get('yop','')
+            contact=request.form.get('contact','')
+            experience=request.form.get('experience','')
+            address=request.form.get('address','')
+            degree=request.form.get('degree','')
+            stream=request.form.get('stream','')
+            city=request.form.get('city','')
+            tshirt=request.form.get('tshirt','')
+            state=request.form.get('state','')
+            dob=str(request.form.get('dob',''))
             try:
-                cursor.execute("""UPDATE list set name=%s,gender=%s,github=%s,resume=%s,yop=%s,contact=%s,experience=%s,address=%s,degree=%s,stream=%s,city=%s,state=%s,dob=%s,twitter=%s where email=%s""",[name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,twitter,session["currentmember"]])
-                # cursor.execute("""update members set status=%s where email=%s""",('1',session["currentmember"]))
-                db.commit()
+                # print(dob)
+                dob =str(datetime.strptime(dob, '%d %B, %Y'))
+                dob=dob.split()
+                dob=dob[0]
+                # print(dob)
             except:
                 pass
-            # print("UPDATE members set status=%d,name='%s',gender='%s',github='%s',resume='%s',yop='%s',contact='%s',experience='%s',address='%s',degree='%s',stream='%s',city='%s',state='%s',dob='%s'  where email='%s'"%(1,name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,session["currentmember"]))
-            cursor.execute("""UPDATE members set tshirt=%s,status=%s,name=%s,gender=%s,github=%s,resume=%s,yop=%s,contact=%s,experience=%s,address=%s,degree=%s,stream=%s,city=%s,state=%s,dob=%s,twitter=%s where email=%s""",[tshirt,'1',name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,twitter,session["currentmember"]])
-            # cursor.execute("""update members set status=%s where email=%s""",('1',session["currentmember"]))
-            db.commit()
-            flash('Successfully Saved')
-        except Exception as e:
-            print(str(e))
-            db.rollback()
-            flash('Error Occurred while Updating the Database. Please Try Again ')
+            # print("DATEOFBIRTH", dob)
+            # print("DATEOFBIRTH", str(datetime_object))
+            try:
+                # print(name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,session["currentmember"])
+                try:
+                    cursor.execute("""UPDATE list set name=%s,gender=%s,github=%s,resume=%s,yop=%s,contact=%s,experience=%s,address=%s,degree=%s,stream=%s,city=%s,state=%s,dob=%s,twitter=%s where email=%s""",[name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,twitter,session["currentmember"]])
+                    # cursor.execute("""update members set status=%s where email=%s""",('1',session["currentmember"]))
+                    db.commit()
+                except:
+                    pass
+                # print("UPDATE members set status=%d,name='%s',gender='%s',github='%s',resume='%s',yop='%s',contact='%s',experience='%s',address='%s',degree='%s',stream='%s',city='%s',state='%s',dob='%s'  where email='%s'"%(1,name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,session["currentmember"]))
+                cursor.execute("""UPDATE members set tshirt=%s,status=%s,name=%s,gender=%s,github=%s,resume=%s,yop=%s,contact=%s,experience=%s,address=%s,degree=%s,stream=%s,city=%s,state=%s,dob=%s,twitter=%s where email=%s""",[tshirt,'1',name,gender,github,resume,yop,contact,experience,address,degree,stream,city,state,dob,twitter,session["currentmember"]])
+                # cursor.execute("""update members set status=%s where email=%s""",('1',session["currentmember"]))
+                db.commit()
+                flash('Successfully Saved')
+            except Exception as e:
+                print(str(e))
+                db.rollback()
+                flash('Error Occurred while Updating the Database. Please Try Again ')
+
+        else:
+            flash("Captcha Could not be Verified")
+
     if request.args.get('email'):
         session['currentmember']=request.args.get('email')
     query="select status,active from members where email=%s"
@@ -325,104 +372,109 @@ def register():
     if 'team' in session:
         return redirect(url_for('teamprofile'))
     if request.method=="POST":
-        uname=request.form.get('uname','')
-        password=request.form.get('password','')
-        email1=request.form.get('email1','')
-        email2=request.form.get('email2','')
-        email3=request.form.get('email3','')
-        institute=request.form.get('institute','')
-        print(request.form.get('_csrf_token',''))
-        if uname and password and email1 and email2 and email3 and institute:
-            query="select * from members where email=%s"
-            cursor.execute(query,[email1])
-            data1=cursor.fetchone()
-            query="select * from members where email=%s"
-            cursor.execute(query,[email2])
-            data2=cursor.fetchone()
-            query="select * from members where email=%s"
-            cursor.execute(query,[email3])
-            data3=cursor.fetchone()
-            if data1 or data2 or data3:
-                if data1:
-                    flash("Email ID "+email1+" already exists in team "+data1[3])
-                if data2:
-                    flash("Email ID "+email2+" already exists in team "+data2[3])
-                if data3:
-                    flash("Email ID "+email3+" already exists in team "+data3[3])
-                return render_template("register.html")
-            query="select * from teams where teamname=%s"
-            cursor.execute(query,[uname])
-            data=cursor.fetchone()
-            if data:
-                flash("Team Already Exists")
-            else:
-                try:
-                    cursor.execute("""INSERT INTO list (email) VALUES (%s)""",[email1])
-                except:
-                    pass
-                try:
-                    cursor.execute("""INSERT INTO list (email) VALUES (%s)""",[email2])
-                except:
-                    pass
-                try:
-                    cursor.execute("""INSERT INTO list (email) VALUES (%s)""",[email3])
-                except:
-                    pass
-                
-                try:
-                    cursor.execute("""INSERT INTO teams (teamname, password, institute) VALUES (%s,%s,%s)""",[uname,password,institute])
-                    cursor.execute("""INSERT INTO members (teamname, email) VALUES (%s,%s)""",[uname,email1])
-                    cursor.execute("""INSERT INTO members (teamname, email) VALUES (%s,%s)""",[uname,email2])
-                    cursor.execute("""INSERT INTO members (teamname, email) VALUES (%s,%s)""",[uname,email3])
+        response = request.form.get('g-recaptcha-response')
+        if checkRecaptcha(response,SECRET_KEY):
+            uname=request.form.get('uname','')
+            password=request.form.get('password','')
+            email1=request.form.get('email1','')
+            email2=request.form.get('email2','')
+            email3=request.form.get('email3','')
+            institute=request.form.get('institute','')
+            print(request.form.get('_csrf_token',''))
+            if uname and password and email1 and email2 and email3 and institute:
+                query="select * from members where email=%s"
+                cursor.execute(query,[email1])
+                data1=cursor.fetchone()
+                query="select * from members where email=%s"
+                cursor.execute(query,[email2])
+                data2=cursor.fetchone()
+                query="select * from members where email=%s"
+                cursor.execute(query,[email3])
+                data3=cursor.fetchone()
+                if data1 or data2 or data3:
+                    if data1:
+                        flash("Email ID "+email1+" already exists in team "+data1[3])
+                    if data2:
+                        flash("Email ID "+email2+" already exists in team "+data2[3])
+                    if data3:
+                        flash("Email ID "+email3+" already exists in team "+data3[3])
+                    return render_template("register.html")
+                query="select * from teams where teamname=%s"
+                cursor.execute(query,[uname])
+                data=cursor.fetchone()
+                if data:
+                    flash("Team Already Exists")
+                else:
                     try:
-                        query="select id from members where email=%s"
-                        cursor.execute(query,[email1])
-                        id1=cursor.fetchone()
-                        id1=str(id1[0])+email1
-                        # print("tatti",id1)
-                        f=str(hashlib.md5(id1.encode('utf-8')).hexdigest())
-                        print("hash id "+f)
-                        # msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://codeutsava.in/activate?email='+email1+'&hash='+f 
-                        # print("Hello")
-                        
-                        msg = Message("Team Registration Successful", sender = 'Codeutsava@codeutsava.in', recipients = [email1])
-                        msg.html = render_template('email.html', teamname=uname,email=email1, hash=f)
-                        mail.send(msg)
-                        
-                        query="select id from members where email=%s"
-                        cursor.execute(query,[email2])
-                        id2=cursor.fetchone()
-                        id2=str(id2[0])+email2
-                        f=(hashlib.md5(id2.encode('utf-8')).hexdigest())
-                        print(f)
-                        # msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://codeutsava.in/activate?email='+email2+'&hash='+f 
-                        msg = Message("Team Registration Successful", sender = 'Codeutsava@codeutsava.in', recipients = [email2])
-                        msg.html = render_template('email.html', teamname=uname,email=email2, hash=f)
-                        mail.send(msg)
-                        
-                        query="select id from members where email=%s"
-                        cursor.execute(query,[email3])
-                        id3=cursor.fetchone()
-                        id3=str(id3[0])+email3
-                        f=(hashlib.md5(id3.encode('utf-8')).hexdigest())
-                        print(f)
-                        # msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://codeutsava.in/activate?email='+email3+'&hash='+f 
-                        msg = Message("Team Registration Successful", sender = 'Codeutsava@codeutsava.in', recipients = [email3])
-                        # msg.body = msgstring
-                        msg.html = render_template('email.html', teamname=uname,email=email3, hash=f)
-                        mail.send(msg)
-    
-                        flash("Emails sent, Please Verify E-mail IDs. Be Sure to check the Spam Folder")
-                        db.commit()
-                    
+                        cursor.execute("""INSERT INTO list (email) VALUES (%s)""",[email1])
                     except:
-                        flash("There was a Problem sending Mails")
-                except Exception as e:
-                   print(str(e)) 
-                   db.rollback()
-                   flash("Unexpected Error occurred")
+                        pass
+                    try:
+                        cursor.execute("""INSERT INTO list (email) VALUES (%s)""",[email2])
+                    except:
+                        pass
+                    try:
+                        cursor.execute("""INSERT INTO list (email) VALUES (%s)""",[email3])
+                    except:
+                        pass
+                    
+                    try:
+                        cursor.execute("""INSERT INTO teams (teamname, password, institute) VALUES (%s,%s,%s)""",[uname,password,institute])
+                        cursor.execute("""INSERT INTO members (teamname, email) VALUES (%s,%s)""",[uname,email1])
+                        cursor.execute("""INSERT INTO members (teamname, email) VALUES (%s,%s)""",[uname,email2])
+                        cursor.execute("""INSERT INTO members (teamname, email) VALUES (%s,%s)""",[uname,email3])
+                        try:
+                            query="select id from members where email=%s"
+                            cursor.execute(query,[email1])
+                            id1=cursor.fetchone()
+                            id1=str(id1[0])+email1
+                            # print("tatti",id1)
+                            f=str(hashlib.md5(id1.encode('utf-8')).hexdigest())
+                            print("hash id "+f)
+                            # msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://codeutsava.in/activate?email='+email1+'&hash='+f 
+                            # print("Hello")
+                            
+                            msg = Message("Team Registration Successful", sender = 'Codeutsava@codeutsava.in', recipients = [email1])
+                            msg.html = render_template('email.html', teamname=uname,email=email1, hash=f)
+                            mail.send(msg)
+                            
+                            query="select id from members where email=%s"
+                            cursor.execute(query,[email2])
+                            id2=cursor.fetchone()
+                            id2=str(id2[0])+email2
+                            f=(hashlib.md5(id2.encode('utf-8')).hexdigest())
+                            print(f)
+                            # msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://codeutsava.in/activate?email='+email2+'&hash='+f 
+                            msg = Message("Team Registration Successful", sender = 'Codeutsava@codeutsava.in', recipients = [email2])
+                            msg.html = render_template('email.html', teamname=uname,email=email2, hash=f)
+                            mail.send(msg)
+                            
+                            query="select id from members where email=%s"
+                            cursor.execute(query,[email3])
+                            id3=cursor.fetchone()
+                            id3=str(id3[0])+email3
+                            f=(hashlib.md5(id3.encode('utf-8')).hexdigest())
+                            print(f)
+                            # msgstring='Click here to confirm the registration for your team '+uname+'- '+'http://codeutsava.in/activate?email='+email3+'&hash='+f 
+                            msg = Message("Team Registration Successful", sender = 'Codeutsava@codeutsava.in', recipients = [email3])
+                            # msg.body = msgstring
+                            msg.html = render_template('email.html', teamname=uname,email=email3, hash=f)
+                            mail.send(msg)
+        
+                            flash("Emails sent, Please Verify E-mail IDs. Be Sure to check the Spam Folder")
+                            db.commit()
+                        
+                        except:
+                            flash("There was a Problem sending Mails")
+                    except Exception as e:
+                       print(str(e)) 
+                       db.rollback()
+                       flash("Unexpected Error occurred")
+            else:
+                flash("Enter All the fields")
         else:
-            flash("Enter All the fields")
+            flash("Captcha Could not be Verified")
+        
     return render_template("register.html")
 
 @app.route('/viewmember', methods=['GET'])
@@ -552,17 +604,22 @@ def login():
     if 'team' in session:
         return redirect(url_for('teamprofile'))
     if request.method=='POST':
-        uname=request.form.get('uname','')
-        password=request.form.get('password','')
-        if uname and password:
-            query="select * from teams where teamname=%s and password=%s"
-            cursor.execute(query,[uname,password])
-            data=cursor.fetchone()
-            if data:
-                session['team']=uname
-                return redirect(url_for('teamprofile'))
-            else:
-                flash("Invalid Credentials") 
+        response = request.form.get('g-recaptcha-response')
+        if checkRecaptcha(response,SECRET_KEY):
+            uname=request.form.get('uname','')
+            password=request.form.get('password','')
+            if uname and password:
+                query="select * from teams where teamname=%s and password=%s"
+                cursor.execute(query,[uname,password])
+                data=cursor.fetchone()
+                if data:
+                    session['team']=uname
+                    return redirect(url_for('teamprofile'))
+                else:
+                    flash("Invalid Credentials") 
+        else:
+            flash("Captcha Could not be Verified")
+        
     return render_template("login.html")
 
 # Jim Moriarty. Hi. Thanks for Checking out the code.
