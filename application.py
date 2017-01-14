@@ -14,6 +14,12 @@ try:
 except ImportError:
     # Fall back to Python 2's urllib2
     from urllib2 import urlopen
+try:
+    import sys
+    reload(sys)
+    sys.setdefaultencoding("utf-8")
+except:
+    pass
 
 db = MySQLdb.connect("localhost","root","toor","codeutsava")
 db.ping(True)
