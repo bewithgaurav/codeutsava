@@ -20,7 +20,7 @@ body {
 
 .card {
   background-color: #f4f4f4;
-  width: 85%;
+  width: 75%;
   margin: 10px auto;
   
   box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.7);
@@ -88,7 +88,7 @@ body {
 }
 @media screen and (min-width: 480px) {
     .card{
-		height:650px;
+		height:600px;
 	}
 }
 

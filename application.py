@@ -107,7 +107,11 @@ def blogs():
     elif blog=="3":
         return render_template("blog3.html")    
     elif blog=="4":
-        return render_template("blog4.html")    
+        return render_template("blog4.html")
+    elif blog=="5":
+        return render_template("blog5.html") 
+    elif blog=="6":
+        return render_template("blog6.html")    
     else:
         return render_template("blog.html")
 
