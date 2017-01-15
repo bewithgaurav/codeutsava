@@ -14,6 +14,12 @@ try:
 except ImportError:
     # Fall back to Python 2's urllib2
     from urllib2 import urlopen
+# try:
+#     import sys
+#     reload(sys)
+#     sys.setdefaultencoding("utf-8")
+# except:
+#     pass
 
 db = MySQLdb.connect("localhost","root","toor","codeutsava")
 db.ping(True)
@@ -518,6 +524,32 @@ def adminpanel():
             query="select * from pythonworkshop"
             cursor.execute(query)
             python=cursor.fetchall()
+            python=list(python)
+            # print(python)
+            for i in range(len(python)):
+                python[i]=list(python[i])
+                # print(python[i])
+                for j in range(len(python[i])):
+                    try:
+                        python[i][j].encode('utf-8')
+                    except:
+                        pass
+            linux=list(linux)
+            for i in range(len(linux)):
+                linux[i]=list(linux[i])
+                for j in range(len(linux[i])):
+                    try:
+                        linux[i][j].encode('utf-8')
+                    except:
+                        pass
+            members=list(members)
+            for i in range(len(members)):
+                members[i]=list(members[i])
+                for j in range(len(members[i])):
+                    try:
+                        members[i][j].encode('utf-8')
+                    except:
+                        pass
             return render_template("adminpanel.html",members=members,linux=linux,python=python,memlen=len(members),linuxlen=len(linux),pythonlen=len(python))
         else:
             return ("Stay where you belong. Please.")
