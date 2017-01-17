@@ -110,7 +110,7 @@ def blogs():
         blogInt=int(blog)
     except Exception as e:
         return render_template("blog.html")
-    if blogInt>=1 and blogInt<=7:
+    if blogInt>=1 and blogInt<=8:
         return render_template("blog"+blog+".html")       
     else:
         return render_template("blog.html")
