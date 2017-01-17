@@ -3173,3 +3173,329 @@ Traceback (most recent call last):
   File "/var/www/backend/backend/templates/adminpanel.html", line 93, in top-level template code
     <td><center>{{i[7]}}</center></td>
 UnicodeDecodeError: 'ascii' codec can't decode byte 0xd1 in position 0: ordinal not in range(128)
+[2017-01-14 18:34:38 +0000] [2356] [INFO] Handling signal: hup
+[2017-01-14 18:34:38 +0000] [2356] [INFO] Hang up: Master
+[2017-01-14 18:34:38 +0000] [5169] [INFO] Booting worker with pid: 5169
+[2017-01-14 18:35:31,996] ERROR in app: Exception on /adminpanel [POST]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 523, in adminpanel
+    return render_template("adminpanel.html",members=members,linux=linux,python=python,memlen=len(members),linuxlen=len(linux),pythonlen=len(python))
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/templating.py", line 134, in render_template
+    context, ctx.app)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/templating.py", line 116, in _render
+    rv = template.render(context)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/environment.py", line 989, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/environment.py", line 754, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/backend/templates/adminpanel.html", line 93, in top-level template code
+    <td><center>{{i[7]}}</center></td>
+UnicodeDecodeError: 'utf8' codec can't decode byte 0xd1 in position 0: invalid continuation byte
+[2017-01-14 18:51:40,770] ERROR in app: Exception on /adminpanel [POST]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 523, in adminpanel
+    return render_template("adminpanel.html",members=members,linux=linux,python=python,memlen=len(members),linuxlen=len(linux),pythonlen=len(python))
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/templating.py", line 134, in render_template
+    context, ctx.app)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/templating.py", line 116, in _render
+    rv = template.render(context)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/environment.py", line 989, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/environment.py", line 754, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/backend/templates/adminpanel.html", line 93, in top-level template code
+    <td><center>{{i[7]}}</center></td>
+UnicodeDecodeError: 'utf8' codec can't decode byte 0xd1 in position 0: invalid continuation byte
+[2017-01-14 19:08:03 +0000] [2356] [INFO] Handling signal: hup
+[2017-01-14 19:08:03 +0000] [2356] [INFO] Hang up: Master
+[2017-01-14 19:08:03 +0000] [5551] [INFO] Booting worker with pid: 5551
+[2017-01-14 19:08:42,833] ERROR in app: Exception on /adminpanel [POST]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 549, in adminpanel
+    return render_template("adminpanel.html",members=members,linux=linux,python=python,memlen=len(members),linuxlen=len(linux),pythonlen=len(python))
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/templating.py", line 134, in render_template
+    context, ctx.app)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/templating.py", line 116, in _render
+    rv = template.render(context)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/environment.py", line 989, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/environment.py", line 754, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/backend/templates/adminpanel.html", line 93, in top-level template code
+    <td><center>{{i[7]}}</center></td>
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xd1 in position 0: ordinal not in range(128)
+[2017-01-14 19:17:11,575] ERROR in app: Exception on /adminpanel [POST]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 549, in adminpanel
+    return render_template("adminpanel.html",members=members,linux=linux,python=python,memlen=len(members),linuxlen=len(linux),pythonlen=len(python))
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/templating.py", line 134, in render_template
+    context, ctx.app)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/templating.py", line 116, in _render
+    rv = template.render(context)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/environment.py", line 989, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/jinja2/environment.py", line 754, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/backend/templates/adminpanel.html", line 93, in top-level template code
+    <td><center>{{i[7]}}</center></td>
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xd1 in position 0: ordinal not in range(128)
+[2017-01-14 19:17:36 +0000] [2356] [INFO] Handling signal: hup
+[2017-01-14 19:17:36 +0000] [2356] [INFO] Hang up: Master
+[2017-01-14 19:17:36 +0000] [5630] [INFO] Booting worker with pid: 5630
+[2017-01-15 00:37:26,248] ERROR in app: Exception on /viewteam [GET]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 210, in viewteam
+    institute=teamstatus[1]
+TypeError: 'NoneType' object has no attribute '__getitem__'
+[2017-01-15 06:32:12,083] ERROR in app: Exception on /login [POST]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 640, in login
+    if checkRecaptcha(response,SECRET_KEY):
+  File "/var/www/backend/backend/application.py", line 72, in checkRecaptcha
+    url = url + '&response=' +response
+TypeError: cannot concatenate 'str' and 'NoneType' objects
+[2017-01-15 06:32:17,184] ERROR in app: Exception on /login [POST]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 640, in login
+    if checkRecaptcha(response,SECRET_KEY):
+  File "/var/www/backend/backend/application.py", line 72, in checkRecaptcha
+    url = url + '&response=' +response
+TypeError: cannot concatenate 'str' and 'NoneType' objects
+[2017-01-15 06:34:05,405] ERROR in app: Exception on /login [POST]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 640, in login
+    if checkRecaptcha(response,SECRET_KEY):
+  File "/var/www/backend/backend/application.py", line 72, in checkRecaptcha
+    url = url + '&response=' +response
+TypeError: cannot concatenate 'str' and 'NoneType' objects
+[2017-01-15 11:58:56,716] ERROR in app: Exception on /viewteam [GET]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 210, in viewteam
+    institute=teamstatus[1]
+TypeError: 'NoneType' object has no attribute '__getitem__'
+[2017-01-15 13:43:28,841] ERROR in app: Exception on /login [POST]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 640, in login
+    if checkRecaptcha(response,SECRET_KEY):
+  File "/var/www/backend/backend/application.py", line 72, in checkRecaptcha
+    url = url + '&response=' +response
+TypeError: cannot concatenate 'str' and 'NoneType' objects
+[2017-01-15 13:46:11 +0000] [2356] [INFO] Handling signal: hup
+[2017-01-15 13:46:11 +0000] [2356] [INFO] Hang up: Master
+[2017-01-15 13:46:11 +0000] [12524] [INFO] Booting worker with pid: 12524
+[2017-01-15 14:09:13 +0000] [2356] [INFO] Handling signal: hup
+[2017-01-15 14:09:13 +0000] [2356] [INFO] Hang up: Master
+[2017-01-15 14:09:13 +0000] [12704] [INFO] Booting worker with pid: 12704
+[2017-01-15 15:38:33 +0000] [2356] [INFO] Handling signal: hup
+[2017-01-15 15:38:33 +0000] [2356] [INFO] Hang up: Master
+[2017-01-15 15:38:33 +0000] [14361] [INFO] Booting worker with pid: 14361
+[2017-01-15 16:34:32,340] ERROR in app: Exception on /login [POST]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 644, in login
+    if checkRecaptcha(response,SECRET_KEY):
+  File "/var/www/backend/backend/application.py", line 72, in checkRecaptcha
+    url = url + '&response=' +response
+TypeError: cannot concatenate 'str' and 'NoneType' objects
+[2017-01-15 17:47:48,349] ERROR in app: Exception on /viewteam [GET]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 214, in viewteam
+    institute=teamstatus[1]
+TypeError: 'NoneType' object has no attribute '__getitem__'
+[2017-01-15 19:46:01 +0000] [2356] [INFO] Handling signal: hup
+[2017-01-15 19:46:01 +0000] [2356] [INFO] Hang up: Master
+[2017-01-15 19:46:01 +0000] [15810] [INFO] Booting worker with pid: 15810
+[2017-01-16 00:44:22,823] ERROR in app: Exception on /activate [GET]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 179, in activate
+    reverse=str(id[0])+email
+TypeError: 'NoneType' object has no attribute '__getitem__'
+[2017-01-16 09:13:27,124] ERROR in app: Exception on /viewteam [GET]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 214, in viewteam
+    institute=teamstatus[1]
+TypeError: 'NoneType' object has no attribute '__getitem__'
+[2017-01-16 09:13:27,815] ERROR in app: Exception on /viewteam [GET]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 214, in viewteam
+    institute=teamstatus[1]
+TypeError: 'NoneType' object has no attribute '__getitem__'
+[2017-01-17 00:58:18,693] ERROR in app: Exception on /viewteam [GET]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 214, in viewteam
+    institute=teamstatus[1]
+TypeError: 'NoneType' object has no attribute '__getitem__'
+[2017-01-17 06:01:43,390] ERROR in app: Exception on /viewteam [GET]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 214, in viewteam
+    institute=teamstatus[1]
+TypeError: 'NoneType' object has no attribute '__getitem__'
