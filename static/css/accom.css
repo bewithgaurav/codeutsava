@@ -1,0 +1,23 @@
+.accom{
+	 background-image:url(../img/wall7.png);
+  background-repeat:no-repeat;
+  background-size: cover;
+  color:white;
+ 
+	
+}
+.accom h5{
+	text-align:center;
+}
+.accom p{
+	font-size:20px;
+	color:white;
+}
+.accom_con{
+	padding-bottom:30px;
+}
+.reach p{
+	text-align:left;
+	font-size:20px;
+	padding:10px;
+}

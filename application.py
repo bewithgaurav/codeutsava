@@ -106,18 +106,12 @@ def home():
 @app.route('/blogs',methods=['GET'])
 def blogs():
     blog=str(request.args.get('page'))
-    if blog=="1":
-        return render_template("blog1.html")    
-    elif blog=="2":
-        return render_template("blog2.html")    
-    elif blog=="3":
-        return render_template("blog3.html")    
-    elif blog=="4":
-        return render_template("blog4.html")
-    elif blog=="5":
-        return render_template("blog5.html") 
-    elif blog=="6":
-        return render_template("blog6.html")    
+    try:
+        blogInt=int(blog)
+    except Exception as e:
+        return render_template("blog.html")
+    if blogInt>=1 and blogInt<=7:
+        return render_template("blog"+blog+".html")       
     else:
         return render_template("blog.html")
 
@@ -142,6 +136,10 @@ def logout():
         return render_template("login.html",teamname=teamname)
     session.clear()
     return redirect(url_for('index'))
+@app.route('/hackathon',methods=['GET', 'POST'])
+def hackathon():
+    return render_template("hackathon.html")
+    
 
 @app.route('/activate',methods=['GET', 'POST'])
 def activate():
