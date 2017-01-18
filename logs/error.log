@@ -3499,3 +3499,42 @@ Traceback (most recent call last):
   File "/var/www/backend/backend/application.py", line 214, in viewteam
     institute=teamstatus[1]
 TypeError: 'NoneType' object has no attribute '__getitem__'
+[2017-01-17 11:08:02 +0000] [2356] [INFO] Handling signal: hup
+[2017-01-17 11:08:02 +0000] [2356] [INFO] Hang up: Master
+[2017-01-17 11:08:02 +0000] [2717] [INFO] Booting worker with pid: 2717
+[2017-01-17 11:29:12 +0000] [2356] [INFO] Handling signal: hup
+[2017-01-17 11:29:12 +0000] [2356] [INFO] Hang up: Master
+[2017-01-17 11:29:12 +0000] [3012] [INFO] Booting worker with pid: 3012
+[2017-01-17 18:46:21 +0000] [2356] [INFO] Handling signal: hup
+[2017-01-17 18:46:21 +0000] [2356] [INFO] Hang up: Master
+[2017-01-17 18:46:21 +0000] [8904] [INFO] Booting worker with pid: 8904
+[2017-01-18 03:49:34,088] ERROR in app: Exception on /viewteam [GET]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 212, in viewteam
+    institute=teamstatus[1]
+TypeError: 'NoneType' object has no attribute '__getitem__'
+[2017-01-18 06:06:17,109] ERROR in app: Exception on /viewteam [GET]
+Traceback (most recent call last):
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/www/backend/venv/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/var/www/backend/backend/application.py", line 212, in viewteam
+    institute=teamstatus[1]
+TypeError: 'NoneType' object has no attribute '__getitem__'
