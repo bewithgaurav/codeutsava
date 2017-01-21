@@ -1,0 +1,146 @@
+use codeutsava;
+CREATE TABLE `workshop1` (
+  `email` varchar(100) DEFAULT NULL,
+  `yop` varchar(60) DEFAULT NULL,
+  `degree` varchar(50) DEFAULT NULL,
+  `contact` varchar(15) DEFAULT NULL,
+  `stream` varchar(50) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `institute` varchar(100) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+);
+CREATE TABLE `workshop2` (
+  `email` varchar(100) DEFAULT NULL,
+  `yop` varchar(60) DEFAULT NULL,
+  `degree` varchar(50) DEFAULT NULL,
+  `contact` varchar(15) DEFAULT NULL,
+  `stream` varchar(50) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `institute` varchar(100) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ; 
+CREATE TABLE `workshop3` (
+  `email` varchar(100) DEFAULT NULL,
+  `yop` varchar(60) DEFAULT NULL,
+  `degree` varchar(50) DEFAULT NULL,
+  `contact` varchar(15) DEFAULT NULL,
+  `stream` varchar(50) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `institute` varchar(100) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ;
+CREATE TABLE `workshop4` (
+  `email` varchar(100) DEFAULT NULL,
+  `yop` varchar(60) DEFAULT NULL,
+  `degree` varchar(50) DEFAULT NULL,
+  `contact` varchar(15) DEFAULT NULL,
+  `stream` varchar(50) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `institute` varchar(100) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ;
+CREATE TABLE `workshop5` (
+  `email` varchar(100) DEFAULT NULL,
+  `yop` varchar(60) DEFAULT NULL,
+  `degree` varchar(50) DEFAULT NULL,
+  `contact` varchar(15) DEFAULT NULL,
+  `stream` varchar(50) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `institute` varchar(100) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ;
+CREATE TABLE `workshop6` (
+  `email` varchar(100) DEFAULT NULL,
+  `yop` varchar(60) DEFAULT NULL,
+  `degree` varchar(50) DEFAULT NULL,
+  `contact` varchar(15) DEFAULT NULL,
+  `stream` varchar(50) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `institute` varchar(100) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ;
+CREATE TABLE `workshop7` (
+  `email` varchar(100) DEFAULT NULL,
+  `yop` varchar(60) DEFAULT NULL,
+  `degree` varchar(50) DEFAULT NULL,
+  `contact` varchar(15) DEFAULT NULL,
+  `stream` varchar(50) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `institute` varchar(100) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ;
+
+CREATE TABLE `workshop8` (
+  `email` varchar(100) DEFAULT NULL,
+  `yop` varchar(60) DEFAULT NULL,
+  `degree` varchar(50) DEFAULT NULL,
+  `contact` varchar(15) DEFAULT NULL,
+  `stream` varchar(50) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `institute` varchar(100) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ;
+CREATE TABLE `workshop9` (
+  `email` varchar(100) DEFAULT NULL,
+  `yop` varchar(60) DEFAULT NULL,
+  `degree` varchar(50) DEFAULT NULL,
+  `contact` varchar(15) DEFAULT NULL,
+  `stream` varchar(50) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `institute` varchar(100) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ;
+CREATE TABLE `workshop10` (
+  `email` varchar(100) DEFAULT NULL,
+  `yop` varchar(60) DEFAULT NULL,
+  `degree` varchar(50) DEFAULT NULL,
+  `contact` varchar(15) DEFAULT NULL,
+  `stream` varchar(50) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `institute` varchar(100) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ;
+CREATE TABLE `workshop11` (
+  `email` varchar(100) DEFAULT NULL,
+  `yop` varchar(60) DEFAULT NULL,
+  `degree` varchar(50) DEFAULT NULL,
+  `contact` varchar(15) DEFAULT NULL,
+  `stream` varchar(50) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `institute` varchar(100) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ;
+CREATE TABLE `workshop12` (
+  `email` varchar(100) DEFAULT NULL,
+  `yop` varchar(60) DEFAULT NULL,
+  `degree` varchar(50) DEFAULT NULL,
+  `contact` varchar(15) DEFAULT NULL,
+  `stream` varchar(50) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `institute` varchar(100) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ;

@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html>
+<html>
+ <title>Codeutsava 1.0 | Workshop Registration</title>
+  <link rel="icon" type="image/png" href="static/img/logo1.png">
+<!-- Jim Moriarty. Hi. Thanks For Checking Out the Code.  -->
+<script type="text/javascript" src="static/js/materialize.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+ <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+<link href="static/css/style5.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  <meta name="twitter:card" content="Hackathon">
+<meta name="twitter:site" content="@codeutsavaNitrr">
+<meta name="twitter:title" content="Codeutsava 1.0 | NIT Raipur">
+<meta name="twitter:description" content="CodeUtsava 1.0 is a mega computer science event and will span for two days: 4th and 5th Feb, 2017. The event will consists of a 28-hour hackathon that will run in parallel to 5-6 Guest Lecture sessions. The event aims at encouraging the use of newer and advanced technologies and to promote better and cleaner ways of software and product development.">
+<meta name="twitter:creator" content="@lalitc375">
+<meta name="twitter:image" content="http://codeutsava.in/static/img/timeline.jpg">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Codeutsava 1.0 | NIT Raipur" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.codeutsava.in/" />
+<meta property="og:image" content="http://codeutsava.in/static/img/timeline.jpg" />
+<meta property="og:description" content="CodeUtsava 1.0 is a mega computer science event and will span for two days: 4th and 5th Feb, 2017. The event will consists of a 28-hour hackathon that will run in parallel to 5-6 Guest Lecture sessions. The event aims at encouraging the use of newer and advanced technologies and to promote better and cleaner ways of software and product development." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+ <head>
+	<!-- <title></title> -->
+</head>
+<body>
+<nav class="black" role="navigation">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="50px"></a>
+       <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-black">menu</i></a>
+      <ul class="right hide-on-med-and-down">        
+       <li><a href="/">HOME PAGE</a></li>
+        <li><a href="/registration">REGISTRATION PORTAL</a></li>
+        <li><a href="/logout">LOGOUT</a></li>
+        
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="/" class="btn waves-effect waves-light  darkgrey lighten-1 ">HOME PAGE</a></li>
+        <li><a href="/registration" class="btn waves-effect waves-light  darkgrey lighten-1">REGISTRATION</a></li>
+        <li><a href="/logout" class="btn waves-effect waves-light  darkgrey lighten-1 ">LOGOUT</a></li>
+       	
+      </ul>
+      <!-- <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">Menu</i></a> -->
+    </div>
+  </nav>
+</div>
+      
+<center>
+<br><br>
+<h3>Workshop</h3>
+<p class="center">
+	Description
+</p>
+{% for category, message in get_flashed_messages(with_categories=true) %}
+<h6>{{ message }}</h6>
+{% endfor %}
+<br>
+For NIT Raipur Students Only
+<br><br>
+{% if success %}
+Registered Successfully.
+{% endif %}
+</center>
+<br>
+<div class="container">
+	<!-- <div class="row"> -->
+	    <form id="userDetailForm" name ="userDetailForm" action="/workshop6register" method="post" class="col s12">
+	    <input name=_csrf_token type=hidden value="{{ csrf_token() }}">
+	      <div class="row">
+	        <div class="col s12">
+		        <font face="Calibri" size=2 >Full Name</font>
+		        <!-- <div class="col s6"> -->
+		          <input id="name" name="name" type="text" class="validate" required>
+		        <!-- </div> -->
+	        </div>
+	        
+	      </div>
+	      <div class="row">
+	        <div class="col s12">
+		        <font face="Calibri" size=2 >Email</font>
+		        <!-- <div class="col s6"> -->
+		          <input id="email" name="email" type="email" class="validate" required>
+		        <!-- </div> -->
+	        </div>
+	        
+	      </div>
+	      
+	      <div class="row">
+	        <!-- <div class="col s6">
+	          <input placeholder="Degree" id="degree" name="degree" type="text" class="validate">
+	          <label for="uname">Username</label>
+	        </div>-->
+	        <div class="col s12">
+			<font face="Calibri" size=2>Degree</font>
+				<select name="degree" required>
+					<option disabled selected="">Choose Your Option</option>
+					<option value="B.Tech">B.Tech</option>
+					<option value="M.Tech">M.Tech</option>
+					<option value="Others">Others</option>
+					
+    			</select>
+				<label for="Degree">Degree</label>
+			
+			</div>
+	      </div>
+		  <div class="row">
+	        <div class="col s12">
+			<font face="Calibri" size=2>Stream</font>
+	          <!-- <label for="password">Password</label> -->
+	        	<select name="stream" required>
+					<option disabled selected="">Choose Your Option</option>
+					<option value="Mechanical">Mechanical</option>
+					<option value="Chemical">Chemical</option>
+					<option value="Civil">Civil</option>
+					<option value="Computer Science">Computer Science</option>
+					<option value="Information Technology">Information Technology</option>
+					<option value="Biomedical">Biomedical</option>
+					<option value="Electronics and Telecommunication">Electronics and Telecommunication</option>
+					<option value="Electrical">Electrical</option>
+					<option value="Electrical and Electronics">Electrical and Electronics</option>
+					<option value="Others">Others</option>
+					<label>Stream</label>
+    			</select>
+				
+			
+			</div>
+	</div>
+	      <!-- </div> -->
+	      <div class="row">
+	        
+	        <div class="col s12">
+			
+			<font face="Calibri" size=2 >Year Of Passing</font>
+			<select name="yop" required>
+					<option disabled selected="">Choose Your Option</option>
+					<option value="2019">2022</option>
+					<option value="2019">2021</option>
+					<option value="2019">2020</option>
+					<option value="2019">2019</option>
+					<option value="2018">2018</option>
+					<option value="2017">2017</option>
+					<option value="2016">2016</option>
+					<option value="2015">2015</option>
+					<option value="2014">2014</option>
+					<option value="2013">2013</option>
+					<option value="2012">2012</option>
+					<option value="2011">2011</option>
+			</select>
+	<!-- <label for="yop">Year of Passing</label> -->
+			
+	
+	          
+	        </div>
+	      </div>
+	      
+	      <div class="row">
+	        <div class="col s12">
+	           <font face="Calibri" size=2 >Contact (10 Digits)</font>
+	          <input id="contact" name="contact" type="text" class="validate" required length="10">
+	           
+	        </div>
+	      </div>
+	      <div class="row">
+	        <div class="col s12">
+		        <!-- <font face="Calibri" size=2 >Captcha</font> -->
+		        <!-- <div class="col s6"> -->
+		        
+		          <center><div class="g-recaptcha" data-sitekey="6LcbfhEUAAAAALPhMJ07H7AHvqn6X4M4DBRIoVNr"></div></center>
+		        
+		        <!-- </div> -->
+	        </div>
+	        
+	      </div>
+	      
+	      <div class="row">
+	      	<center><button class="btn waves-effect waves-light grey darken-1 " type="submit" name="action">Register</button></center>
+          </div>
+	    </form>
+</div></div></div>
+<br>
+<br><br><br><center>
+<!-- <a href="/logout" class="waves-effect waves-light btn grey darken-1">Logout</a><br><br></center> -->
+<script src="static/js/main1.js"></script> 
+<footer class="page-footer grey">
+
+          <div class="container" style="background color:grey;">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">CODEUTSAVA 1.0</h5>
+                <p class="grey-text text-lighten-4">Be a part of one of the mega computer science
+				event of central India and feel the aura of our motto "Code | Innovate | Celebrate".
+				The event aims at encouraging and creating awareness among students to use the
+				technology for the betterment of society.
+</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">CONNECT WITH US</h5>
+                
+                  <a class="white-text" target="_blank" href="http://www.facebook.com/codeutsava/">Facebook</a><br/>
+                  <a class="white-text" target="_blank" href="http://twitter.com/codeutsavaNitrr">Twitter</a><br/>
+                  <a class="white-text" target="_blank" href="http://www.nitrr.ac.in">NIT RAIPUR</a></li><br/>
+                  
+                
+              </div>
+            </div>
+          </div></div>
+		  <div class="black">
+          <div class="footer-copyright">
+            <div class="container">
+            Copyright 2017 ITSA NIT Raipur | All Rights Reserved.
+            
+            </div>
+          </div>
+        </footer>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+      
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  
+
+  <script src="static/js/init.js"></script>
+	<script type="text/javascript" src="static/js/analytics.js"></script>		
+   
+
+	<script>
+		
+jQuery.validator.addMethod('phoneIND', function(phone_number, element) {
+	phone_number = phone_number.replace(/\(|\)|\s+|-/g,'');
+	return this.optional(element) || phone_number.length > 9 &&
+		phone_number.match(/^[6789]\d{9}$/);
+}, 'Please specify a valid phone number');
+
+			$("#userDetailForm").validate({
+	rules: {
+		contact :{
+				required : true,
+				minlength : 10,
+				maxlength : 10,
+				phoneIND : true
+		}
+	},
+	messages : {
+		contact : {
+			matches : "Please Enter A Valid Mobile Number"
+		}	
+	}
+});
+		</script>
+</body>
+</html>

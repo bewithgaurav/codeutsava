@@ -116,6 +116,7 @@ def blogs():
 		return render_template("blog.html")
 
 
+
 @app.route('/registration',methods=['GET', 'POST'])
 def index():
 	if 'team' in session:
@@ -306,6 +307,182 @@ def pythonregister():
 			flash("Captcha Could not be Verified")
 		
 	return render_template("pythonregister.html",success=success)
+@app.route('/workshop1register',methods=['GET','POST'])
+def workshop1register():
+    success=False
+    if request.method=='POST':
+        response = request.form.get('g-recaptcha-response')
+        if checkRecaptcha(response,SECRET_KEY):
+            print("yeah")
+            name=request.form.get('name','')
+            email=request.form.get('email','')
+            yop=request.form.get('yop','')
+            contact=request.form.get('contact','')
+            degree=request.form.get('degree','')
+            stream=request.form.get('stream','')
+            try:
+                cursor.execute("""INSERT INTO workshop1 (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
+                db.commit()
+                success=True
+            except:
+                db.rollback()
+                print(str(e))
+                flash("An Error Occurred. Please Try Later")
+        else:
+            flash("Captcha Could not be Verified")
+        
+    return render_template("workshop1.html",success=success)    
+@app.route('/workshop2register',methods=['GET','POST'])
+def workshop2register():
+    success=False
+    if request.method=='POST':
+        response = request.form.get('g-recaptcha-response')
+        if checkRecaptcha(response,SECRET_KEY):
+            print("yeah")
+            name=request.form.get('name','')
+            email=request.form.get('email','')
+            yop=request.form.get('yop','')
+            contact=request.form.get('contact','')
+            degree=request.form.get('degree','')
+            stream=request.form.get('stream','')
+            try:
+                cursor.execute("""INSERT INTO workshop2 (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
+                db.commit()
+                success=True
+            except:
+                db.rollback()
+                print(str(e))
+                flash("An Error Occurred. Please Try Later")
+        else:
+            flash("Captcha Could not be Verified")
+        
+    return render_template("workshop2.html",success=success)
+@app.route('/workshop3register',methods=['GET','POST'])
+def workshop3register():
+    success=False
+    if request.method=='POST':
+        response = request.form.get('g-recaptcha-response')
+        if checkRecaptcha(response,SECRET_KEY):
+            print("yeah")
+            name=request.form.get('name','')
+            email=request.form.get('email','')
+            yop=request.form.get('yop','')
+            contact=request.form.get('contact','')
+            degree=request.form.get('degree','')
+            stream=request.form.get('stream','')
+            try:
+                cursor.execute("""INSERT INTO workshop3 (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
+                db.commit()
+                success=True
+            except:
+                db.rollback()
+                print(str(e))
+                flash("An Error Occurred. Please Try Later")
+        else:
+            flash("Captcha Could not be Verified")
+        
+    return render_template("workshop3.html",success=success)            
+@app.route('/workshop4register',methods=['GET','POST'])
+def workshop4register():
+    success=False
+    if request.method=='POST':
+        response = request.form.get('g-recaptcha-response')
+        if checkRecaptcha(response,SECRET_KEY):
+            print("yeah")
+            name=request.form.get('name','')
+            email=request.form.get('email','')
+            yop=request.form.get('yop','')
+            contact=request.form.get('contact','')
+            degree=request.form.get('degree','')
+            stream=request.form.get('stream','')
+            try:
+                cursor.execute("""INSERT INTO workshop4 (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
+                db.commit()
+                success=True
+            except:
+                db.rollback()
+                print(str(e))
+                flash("An Error Occurred. Please Try Later")
+        else:
+            flash("Captcha Could not be Verified")
+        
+    return render_template("workshop4.html",success=success)
+@app.route('/workshop5register',methods=['GET','POST'])
+def workshop5register():
+    success=False
+    if request.method=='POST':
+        response = request.form.get('g-recaptcha-response')
+        if checkRecaptcha(response,SECRET_KEY):
+            print("yeah")
+            name=request.form.get('name','')
+            email=request.form.get('email','')
+            yop=request.form.get('yop','')
+            contact=request.form.get('contact','')
+            degree=request.form.get('degree','')
+            stream=request.form.get('stream','')
+            try:
+                cursor.execute("""INSERT INTO workshop5 (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
+                db.commit()
+                success=True
+            except:
+                db.rollback()
+                print(str(e))
+                flash("An Error Occurred. Please Try Later")
+        else:
+            flash("Captcha Could not be Verified")
+        
+    return render_template("workshop5.html",success=success)
+@app.route('/workshop6register',methods=['GET','POST'])
+def workshop6register():
+    success=False
+    if request.method=='POST':
+        response = request.form.get('g-recaptcha-response')
+        if checkRecaptcha(response,SECRET_KEY):
+            print("yeah")
+            name=request.form.get('name','')
+            email=request.form.get('email','')
+            yop=request.form.get('yop','')
+            contact=request.form.get('contact','')
+            degree=request.form.get('degree','')
+            stream=request.form.get('stream','')
+            try:
+                cursor.execute("""INSERT INTO workshop6 (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
+                db.commit()
+                success=True
+            except:
+                db.rollback()
+                print(str(e))
+                flash("An Error Occurred. Please Try Later")
+        else:
+            flash("Captcha Could not be Verified")
+        
+    return render_template("workshop6.html",success=success)
+@app.route('/workshop7register',methods=['GET','POST'])
+def workshop7register():
+    success=False
+    if request.method=='POST':
+        response = request.form.get('g-recaptcha-response')
+        if checkRecaptcha(response,SECRET_KEY):
+            print("yeah")
+            name=request.form.get('name','')
+            email=request.form.get('email','')
+            yop=request.form.get('yop','')
+            contact=request.form.get('contact','')
+            degree=request.form.get('degree','')
+            stream=request.form.get('stream','')
+            try:
+                cursor.execute("""INSERT INTO workshop7 (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
+                db.commit()
+                success=True
+            except:
+                db.rollback()
+                print(str(e))
+                flash("An Error Occurred. Please Try Later")
+        else:
+            flash("Captcha Could not be Verified")
+        
+    return render_template("workshop7.html",success=success)           
+
 		
 @app.route('/memberprofile',methods=['GET','POST'])
 def memprofile():
