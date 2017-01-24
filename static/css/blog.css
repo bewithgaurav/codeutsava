@@ -17,10 +17,13 @@ body {
 	margin-bottom:20px;
 }
 
-
+.contain{
+	margin-left:5%;
+	margin-right:5%;
+}
 .card {
   background-color: #f4f4f4;
-  width: 75%;
+  width: 85%;
   margin: 10px auto;
   
   box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.7);
@@ -43,7 +46,7 @@ body {
 }
 
 .card-content h3 {
-  font-size: 21px;
+  font-size: 30px;
   margin-bottom: 0;
   color: #303F9F;
  
@@ -85,11 +88,4 @@ body {
 .card-footer ul li i {
   font-size: 2em;
   color: #3F51B5;
-}
-@media screen and (min-width: 480px) {
-    .card{
-		height:600px;
-	}
-}
-
 }

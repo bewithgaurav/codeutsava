@@ -102,7 +102,9 @@ app.jinja_env.globals['csrf_token'] = generate_csrf_token
 @app.route('/')
 def home():
 	return render_template("index.html")
-
+@app.route('/techTalk')
+def techTalk():
+    return render_template("techtalks.html")
 @app.route('/blogs',methods=['GET'])
 def blogs():
 	blog=str(request.args.get('page'))

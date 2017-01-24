@@ -1,0 +1,20 @@
+body{
+	
+	 background-image:url(../img/tcbg.jpg);
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-attachment:fixed;
+  
+ 
+
+}
+.card-image img{
+	height:200px;
+	}
+.card-content{
+	height:450px;
+}	
+
+hr{
+	width:75%;
+}
