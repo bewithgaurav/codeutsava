@@ -117,7 +117,17 @@ def blogs():
 	else:
 		return render_template("blog.html")
 
-
+@app.route('/techblogs',methods=['GET'])
+def techblogs():
+	blog=str(request.args.get('page'))
+	try:
+		blogInt=int(blog)
+	except Exception as e:
+		return render_template("techblog.html")
+	if blogInt>=1 and blogInt<=1:
+		return render_template("techblog"+blog+".html")       
+	else:
+		return render_template("techblog.html")
 
 @app.route('/registration',methods=['GET', 'POST'])
 def index():
