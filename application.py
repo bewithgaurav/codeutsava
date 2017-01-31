@@ -224,23 +224,26 @@ def showall():
 
 @app.route('/viewteam',methods=['GET','POST'])
 def viewteam():
-	name=str(request.args.get('team'))
-	q="select name,degree,stream from members where teamname=%s"
-	cursor.execute(q,[name])
-	d=cursor.fetchall()
-	# print(d)
-	q="select active,institute from teams where teamname=%s"
-	cursor.execute(q,[name])
-	teamstatus=cursor.fetchone()
-	institute=teamstatus[1]
-	teamstatus=teamstatus[0]
-	if d:
-		c=[]
-		for i in d:
-			c.append((i[0],i[1],i[2]))
-		print(c)
-	else:
-		return("Wrong Team Name")
+	try:
+		name=str(request.args.get('team'))
+		q="select name,degree,stream from members where teamname=%s"
+		cursor.execute(q,[name])
+		d=cursor.fetchall()
+		# print(d)
+		q="select active,institute from teams where teamname=%s"
+		cursor.execute(q,[name])
+		teamstatus=cursor.fetchone()
+		institute=teamstatus[1]
+		teamstatus=teamstatus[0]
+		if d:
+			c=[]
+			for i in d:
+				c.append((i[0],i[1],i[2]))
+			print(c)
+		else:
+			return("Wrong Team Name")
+	except:
+		return "URL Not Found."
 	return render_template('viewteam.html',data=c,teamname=name,teamstatus=teamstatus,institute=institute)
 
 @app.route('/resend',methods=['GET'])
