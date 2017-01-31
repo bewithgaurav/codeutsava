@@ -710,6 +710,68 @@ def viewmember():
 	else:
 		return ("Stay where you belong. Please.")
 
+@app.route('/workshopadminpanel', methods=['GET', 'POST'])
+def workshopadminpanel():
+	if 'admin' in session:
+		query="select * from workshop1"
+		cursor.execute(query)
+		members1=cursor.fetchall()
+		members1=list(members1)
+		for i in range(len(members1)):
+			members1[i]=list(members1[i])
+			for j in range(len(members1[i])):
+				try:
+					members1[i][j].encode('utf-8')
+				except:
+					pass
+		query="select * from workshop2"
+		cursor.execute(query)
+		members2=cursor.fetchall()
+		members2=list(members2)
+		for i in range(len(members2)):
+			members2[i]=list(members2[i])
+			for j in range(len(members2[i])):
+				try:
+					members2[i][j].encode('utf-8')
+				except:
+					pass
+		query="select * from workshop3"
+		cursor.execute(query)
+		members3=cursor.fetchall()
+		members3=list(members3)
+		for i in range(len(members3)):
+			members3[i]=list(members3[i])
+			for j in range(len(members3[i])):
+				try:
+					members3[i][j].encode('utf-8')
+				except:
+					pass
+		query="select * from workshop4"
+		cursor.execute(query)
+		members4=cursor.fetchall()
+		members4=list(members4)
+		for i in range(len(members4)):
+			members4[i]=list(members4[i])
+			for j in range(len(members4[i])):
+				try:
+					members4[i][j].encode('utf-8')
+				except:
+					pass
+		query="select * from workshop5"
+		cursor.execute(query)
+		members5=cursor.fetchall()
+		members5=list(members5)
+		for i in range(len(members5)):
+			members5[i]=list(members5[i])
+			for j in range(len(members5[i])):
+				try:
+					members5[i][j].encode('utf-8')
+				except:
+					pass
+		return render_template("workshopadminpanel.html",members1=members1,memlen1=len(members1),members2=members2,memlen2=len(members2),members3=members3,memlen3=len(members3),members4=members1,memlen4=len(members4),members5=members5,memlen5=len(members5))
+	else:
+		return ("Stay where you belong. Please.")
+
 @app.route('/adminpanel', methods=['GET', 'POST'])
 def adminpanel():
 	if 'team' in session:
@@ -722,30 +784,6 @@ def adminpanel():
 			query="select * from members"
 			cursor.execute(query)
 			members=cursor.fetchall()
-			query="select * from linuxworkshop"
-			cursor.execute(query)
-			linux=cursor.fetchall()
-			query="select * from pythonworkshop"
-			cursor.execute(query)
-			python=cursor.fetchall()
-			python=list(python)
-			# print(python)
-			for i in range(len(python)):
-				python[i]=list(python[i])
-				# print(python[i])
-				for j in range(len(python[i])):
-					try:
-						python[i][j].encode('utf-8')
-					except:
-						pass
-			linux=list(linux)
-			for i in range(len(linux)):
-				linux[i]=list(linux[i])
-				for j in range(len(linux[i])):
-					try:
-						linux[i][j].encode('utf-8')
-					except:
-						pass
 			members=list(members)
 			for i in range(len(members)):
 				members[i]=list(members[i])
@@ -754,7 +792,8 @@ def adminpanel():
 						members[i][j].encode('utf-8')
 					except:
 						pass
-			return render_template("adminpanel.html",members=members,linux=linux,python=python,memlen=len(members),linuxlen=len(linux),pythonlen=len(python))
+
+			return render_template("adminpanel.html",members=members,memlen=len(members))
 		else:
 			return ("Stay where you belong. Please.")
 	return render_template("adminpassword.html")

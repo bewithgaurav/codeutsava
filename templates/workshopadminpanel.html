@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
+<link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
+<link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
+<link href="static/css/style5.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="static/js/materialize.min.js"></script>
+ <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+       
+ <head>
+<style>
+table{
+    table-layout: fixed;
+    width: 100%;
+}
+</style>
+
+	<title></title>
+</head>
+<body>
+<div class="navbar-fixed">
+  <nav class="black" role="navigation">
+    <div class="nav-wrapper">
+      <a id="logo-container " href="/" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="60px"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/adminpanel">HACKATHON DATABASE</a></li>
+        <li><a href="/logout">LOGOUT</a></li>
+               
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="/adminpanel" class="btn waves-effect waves-light  grey lighten-1 ">HACKATHON DATABASE</a></li>
+        <li><a href="/logout" class="btn waves-effect waves-light  grey lighten-1 ">LOGOUT</a></li>
+        
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">Menu</i></a>
+    </div>
+  </nav>
+</div>
+<br><br>
+<center>
+<h3>Triveni Database (<b>{{memlen1}}</b> Members)</h3>
+<br>
+{% for category, message in get_flashed_messages(with_categories=true) %}
+<h6>{{ message }}</h6>
+{% endfor %}
+{%if members1%}
+	<table>
+	{% for i in members1 %}
+		<tr>
+      <td><center>{{i[5]}}</center></td>
+			<td><center>{{i[0]}}</center></td>
+			<td><center>{{i[2]}}</center></td>
+      <td><center>{{i[1]}}</center></td>
+      <td><center>{{i[4]}}</center></td>
+      <td><center>{{i[3]}}</center></td>
+      <td><center>{{i[6]}}</center></td>
+      <td><center>{{i[7]}}</center></td>
+      
+		</tr>
+	{% endfor %}
+	</table>
+<br><br>
+{%endif%}
+<h3>Aswin Venu Database (<b>{{memlen2}}</b> Members)</h3>
+<br>
+{% for category, message in get_flashed_messages(with_categories=true) %}
+<h6>{{ message }}</h6>
+{% endfor %}
+{%if members2%}
+  <table>
+  {% for i in members2 %}
+    <tr>
+      <td><center>{{i[5]}}</center></td>
+      <td><center>{{i[0]}}</center></td>
+      <td><center>{{i[2]}}</center></td>
+      <td><center>{{i[1]}}</center></td>
+      <td><center>{{i[4]}}</center></td>
+      <td><center>{{i[3]}}</center></td>
+      <td><center>{{i[6]}}</center></td>
+      <td><center>{{i[7]}}</center></td>
+      
+    </tr>
+  {% endfor %}
+  </table>
+<br><br>
+{%endif%}
+<h3>Vikramank Singh Database (<b>{{memlen3}}</b> Members)</h3>
+<br>
+{% for category, message in get_flashed_messages(with_categories=true) %}
+<h6>{{ message }}</h6>
+{% endfor %}
+{%if members3%}
+  <table>
+  {% for i in members3 %}
+    <tr>
+      <td><center>{{i[5]}}</center></td>
+      <td><center>{{i[0]}}</center></td>
+      <td><center>{{i[2]}}</center></td>
+      <td><center>{{i[1]}}</center></td>
+      <td><center>{{i[4]}}</center></td>
+      <td><center>{{i[3]}}</center></td>
+      <td><center>{{i[6]}}</center></td>
+      <td><center>{{i[7]}}</center></td>
+      
+    </tr>
+  {% endfor %}
+  </table>
+<br><br>
+{%endif%}
+<h3>Asmita Metrewar Database (<b>{{memlen4}}</b> Members)</h3>
+<br>
+{% for category, message in get_flashed_messages(with_categories=true) %}
+<h6>{{ message }}</h6>
+{% endfor %}
+{%if members4%}
+  <table>
+  {% for i in members4 %}
+    <tr>
+      <td><center>{{i[5]}}</center></td>
+      <td><center>{{i[0]}}</center></td>
+      <td><center>{{i[2]}}</center></td>
+      <td><center>{{i[1]}}</center></td>
+      <td><center>{{i[4]}}</center></td>
+      <td><center>{{i[3]}}</center></td>
+      <td><center>{{i[6]}}</center></td>
+      <td><center>{{i[7]}}</center></td>
+      
+    </tr>
+  {% endfor %}
+  </table>
+<br><br>
+{%endif%}
+<h3>Arun Kumar Database (<b>{{memlen5}}</b> Members)</h3>
+<br>
+{% for category, message in get_flashed_messages(with_categories=true) %}
+<h6>{{ message }}</h6>
+{% endfor %}
+{%if members5%}
+  <table>
+  {% for i in members5 %}
+    <tr>
+      <td><center>{{i[5]}}</center></td>
+      <td><center>{{i[0]}}</center></td>
+      <td><center>{{i[2]}}</center></td>
+      <td><center>{{i[1]}}</center></td>
+      <td><center>{{i[4]}}</center></td>
+      <td><center>{{i[3]}}</center></td>
+      <td><center>{{i[6]}}</center></td>
+      <td><center>{{i[7]}}</center></td>
+      
+    </tr>
+  {% endfor %}
+  </table>
+<br><br>
+{%endif%}
+</body>
+</html>
