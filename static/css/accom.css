@@ -29,15 +29,21 @@
  
 	
 }
+.headcolor{
+	 
+  color:white;
+ 
+	
+}
 .sz{
 	font-size:20px;
 }
 
 .card-image img{
-	height:300px;
+	height:200px;
 }
 @media screen and (min-width: 480px) {
   .theme .card{
-       height:450px;
+       height:350px;
     }
 }
