@@ -58,15 +58,18 @@
       
 <center>
 <br><br>
-<h3>Workshop</h3>
+<h3>Register For Workshop</h3>
 <p class="center">
-	Description
+	<b>By <u>Asmita Metrewar</u>
+	<br><br> Software Engineer at Apple, Hyderabad, India
+	<br><br><u>Time</u>: 12:00 noon to 1:30 PM on 4th feb (Virtual classroom) and 10:30 am to 12:00 noon on 5th feb(Virtual classroom)
+	<br><br><u>Topic</u>: Information Retrieval and Algorithms
+	<br><br><u>Pre-requisites</u>: None
+	</b>
 </p>
 {% for category, message in get_flashed_messages(with_categories=true) %}
 <h6>{{ message }}</h6>
 {% endfor %}
-<br>
-For NIT Raipur Students Only
 <br><br>
 {% if success %}
 Registered Successfully.
@@ -75,7 +78,7 @@ Registered Successfully.
 <br>
 <div class="container">
 	<!-- <div class="row"> -->
-	    <form id="userDetailForm" name ="userDetailForm" action="/workshop4register" method="post" class="col s12">
+	    <form id="userDetailForm" name ="userDetailForm" action="/workshop1register" method="post" class="col s12">
 	    <input name=_csrf_token type=hidden value="{{ csrf_token() }}">
 	      <div class="row">
 	        <div class="col s12">
@@ -91,6 +94,15 @@ Registered Successfully.
 		        <font face="Calibri" size=2 >Email</font>
 		        <!-- <div class="col s6"> -->
 		          <input id="email" name="email" type="email" class="validate" required>
+		        <!-- </div> -->
+	        </div>
+	        
+	      </div>
+	      <div class="row">
+	        <div class="col s12">
+		        <font face="Calibri" size=2 >Institute</font>
+		        <!-- <div class="col s6"> -->
+		          <input id="institute" name="institute" type="text" class="validate" required>
 		        <!-- </div> -->
 	        </div>
 	        
@@ -114,6 +126,7 @@ Registered Successfully.
 			
 			</div>
 	      </div>
+
 		  <div class="row">
 	        <div class="col s12">
 			<font face="Calibri" size=2>Stream</font>

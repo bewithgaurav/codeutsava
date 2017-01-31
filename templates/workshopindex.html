@@ -1,94 +1,350 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+     
+ <head>
 <!-- Jim Moriarty. Hi. Thanks For Checking Out the Code.  -->
  <title>Codeutsava 1.0 | Registration Portal</title>
   <link rel="icon" type="image/png" href="static/img/logo1.png">
+<meta name="twitter:card" content="Hackathon">
+<meta name="twitter:site" content="@codeutsavaNitrr">
+<meta name="twitter:title" content="Codeutsava 1.0 | NIT Raipur">
+<meta name="twitter:description" content="CodeUtsava 1.0 is a mega computer science event and will span for two days: 4th and 5th Feb, 2017. The event will consist of a 28-hour hackathon that will run in parallel to 5-6 Guest Lecture sessions. The event aims at encouraging the use of newer and advanced technologies and to promote better and cleaner ways of software and product development.">
+<meta name="twitter:creator" content="@lalitc375">
+<meta name="twitter:image" content="http://codeutsava.in/static/img/timeline.jpg">
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
-<link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
-<link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
-<link href="static/css/style5.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-<script type="text/javascript" src="js/materialize.min.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-     <script type="text/javascript" src="static/js/materialize.min.js"></script>
- <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"> -->
+<!-- Open Graph data -->
+<meta property="og:title" content="Codeutsava 1.0 | NIT Raipur" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.codeutsava.in/" />
+<meta property="og:image" content="http://codeutsava.in/static/img/timeline.jpg" />
+<meta property="og:description" content="CodeUtsava 1.0 is a mega computer science event and will span for two days: 4th and 5th Feb, 2017. The event will consists of a 28-hour hackathon that will run in parallel to 5-6 Guest Lecture sessions. The event aims at encouraging the use of newer and advanced technologies and to promote better and cleaner ways of software and product development." />
+
+
  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+   <link href="static/css/style5.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link  rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-        
- <head>
-	<!-- <title></title> -->
+   
+  <!-- <title></title> -->
+  <style type="text/css">
+    .myblink {
+  -moz-animation-duration: 1000ms;
+  -moz-animation-name: blink;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-direction: alternate;
+  
+  -webkit-animation-duration: 1000ms;
+  -webkit-animation-name: blink;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  
+  animation-duration: 1000ms;
+  animation-name: blink;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@-moz-keyframes blink {
+  from {
+    opacity: 1;
+  }
+  
+  to {
+    opacity: 0.5;
+  }
+}
+
+@-webkit-keyframes blink {
+  from {
+    opacity: 1;
+  }
+  
+  to {
+    opacity: 0.2;
+  }
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+  
+  to {
+    opacity: 0.2;
+  }
+}
+blockquote {
+    border-left: 5px solid #64b5f6;
+    margin: 20px 0;
+    padding-left: 1.5rem;
+}
+  </style>
 </head>
 <body>
-<nav class="black" role="navigation">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<nav class="white" role="navigation">
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="50px"></a>
-       <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-black">menu</i></a>
+        <a id="logo-container " href="/" class="brand-logo"><img src="static/img/logo1.png" alt="Codeutsava" height="60px"></a>
+     <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-black">menu</i></a>
       <ul class="right hide-on-med-and-down">        
          <li><a href="/">HOME</a></li>
-         <li><a href="/registration">REGISTRATION PORTAL</a></li>
+         <li><a href="/blogs">OUR BLOGS</a></li>
+         <li><a href="/registration">HACKATHON REGISTRATION</a></li>
+         <li><a href="/allteams">VIEW ALL TEAMS</a></li>
          
                  
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="/" class="btn waves-effect waves-light  darkgrey lighten-1 ">HOME PAGE</a></li>
-        <li><a href="/registration" class="btn waves-effect waves-light  darkgrey lighten-1 ">REGISTER HOME</a></li>
+        <li><a href="/blogs" class="btn waves-effect waves-light  darkgrey lighten-1 ">OUR BLOGS</a></li>
+        <li><a href="/registration" class="btn waves-effect waves-light  darkgrey lighten-1 ">HACKATHON</a></li>
+        <li><a href="/allteams" class="btn waves-effect waves-light  darkgrey lighten-1 ">VIEW ALL TEAMS</a></li>
          
       </ul>
       <!-- <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons icon-white">Menu</i></a>  -->
     </div>
   </nav>
+
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">share</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating blue" href="https://www.facebook.com/codeutsava" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      <li><a class="btn-floating blue" href="https://www.twitter.com/codeutsavaNitrr" target="_blank"><i class="fa fa-twitter"></i></a></li>
+    </ul>
+  </div>
+<div id="index-banner" class="parallax-container" >
+    <div class="section no-pad-bot" style="padding-top: 7.5%">
+      <div class="container">
+        <br><br>
+    
+        <h1 class="header center-align white-text text-lighten-2 animated rubberBand hide-on-small-only">CODEUTSAVA 1.0</h1>
+      <h4 class="hide-on-med-and-up center-align">CODEUTSAVA 1.0 <hr/></h4>
+     
+        <div class=" typewriter center">
+          <h5 class="header col s12 light ">CODE | INNOVATE | CELEBRATE</h5>
+        </div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class=" center">
+      
+          <h5 class="white-text"><a class="white-text">Register for Speaker Sessions</a></h5>
+    
+        </div>
+        <div class="row"></div>
+        <div class="center">
+        <a class="waves-effect waves-light btn center tooltipped" data-position="right" data-delay="50" data-tooltip="Register" href="/workshop1register" target="_blank"><i class="material-icons right">send</i>NETWORK FLOW & COMPETITIVE PROGRAMMING WORKSHOP</a>
+        </div>
+         <div class="row"></div>
+         <div class="row"></div>
+        <div class="center">
+   
+   <a class="waves-effect waves-light btn center tooltipped" data-position="right" data-delay="50" data-tooltip="Register" href="/workshop2register" target="_blank"><i class="material-icons right">send</i>MICROPYTHON WORKSHOP</a>
+        </div>
+         <div class="row"></div>
+         <div class="row"></div>
+             <div class="center">
+        
+        <a class="waves-effect waves-light btn center tooltipped" data-position="right" data-delay="50" data-tooltip="Register" href="/workshop3register" target="_blank"><i class="material-icons right">send</i>MACHINE LEARNING WORKSHOP</a>
+   
+        </div>
+        <div class="row"></div>
+         <div class="row"></div>
+        <div class="center">
+   
+   <a class="waves-effect waves-light btn center tooltipped" data-position="right" data-delay="50" data-tooltip="Register" href="/workshop4register" target="_blank"><i class="material-icons right">send</i>INFORMATION RETRIEVAL & ALGORITHMS WORKSHOP</a>
+        </div>
+         <div class="row"></div>
+         <div class="row"></div>
+        <div class="center">
+   
+   <a class="waves-effect waves-light btn center tooltipped" data-position="right" data-delay="50" data-tooltip="Register" href="/workshop5register" target="_blank"><i class="material-icons right">send</i>WEB DEVELOPMENT WORKSHOP</a>
+        </div>
+         
+      </div>
+    </div>
+    <div class="parallax"><img src="static/img/main.jpg" alt=""></div>
+  </div>
+  
+  <div class="register  grey lighten-2" id="Howtoregister">
+  
+      <div class="section no-pad-bot no-pad-top" >
+      <div class="container ">
+      <div class="">
+    <!-- <div class="row">&nbsp;</div> -->
+    <img class=" materialboxed responsive-img waves-effect" height="400" src="static/img/register.jpg">
+     
 </div>
-<center>
-<br><br><h3>WORKSHOP REGISTRATION</h3><br><br>
+    </div>
+  </div>
+    </div>
 
-<a href="/pythonregister" target="_blank" class="waves-effect waves-light btn grey darken-1 ">REGISTER FOR PYTHON WORKSHOP</a><br><br><br/>
-<a href="/linuxregister" target="_blank" class="waves-effect waves-light btn grey darken-1">REGISTER FOR LINUX WORKSHOP</a><br/><br/>
-<!-- <a href="/allteams" class="waves-effect waves-light btn grey darken-1">All Teams</a><br/><br/> -->
-<br>
-</center>
-<footer class="page-footer grey">
+<div class="register  grey lighten-2" id="faqposter">
+  
+      <div class="section no-pad-bot no-pad-top" >
+      <div class="container ">
+      <div class=""><center>
+    <!-- <div class="row">&nbsp;</div> -->
+<img class=" materialboxed responsive-img   waves-effect" height="400" src="static/img/faqs.jpg">
+     </center>
+</div>
+    </div>
+  </div>
+    </div>
 
-          <div class="container" style="background color:black;">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">CODEUTSAVA 1.0</h5>
-                <p class="grey-text text-lighten-4">Be a part of one of the mega computer science
-				event of central India and feel the aura of our motto "Code | Innovate | Celebrate".
-				The event aims at encouraging and creating awareness among students to use the
-				technology for the betterment of society.
-</p>
+
+
+  <div class="FAQs" id="faqs" style="padding-top: 0;">
+   
+    <div class="section">
+  <div class="row center">
+  <div class="row"></div>
+       
+   <div class="container">
+   <div class="row">
+  <div class="col s12 m12 l12 ">
+    
+ 
+          <h2 >FAQs</h2>
+                <ul class="collapsible popout" data-collapsible="accordion">
+            <li>
+              <div class="collapsible-header">How much it will cost?</div>
+              <div class="collapsible-body white"><p>Zero</p></div>
+            </li>
+            <li>
+              <div class="collapsible-header">What's the application process like?</div>
+              <div class="collapsible-body white"><p>The application process is online based. Teams will be shortlisted on the basis of previous experiences,projects etc.</p></div>
+            </li>
+            <li>
+              <div class="collapsible-header">How big can a team be?</div>
+              <div class="collapsible-body white"><p>Team size is exactly 3 members per team
+</p></div>
+            </li>
+            <li>
+              <div class="collapsible-header">When does registration open?
               </div>
-              <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">CONNECT WITH US</h5>
-                
-                  <a class="white-text" target="_blank" href="http://www.facebook.com/codeutsava/">Facebook</a><br/>
-                  <a class="white-text" target="_blank" href="http://twitter.com/codeutsavaNitrr">Twitter</a><br/>
-                  <a class="white-text" target="_blank" href="http://www.nitrr.ac.in">NIT RAIPUR</a></li><br/>
-                  
-                
-              </div>
-            </div>
-          </div></div>
-		  <div class="black">
-          <div class="footer-copyright">
-            <div class="container">
-            Copyright 2017 ITSA NIT Raipur | All Rights Reserved.
-            
-            </div>
-          </div>
-        </footer>
-		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+              <div class="collapsible-body white"><p>1st January 2017</p></div>
+            </li>
+            <li>
+              <div class="collapsible-header">  What about Accommodation?</div>
+              <div class="collapsible-body white"><p>We will  make special arrangements for subsidized accommodation in case you're arriving a day before the event</p></div>
+            </li>
+            <li>
+              <div class="collapsible-header">Who can attend?</div>
+              <div class="collapsible-body white"><p> All undergraduate, graduate, and high school students are welcome. If you are under 18, we’ll need a parental consent form.
+</p></div>
+            </li>
+            <li>
+              <div class="collapsible-header">Once I get accepted,what do I need to bring? </div>
+              <div class="collapsible-body white"><p> Your valid student ID, laptop, phone, chargers, extention cords, any sleeping equipment you might want (we'll be providing mattresses).</p></div>
+            </li>
+            <li>
+              <div class="collapsible-header"> What do I get by attending CodeUtsava?
+</div>
+              <div class="collapsible-body white"><p>     Exposure to leading tech-companies,internship offers and Knowledge about recent technologies and prizes worth 2,00,000
+</p></div>
+            </li>
+            <li>
+              <div class="collapsible-header"> What is the last date to register?
+                </div>
+              <div class="collapsible-body white"><p> 19th Jan 2017</p></div>
+            </li>
+            <li>
+              <div class="collapsible-header"> What if this FAQ didn't answer my questions?
+</div>
+              <div class="collapsible-body white"><p> Feel free to drop us a message at our facebook page. We will get back to you soon.</p></div>
+            </li>
+          </ul>
+   
+      
+
+    <div class="row">&nbsp;</div>
+  </div></div></div>
+</div>
+</div>
+</div>
+  <div id="schedule" class=" schedule grey lighten-4">
+<div class="section">
+
+  <div class="container">
+<div class="row center">
+  <h2>SCHEDULE</h2></div>
+
+  <div class="row">
+    <div class="col l6 m6 s12">
+    <div class="scd">
+      <h4><u>4th February</u></h4>
+      <blockquote><p><i class="fa fa-sun-o" style="font-size:24px;"></i>10:00 AM  Registration opens</p>
+      <p><i class="fa fa-sun-o" style="font-size:24px;"></i>11:00 AM Inaugration <!-- followed by Chief Guest's Session--></p>
+      <p><i class="fa fa-certificate" style="font-size:24px;"></i>12:00 PM Coding Begins</p>
+      <p><i class="fa fa-certificate" style="font-size:24px;"></i>01:30 PM Lunch</p>
+      <p><i class="fa fa-circle" style="font-size:24px;"></i>05:00 PM Interactive Session Starts</p>
+      <p><i class="fa fa-circle" style="font-size:24px;"></i>06:00 PM Evening Snacks</p>
+      <p><i class="fa fa-moon-o" style="font-size:24px;"></i>07:30 PM Discussion of ideas <!--and prototype with judges--></p>
+      <p><i class="fa fa-moon-o" style="font-size:24px;"></i>08:30 PM Dinner</p></blockquote>
+    </div></div>
+    <div class="col l6 m6 s12">
+    <div class="scd">
+      <h4><u>5th February</u></h4>
+      <blockquote><p><i class="fa fa-moon-o" style="font-size:24px;"></i>02:00 AM Night Party</p>
+      <p><i class="fa fa-sun-o" style="font-size:24px;"></i>07:30 AM Breakfast</p>
+      <p><i class="fa fa-sun-o" style="font-size:24px;"></i>10:00 PM Round 1 Judging Begins</p>
+      <p><i class="fa fa-certificate" style="font-size:24px;"></i>12:00 PM Lunch</p>
+      <p><i class="fa fa-certificate" style="font-size:24px;"></i>02:00 PM Round 2 Judging Begins</p>
+      <p><i class="fa fa-certificate" style="font-size:24px;"></i>04:00 PM PPT Round Begins</p>
+      <p><i class="fa fa-circle" style="font-size:24px;"></i>06:00 PM Announcement of Winners</p>
+      <p><i class="fa fa-circle" style="font-size:24px;"></i>06:00 PM Evening Snacks</p>
+    </div></div>
+  </div>
+  
+  </div>
+  </div>
+</div>
+ 
+
+<footer class="page-footer blue accent-4">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">CODEUTSAVA 1.0</h5><hr/>
+          <p class="grey-text text-lighten-4">CodeUtsava 1.0 is a mega computer science event and will span for two days: 4th and 5th Feb, 2017. The event will consist of a 28-hour hackathon that will run in parallel to Guest Lecture sessions. The event aims at encouraging the use of newer and advanced technologies and to promote better and cleaner ways of software and product development.</p>
+        </div>
+         <div class="col l6 s12">
+         <div class="hide-on-med-and-down">&nbsp;</div>
+         <div class="row ">
+          <a href="https://twitter.com/intent/tweet?screen_name=codeutsavaNitrr" class="twitter-mention-button  white-text" target="_blank" data-show-count="false">Tweet to @codeutsavaNitrr</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+         </div>
+         <div class="row">
+         <div class="fb-page" data-href="https://www.facebook.com/codeutsava" data-tabs="timeline" data-height="150" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/codeutsava" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/codeutsava" target="_blank">CodeUtsava 1.0</a></blockquote></div>
+         </div>
+         </div>
+    </div>
+  </div>
+    <div class="footer-copyright">
+      <div class="container center">
+      Copyright 2017 ITSA NIT Raipur | All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+     
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 
       <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-      
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-  
+       
 
   <script src="static/js/init.js"></script>
   <script type="text/javascript" src="static/js/analytics.js"></script>   

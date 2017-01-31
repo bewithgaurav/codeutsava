@@ -266,59 +266,60 @@ def resend():
 		flash("An Error Occurred")
 	return redirect(url_for("teamprofile"))
 
-@app.route('/linuxregister',methods=['GET','POST'])
-def linuxregister():
-	success=False
-	if request.method=='POST':
-		response = request.form.get('g-recaptcha-response')
-		if checkRecaptcha(response,SECRET_KEY):
-			name=request.form.get('name','')
-			email=request.form.get('email','')
-			yop=request.form.get('yop','')
-			institute=request.form.get('institute','')
-			contact=request.form.get('contact','')
-			experience=request.form.get('experience','')
-			degree=request.form.get('degree','')
-			stream=request.form.get('stream','')
-			print(name,email,yop,institute,contact,experience,degree,stream)
-			try:
-				cursor.execute("""INSERT INTO linuxworkshop (name,email,yop,institute,contact,experience,degree,stream) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)""",[name,email,yop,institute,contact,experience,degree,stream])
-				db.commit()
-				success=True
-			except Exception as e:
-				db.rollback()
-				print(str(e))
-				flash("An Error Occurred. Please Try Later")
-		else:
-			flash("Captcha Could not be Verified")
-	return render_template("linuxregister.html",success=success)
+# @app.route('/linuxregister',methods=['GET','POST'])
+# def linuxregister():
+# 	success=False
+# 	if request.method=='POST':
+# 		response = request.form.get('g-recaptcha-response')
+# 		if checkRecaptcha(response,SECRET_KEY):
+# 			name=request.form.get('name','')
+# 			email=request.form.get('email','')
+# 			yop=request.form.get('yop','')
+# 			institute=request.form.get('institute','')
+# 			contact=request.form.get('contact','')
+# 			experience=request.form.get('experience','')
+# 			degree=request.form.get('degree','')
+# 			stream=request.form.get('stream','')
+# 			print(name,email,yop,institute,contact,experience,degree,stream)
+# 			try:
+# 				cursor.execute("""INSERT INTO linuxworkshop (name,email,yop,institute,contact,experience,degree,stream) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)""",[name,email,yop,institute,contact,experience,degree,stream])
+# 				db.commit()
+# 				success=True
+# 			except Exception as e:
+# 				db.rollback()
+# 				print(str(e))
+# 				flash("An Error Occurred. Please Try Later")
+# 		else:
+# 			flash("Captcha Could not be Verified")
+# 	return render_template("linuxregister.html",success=success)
 
 
-@app.route('/pythonregister',methods=['GET','POST'])
-def pythonregister():
-	success=False
-	if request.method=='POST':
-		response = request.form.get('g-recaptcha-response')
-		if checkRecaptcha(response,SECRET_KEY):
-			print("yeah")
-			name=request.form.get('name','')
-			email=request.form.get('email','')
-			yop=request.form.get('yop','')
-			contact=request.form.get('contact','')
-			degree=request.form.get('degree','')
-			stream=request.form.get('stream','')
-			try:
-				cursor.execute("""INSERT INTO pythonworkshop (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
-				db.commit()
-				success=True
-			except:
-				db.rollback()
-				print(str(e))
-				flash("An Error Occurred. Please Try Later")
-		else:
-			flash("Captcha Could not be Verified")
+# @app.route('/pythonregister',methods=['GET','POST'])
+# def pythonregister():
+# 	success=False
+# 	if request.method=='POST':
+# 		response = request.form.get('g-recaptcha-response')
+# 		if checkRecaptcha(response,SECRET_KEY):
+# 			print("yeah")
+# 			name=request.form.get('name','')
+# 			email=request.form.get('email','')
+# 			yop=request.form.get('yop','')
+# 			contact=request.form.get('contact','')
+# 			degree=request.form.get('degree','')
+# 			stream=request.form.get('stream','')
+# 			try:
+# 				cursor.execute("""INSERT INTO pythonworkshop (name,email,institute,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
+# 				db.commit()
+# 				success=True
+# 			except:
+# 				db.rollback()
+# 				print(str(e))
+# 				flash("An Error Occurred. Please Try Later")
+# 		else:
+# 			flash("Captcha Could not be Verified")
 		
-	return render_template("pythonregister.html",success=success)
+# 	return render_template("pythonregister.html",success=success)
+
 @app.route('/workshop1register',methods=['GET','POST'])
 def workshop1register():
     success=False
@@ -332,8 +333,9 @@ def workshop1register():
             contact=request.form.get('contact','')
             degree=request.form.get('degree','')
             stream=request.form.get('stream','')
+            institute=request.form.get('institute','')
             try:
-                cursor.execute("""INSERT INTO workshop1 (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
+                cursor.execute("""INSERT INTO workshop1 (name,email,institute,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s,%s)""",[name,email,institute,yop,contact,degree,stream])
                 db.commit()
                 success=True
             except:
@@ -343,7 +345,8 @@ def workshop1register():
         else:
             flash("Captcha Could not be Verified")
         
-    return render_template("workshop1.html",success=success)    
+    return render_template("workshop1.html",success=success)
+
 @app.route('/workshop2register',methods=['GET','POST'])
 def workshop2register():
     success=False
@@ -357,8 +360,9 @@ def workshop2register():
             contact=request.form.get('contact','')
             degree=request.form.get('degree','')
             stream=request.form.get('stream','')
+            institute=request.form.get('institute','')
             try:
-                cursor.execute("""INSERT INTO workshop2 (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
+                cursor.execute("""INSERT INTO workshop2 (name,email,institute,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s,%s)""",[name,email,institute,yop,contact,degree,stream])
                 db.commit()
                 success=True
             except:
@@ -382,8 +386,9 @@ def workshop3register():
             contact=request.form.get('contact','')
             degree=request.form.get('degree','')
             stream=request.form.get('stream','')
+            institute=request.form.get('institute','')
             try:
-                cursor.execute("""INSERT INTO workshop3 (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
+                cursor.execute("""INSERT INTO workshop3 (name,email,institute,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s,%s)""",[name,email,institute,yop,contact,degree,stream])
                 db.commit()
                 success=True
             except:
@@ -407,8 +412,9 @@ def workshop4register():
             contact=request.form.get('contact','')
             degree=request.form.get('degree','')
             stream=request.form.get('stream','')
+            institute=request.form.get('institute','')
             try:
-                cursor.execute("""INSERT INTO workshop4 (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
+                cursor.execute("""INSERT INTO workshop4 (name,email,institute,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s,%s)""",[name,email,institute,yop,contact,degree,stream])
                 db.commit()
                 success=True
             except:
@@ -432,8 +438,9 @@ def workshop5register():
             contact=request.form.get('contact','')
             degree=request.form.get('degree','')
             stream=request.form.get('stream','')
+            institute=request.form.get('institute','')
             try:
-                cursor.execute("""INSERT INTO workshop5 (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
+                cursor.execute("""INSERT INTO workshop5 (name,email,institute,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s,%s)""",[name,email,institute,yop,contact,degree,stream])
                 db.commit()
                 success=True
             except:
@@ -444,56 +451,56 @@ def workshop5register():
             flash("Captcha Could not be Verified")
         
     return render_template("workshop5.html",success=success)
-@app.route('/workshop6register',methods=['GET','POST'])
-def workshop6register():
-    success=False
-    if request.method=='POST':
-        response = request.form.get('g-recaptcha-response')
-        if checkRecaptcha(response,SECRET_KEY):
-            print("yeah")
-            name=request.form.get('name','')
-            email=request.form.get('email','')
-            yop=request.form.get('yop','')
-            contact=request.form.get('contact','')
-            degree=request.form.get('degree','')
-            stream=request.form.get('stream','')
-            try:
-                cursor.execute("""INSERT INTO workshop6 (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
-                db.commit()
-                success=True
-            except:
-                db.rollback()
-                print(str(e))
-                flash("An Error Occurred. Please Try Later")
-        else:
-            flash("Captcha Could not be Verified")
+# @app.route('/workshop6register',methods=['GET','POST'])
+# def workshop6register():
+#     success=False
+#     if request.method=='POST':
+#         response = request.form.get('g-recaptcha-response')
+#         if checkRecaptcha(response,SECRET_KEY):
+#             print("yeah")
+#             name=request.form.get('name','')
+#             email=request.form.get('email','')
+#             yop=request.form.get('yop','')
+#             contact=request.form.get('contact','')
+#             degree=request.form.get('degree','')
+#             stream=request.form.get('stream','')
+#             try:
+#                 cursor.execute("""INSERT INTO workshop6 (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
+#                 db.commit()
+#                 success=True
+#             except:
+#                 db.rollback()
+#                 print(str(e))
+#                 flash("An Error Occurred. Please Try Later")
+#         else:
+#             flash("Captcha Could not be Verified")
         
-    return render_template("workshop6.html",success=success)
-@app.route('/workshop7register',methods=['GET','POST'])
-def workshop7register():
-    success=False
-    if request.method=='POST':
-        response = request.form.get('g-recaptcha-response')
-        if checkRecaptcha(response,SECRET_KEY):
-            print("yeah")
-            name=request.form.get('name','')
-            email=request.form.get('email','')
-            yop=request.form.get('yop','')
-            contact=request.form.get('contact','')
-            degree=request.form.get('degree','')
-            stream=request.form.get('stream','')
-            try:
-                cursor.execute("""INSERT INTO workshop7 (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
-                db.commit()
-                success=True
-            except:
-                db.rollback()
-                print(str(e))
-                flash("An Error Occurred. Please Try Later")
-        else:
-            flash("Captcha Could not be Verified")
+#     return render_template("workshop6.html",success=success)
+# @app.route('/workshop7register',methods=['GET','POST'])
+# def workshop7register():
+#     success=False
+#     if request.method=='POST':
+#         response = request.form.get('g-recaptcha-response')
+#         if checkRecaptcha(response,SECRET_KEY):
+#             print("yeah")
+#             name=request.form.get('name','')
+#             email=request.form.get('email','')
+#             yop=request.form.get('yop','')
+#             contact=request.form.get('contact','')
+#             degree=request.form.get('degree','')
+#             stream=request.form.get('stream','')
+#             try:
+#                 cursor.execute("""INSERT INTO workshop7 (name,email,yop,contact,degree,stream) VALUES (%s,%s,%s,%s,%s,%s)""",[name,email,yop,contact,degree,stream])
+#                 db.commit()
+#                 success=True
+#             except:
+#                 db.rollback()
+#                 print(str(e))
+#                 flash("An Error Occurred. Please Try Later")
+#         else:
+#             flash("Captcha Could not be Verified")
         
-    return render_template("workshop7.html",success=success)           
+#     return render_template("workshop7.html",success=success)           
 
 		
 @app.route('/memberprofile',methods=['GET','POST'])
