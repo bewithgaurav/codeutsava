@@ -31,11 +31,13 @@ table{
     <div class="nav-wrapper">
       <a id="logo-container " href="/" class="brand-logo"><img src="static/img/code.png" alt="Codeutsava" height="60px"></a>
       <ul class="right hide-on-med-and-down">
+        <li><a href="/workshopadminpanel">WORKSHOP DATABASE</a></li>
         <li><a href="/logout">LOGOUT</a></li>
                
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
+        <li><a href="/workshopadminpanel" class="btn waves-effect waves-light  grey lighten-1 ">WORKSHOP DATABASE</a></li>
         <li><a href="/logout" class="btn waves-effect waves-light  grey lighten-1 ">LOGOUT</a></li>
         
       </ul>
@@ -43,8 +45,7 @@ table{
     </div>
   </nav>
 </div>
-<br><br>
-<center>
+<br><center>
 <h3>Members Database (<b>{{memlen}}</b> Members)</h3>
 <br>
 {% for category, message in get_flashed_messages(with_categories=true) %}
@@ -76,44 +77,5 @@ table{
 	</table>
 <br><br>
 {%endif%}
-<h3>Linux Workshop Database (<b>{{linuxlen}}</b> Members)</h3>
-<br>
-{%if linux%}
-  <table>
-    
-  {% for i in linux %}
-    <tr>
-      <td><center>{{i[0]}}</center></td>
-      <td><center>{{i[1]}}</center></td>
-      <td><center>{{i[2]}}</center></td>
-      <td><center>{{i[3]}}</center></td>
-      <td><center>{{i[4]}}</center></td>
-      <td><center>{{i[5]}}</center></td>
-      <td><center>{{i[6]}}</center></td>
-      <td><center>{{i[7]}}</center></td>
-      
-    </tr>
-  {% endfor %}
-  </table>
-<br><br>
-{%endif%}   
-<h3>Python Workshop Database (<b>{{pythonlen}}</b> Members)</h3>
-<br>
-{%if python%}
-  <table>
-    
-  {% for i in python %}
-    <tr>
-      <td><center>{{i[0]}}</center></td>
-      <td><center>{{i[1]}}</a></center></td>
-      <td><center>{{i[3]}}</center></td>
-      <td><center>{{i[4]}}</center></td>
-      <td><center>{{i[5]}}</center></td>
-      
-    </tr>
-  {% endfor %}
-  </table>
-<br><br>
-{%endif%}   
 </body>
 </html>
