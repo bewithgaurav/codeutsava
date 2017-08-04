@@ -26,44 +26,26 @@ db.ping(True)
 cursor = db.cursor()
 app = Flask(__name__)
 # app.secret_key = os.urandom(24)
-app.secret_key = 'lAltCodeUtsvaGaurAvMayaNk'
+app.secret_key = 'ASK'
 # +----+--------+-------+----------+--------+--------+---------+--------+------+------+------------+---------+-------+------+------+--------+--------+
 # | id | active | email | teamname | resume | github | contact | gender | dob  | yop  | experience | address | state | city | name | degree | stream |
 # +----+--------+-------+----------+--------+--------+---------+--------+------+------+------------+---------+-------+------+------+--------+--------+
 # recaptcha = ReCaptcha()
 # recaptcha.init_app(app)
 # recaptcha = ReCaptcha(app=app)
-# app.config['MAIL_SERVER']='smtp.gmail.com'
-# app.config['MAIL_PORT'] = 465
-# app.config['MAIL_USERNAME'] = 'Codeutsava@codeutsava.in'
-# app.config['MAIL_PASSWORD'] = '8602229193'
-# app.config['MAIL_USE_TLS'] = False
-# app.config['MAIL_USE_SSL'] = True
+
 app.config['MAIL_SERVER']='smtp.sendgrid.net'
 app.config['MAIL_PORT'] = 587
-app.config['MAIL_USERNAME'] = 'apikey'
-app.config['MAIL_PASSWORD'] = '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'
+app.config['MAIL_USERNAME'] = 'user'
+app.config['MAIL_PASSWORD'] = 'pass'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = False
 app.config['MAIL_DEBUG']= True
-# app.config['MAIL_PORT'] = 587
-# app.config['MAIL_USERNAME'] = 'apikey'
-# app.config['MAIL_PASSWORD'] = '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'
-# app.config['MAIL_USE_TLS'] = True
-# app.config['MAIL_USE_SSL'] = False
-# app.config['MAIL_DEBUG']= True
+
 mail = Mail(app)
-# recaptcha = ReCaptcha(site_key="6LcbfhEUAAAAALPhMJ07H7AHvqn6X4M4DBRIoVNr", secret_key="6LcbfhEUAAAAACgg5XiNL3wNLwAmi5wmYhGM7Sv_")    
-# RECAPTCHA_ENABLED = True
-# RECAPTCHA_SITE_KEY = "6LcbfhEUAAAAALPhMJ07H7AHvqn6X4M4DBRIoVNr"
-# RECAPTCHA_SECRET_KEY = "6LcbfhEUAAAAACgg5XiNL3wNLwAmi5wmYhGM7Sv_"
-# RECAPTCHA_THEME = "dark"
-# RECAPTCHA_TYPE = "image"
-# RECAPTCHA_SIZE = "compact"
-# RECAPTCHA_TABINDEX = 10
-# print(recaptcha.get_code())
-SITE_KEY = "6LcbfhEUAAAAALPhMJ07H7AHvqn6X4M4DBRIoVNr"
-SECRET_KEY = "6LcbfhEUAAAAACgg5XiNL3wNLwAmi5wmYhGM7Sv_"
+
+SITE_KEY = "SK"
+SECRET_KEY = "SK"
 
 
 def checkRecaptcha(response, secretkey):
