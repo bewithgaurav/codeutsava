@@ -1,6 +1,7 @@
-# Codeutsava 1.0 - A mega Computer Science event organized by ITSA, NIT Raipur
+# Codeutsava 1.0
 
 This project comprises of the whole Team Registration Portal, Blogs & Event Registrations.
+Codeutsava is a mega Computer Science event organized by ITSA, NIT Raipur.
 
 Following technological stack was used-
 
